@@ -1,0 +1,21 @@
+*target*
+*.class
+.classpath
+.project
+.settings/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# IntelliJ files
+.idea/
+*.iml
+
+#work files
+work/
+
+
+
+
