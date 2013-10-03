@@ -12,11 +12,11 @@ With this situation, there is no need for the Jenkins build server to communicat
 
 ***
 
-For a current list of TO-DOs check at  https://github.com/MikeCaspar/ironmq-notifier/wiki/To-Do
-
+* For a current list of TO-DOs check at  https://github.com/MikeCaspar/ironmq-notifier/wiki/To-Do
+* The Jenkins Wiki is located at http://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier
 ***
 
-Last updated : October 2, 2013
+Last updated : October 3, 2013
 
 ***
 Maintainers
