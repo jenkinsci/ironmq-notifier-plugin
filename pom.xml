@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>plugin</artifactId>
+        <version>1.533</version>
+    </parent>
+
+
+    <artifactId>ironmq-notifier</artifactId>
+    <version>1.0.0</version>
+    <packaging>hpi</packaging>
+
+
+    <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->
+    <repositories>
+        <repository>
+            <id>repo.jenkins-ci.org</id>
+            <url>http://repo.jenkins-ci.org/public/</url>
+        </repository>
+
+
+        <repository>
+            <id>iron-io-repo</id>
+            <name>Iron.io Maven repository on GitHub</name>
+            <url>http://iron-io.github.io/maven/repository/</url>
+        </repository>
+
+    </repositories>
+
+    <pluginRepositories>
+
+        <pluginRepository>
+            <id>repo.jenkins-ci.org</id>
+            <url>http://repo.jenkins-ci.org/public/</url>
+        </pluginRepository>
+
+    </pluginRepositories>
+
+    <url>https://github.com/MikeCaspar/ironmq-notifier/wiki</url>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>ironmq</groupId>
+            <artifactId>ironmq</artifactId>
+            <version>0.0.10</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <developers>
+        <developer>
+            <id>MikeCaspar</id>
+            <name>Mike Caspar</name>
+            <email>mike@caspar.com</email>
+        </developer>
+    </developers>
+
+
+
+</project>
