@@ -45,4 +45,15 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
         return new IronMQNotifier(projectId, tokenID, queueName, preferredServer, success, failure, unstable);
     }
+
+    public static boolean isValidQueueName(String name)
+    {
+        return !name.isEmpty() && isAlpha(name);
+
+    }
+
+
+    private static boolean isAlpha(String name) {
+        return name.matches("[a-zA-Z]+");
+    }
 }
