@@ -1,0 +1,23 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <f:entry title="Project Id" field="projectId">
+    <f:textbox />
+  </f:entry>
+  <f:entry title="Token" field="token">
+      <f:textbox />
+    </f:entry>
+    <f:entry title="Queue Name" field="queueName">
+        <f:textbox />
+      </f:entry>
+    <f:entry title="Preferred Server" field="preferredServerName">
+        <f:textbox />
+      </f:entry>
+  <f:entry title="Send on Success" field="send_success">
+  	<f:checkbox />
+  </f:entry>
+  <f:entry title="Send on Failure" field="send_failure">
+  	<f:checkbox />
+  </f:entry>
+  <f:entry title="Send on Unstable" field="send_unstable">
+  	<f:checkbox />
+  </f:entry>
+</j:jelly>
