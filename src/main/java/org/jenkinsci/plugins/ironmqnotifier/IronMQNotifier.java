@@ -82,7 +82,7 @@ public class IronMQNotifier extends Notifier {
 
         message.setBody(jobName + " " + result);
 
-        message.setExpiresIn((long) 136000);
+        message.setExpiresIn((long) 604800);  // 7 days
 
         queue.push(message.getBody(), 0, 0, message.getExpiresIn());
 
