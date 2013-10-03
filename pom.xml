@@ -62,5 +62,11 @@
         </developer>
     </developers>
 
+    <scm>
+        <connection>scm:git:ssh://github.com/jenkinsci/ironmq-notifier.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/jenkinsci/ironmq-notifier.git</developerConnection>
+        <url>https://github.com/jenkinsci/ironmq-notifier</url>
+    </scm>
+
 
 </project>
