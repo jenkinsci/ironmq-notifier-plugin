@@ -5,7 +5,9 @@ import hudson.model.AbstractProject;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Publisher;
 
+import hudson.util.FormValidation;
 import net.sf.json.JSONObject;
+import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
 @Extension
@@ -46,12 +48,17 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         return new IronMQNotifier(projectId, tokenID, queueName, preferredServer, success, failure, unstable);
     }
 
-    public static boolean isValidQueueName(String name)
+     public static FormValidation doCheckPort(@QueryParameter String value) {
+        if(isValidQueueName(value))  return FormValidation.ok();
+        else                return FormValidation.error("QueueName must be Alpha characters only");
+    }
+
+
+    private static boolean isValidQueueName(String name)
     {
         return !name.isEmpty() && isAlpha(name);
 
     }
-
 
     private static boolean isAlpha(String name) {
         return name.matches("[a-zA-Z]+");

@@ -1,33 +1,64 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
+import hudson.util.FormValidation;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class IronMQDescriptorClassTest {
 
     //TODO: I need some help to learn how to test these without forcing static
 
-
     @Test
-        public void CheckForValidQueueNameInDescriptor()
-    {
-        Assert.assertEquals(true,IronMQDescriptor.isValidQueueName("testTEST"));
+    public void FormCheckForValidQueueNameInDescriptor() {
+        FormValidation validationTest;
+        FormValidation expectedValidation = FormValidation.ok();
+
+        try {
+            validationTest = IronMQDescriptor.doCheckPort("testTEST");
+        } catch (Exception exception) {
+            validationTest = FormValidation.error(exception.getMessage().toString());
+        }
+
+        Assert.assertEquals(expectedValidation, validationTest);
 
     }
 
     @Test
-    public void CheckForInvalidQueueNameInDescriptor()
-    {
-        Assert.assertEquals(false,IronMQDescriptor.isValidQueueName("88")); // force error
+    public void FormCheckForInValidQueueNameInDescriptor() {
+
+        FormValidation expectedNoToGet = FormValidation.ok();
+        FormValidation testObject;
+
+        try {
+            testObject = IronMQDescriptor.doCheckPort("55");  // force error
+
+        } catch (Exception exception) {
+
+            testObject = FormValidation.error(exception.getMessage());
+        }
+
+        Assert.assertTrue(testObject != expectedNoToGet);
 
     }
 
     @Test
-    public void Check_That_A_Valid_Queuename_Has_at_least_one_Character()
-    {
-        Assert.assertEquals(false,IronMQDescriptor.isValidQueueName(""));
+    public void FormCheckForInValidQueueNameEmptyString() {
+
+        FormValidation expectedNoToGet = FormValidation.ok();
+        FormValidation testObject;
+
+        try {
+            testObject = IronMQDescriptor.doCheckPort("");
+
+        } catch (Exception exception) {
+
+            testObject = FormValidation.error(exception.getMessage());
+        }
+
+        Assert.assertTrue(testObject != expectedNoToGet);
+
     }
+
 
 
 }
