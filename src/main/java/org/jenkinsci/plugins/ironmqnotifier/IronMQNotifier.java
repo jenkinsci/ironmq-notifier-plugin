@@ -76,7 +76,7 @@ public class IronMQNotifier extends Notifier {
 
         Client client = new Client(projectId, token, new Cloud("https", preferredServerName,443));
 
-        Queue queue = client.queue("JenkinsCI");
+        Queue queue = client.queue(queueName);
 
         Message message = new Message();
 
