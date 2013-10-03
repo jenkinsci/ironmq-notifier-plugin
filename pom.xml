@@ -20,7 +20,6 @@
             <url>http://repo.jenkins-ci.org/public/</url>
         </repository>
 
-
         <repository>
             <id>iron-io-repo</id>
             <name>Iron.io Maven repository on GitHub</name>

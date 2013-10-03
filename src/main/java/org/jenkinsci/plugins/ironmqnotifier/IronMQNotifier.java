@@ -23,9 +23,9 @@ public class IronMQNotifier extends Notifier {
     public String token;
     public String queueName;
     public String preferredServerName;
-    public boolean send_success; //TODO: change to Result_Success
-    public boolean send_failure;  //TODO: change to Result_Failure
-    public boolean send_unstable; //TODO: change to Result_Unstable
+    public boolean send_success;
+    public boolean send_failure;
+    public boolean send_unstable;
     private String messageText;
 
 
