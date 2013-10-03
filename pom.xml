@@ -9,24 +9,9 @@
 
 
     <artifactId>ironmq-notifier</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
-
-    <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->
-    <repositories>
-        <repository>
-            <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
-        </repository>
-
-        <repository>
-            <id>iron-io-repo</id>
-            <name>Iron.io Maven repository on GitHub</name>
-            <url>http://iron-io.github.io/maven/repository/</url>
-        </repository>
-
-    </repositories>
 
     <pluginRepositories>
 
@@ -41,8 +26,24 @@
             <url>http://iron-io.github.io/maven/repository/</url>
         </pluginRepository>
 
-
     </pluginRepositories>
+
+
+    <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->
+    <repositories>
+        <repository>
+            <id>repo.jenkins-ci.org</id>
+            <url>http://repo.jenkins-ci.org/public/</url>
+        </repository>
+
+
+        <repository>
+            <id>iron-io-repo</id>
+            <name>Iron.io Maven repository on GitHub</name>
+            <url>http://iron-io.github.io/maven/repository/</url>
+        </repository>
+
+    </repositories>
 
     <url>http://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier</url>
 
