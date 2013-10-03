@@ -38,7 +38,9 @@
 
     </pluginRepositories>
 
-    <url>https://github.com/MikeCaspar/ironmq-notifier/wiki</url>
+    <!--<url>https://github.com/MikeCaspar/ironmq-notifier/wiki</url>-->
+
+    <url>http://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier</url>
 
     <dependencies>
 
