@@ -4,7 +4,6 @@ import hudson.Extension;
 import hudson.model.AbstractProject;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Publisher;
-
 import hudson.util.FormValidation;
 import net.sf.json.JSONObject;
 import org.kohsuke.stapler.QueryParameter;
@@ -13,9 +12,23 @@ import org.kohsuke.stapler.StaplerRequest;
 @Extension
 public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
-    public IronMQDescriptor () {
-        super (IronMQNotifier.class);
+    public IronMQDescriptor() {
+        super(IronMQNotifier.class);
         load();
+    }
+
+    public static FormValidation doCheckPort(@QueryParameter String value) {
+        if (isValidQueueName(value)) return FormValidation.ok();
+        else return FormValidation.error("QueueName must be Alpha characters only");
+    }
+
+    private static boolean isValidQueueName(String name) {
+        return !name.isEmpty() && isAlpha(name);
+
+    }
+
+    private static boolean isAlpha(String name) {
+        return name.matches("[a-zA-Z]+");
     }
 
     @Override
@@ -26,7 +39,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
     @Override
     public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
         save();
-        return super.configure(req,formData);
+        return super.configure(req, formData);
     }
 
     @Override
@@ -46,21 +59,5 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         boolean unstable = formData.optBoolean("send_unstable");
 
         return new IronMQNotifier(projectId, tokenID, queueName, preferredServer, success, failure, unstable);
-    }
-
-     public static FormValidation doCheckPort(@QueryParameter String value) {
-        if(isValidQueueName(value))  return FormValidation.ok();
-        else                return FormValidation.error("QueueName must be Alpha characters only");
-    }
-
-
-    private static boolean isValidQueueName(String name)
-    {
-        return !name.isEmpty() && isAlpha(name);
-
-    }
-
-    private static boolean isAlpha(String name) {
-        return name.matches("[a-zA-Z]+");
     }
 }
