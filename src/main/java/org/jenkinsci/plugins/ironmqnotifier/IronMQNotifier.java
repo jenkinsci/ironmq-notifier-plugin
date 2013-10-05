@@ -18,7 +18,6 @@ import java.util.logging.Logger;
 
 public class IronMQNotifier extends Notifier {
 
-    private final static Logger LOG = Logger.getLogger(IronMQNotifier.class.getName());
     public String projectId;
     public String token;
     public String queueName;
@@ -92,9 +91,7 @@ public class IronMQNotifier extends Notifier {
 
         queue.push(message.getBody(), 0, 0, message.getExpiresIn());
 
-        LOG.info("Message pushed with expiry of : " + message.getExpiresIn());
-
-        return true;
+    return true;
     }
 
     @Override
