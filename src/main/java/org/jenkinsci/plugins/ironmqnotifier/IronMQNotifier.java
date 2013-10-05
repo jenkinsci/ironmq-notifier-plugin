@@ -84,7 +84,7 @@ public class IronMQNotifier extends Notifier {
 
         Message message = new Message();
 
-        this.messageText = jobName + " " + result ;
+        this.messageText = jobName + " " + result + "with expiry of " + this.expirySeconds;
 
         message.setBody(messageText);
 
