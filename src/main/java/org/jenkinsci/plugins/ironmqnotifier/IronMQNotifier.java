@@ -10,16 +10,15 @@ import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
 import io.iron.ironmq.Message;
 import io.iron.ironmq.Queue;
-import org.apache.log4j.Logger;
-import org.jfree.util.Log;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 
 public class IronMQNotifier extends Notifier {
 
-    private final static Logger LOG = Logger.getLogger(IronPluginImplement.class.getName());
+    private final static Logger LOG = Logger.getLogger(IronMQNotifier.class.getName());
     public String projectId;
     public String token;
     public String queueName;
@@ -93,7 +92,7 @@ public class IronMQNotifier extends Notifier {
 
         queue.push(message.getBody(), 0, 0, message.getExpiresIn());
 
-        Log.info("Message pushed with expiry of : " +  message.getExpiresIn());
+        LOG.info("Message pushed with expiry of : " + message.getExpiresIn());
 
         return true;
     }
