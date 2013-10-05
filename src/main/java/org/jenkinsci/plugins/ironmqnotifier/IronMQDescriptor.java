@@ -17,20 +17,6 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         load();
     }
 
-    public static FormValidation doCheckQueueName(@QueryParameter String value) {
-        if (isValidQueueName(value)) return FormValidation.ok();
-        else return FormValidation.error("QueueName must be Alpha characters only");
-    }
-
-    private static boolean isValidQueueName(String name) {
-        return !name.isEmpty() && isAlpha(name);
-
-    }
-
-    private static boolean isAlpha(String name) {
-        return name.matches("[a-zA-Z]+");
-    }
-
     @Override
     public String getDisplayName() {
         return "Send Message to IronMQ";
@@ -60,5 +46,31 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
 
         return new IronMQNotifier(projectId, tokenID, queueName, preferredServer, success, failure, unstable);
+    }
+
+   /*                      Form Validation Logic Goes Here                */
+
+
+    public static FormValidation doCheckQueueName(@QueryParameter String value) {
+        if (isValidQueueName(value)) return FormValidation.ok();
+        else return FormValidation.error("QueueName must be Alpha characters only");
+    }
+
+    public static FormValidation doCheckPreferredServerName(@QueryParameter String value) {
+        if (isValidServerName(value)) return FormValidation.ok();
+        else return FormValidation.error("Server Name must be valid server name");
+    }
+
+    private static boolean isValidQueueName(String name) {
+        return !name.isEmpty() && isAlpha(name);
+
+    }
+
+    private static boolean isValidServerName(String name) {
+        return !name.isEmpty() ;
+
+    }
+    private static boolean isAlpha(String name) {
+        return name.matches("[a-zA-Z]+");
     }
 }

@@ -59,6 +59,22 @@ public class IronMQDescriptorClassTest {
 
     }
 
+    @Test
+    public void FormPreferredServerNameShouldHaveNotBlankValidation()
+    {
+        FormValidation expectedNoToGet = FormValidation.ok();
+        FormValidation testObject;
+
+        try {
+            testObject = IronMQDescriptor.doCheckPreferredServerName("");
+
+        } catch (Exception exception) {
+
+            testObject = FormValidation.error(exception.getMessage());
+        }
+
+        Assert.assertTrue(testObject != expectedNoToGet);
+    }
 
 
 }
