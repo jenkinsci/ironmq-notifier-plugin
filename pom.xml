@@ -12,6 +12,8 @@
     <version>1.0.3-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
+    <name>ironmq-notifier</name>
+    <description>Jenkins build notification plugin which sends results to iron.io ironmq service</description>
 
     <pluginRepositories>
 
@@ -28,14 +30,12 @@
 
     </pluginRepositories>
 
-
     <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
             <url>http://repo.jenkins-ci.org/public/</url>
         </repository>
-
 
         <repository>
             <id>iron-io-repo</id>
