@@ -78,5 +78,12 @@
         <url>https://github.com/jenkinsci/ironmq-notifier-plugin</url>
     </scm>
 
-
+    <ciManagement>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <address>mike@caspar.com</address>
+            </notifier>
+        </notifiers>
+    </ciManagement>
 </project>
