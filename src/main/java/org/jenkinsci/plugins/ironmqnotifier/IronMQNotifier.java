@@ -11,6 +11,7 @@ import io.iron.ironmq.Cloud;
 import io.iron.ironmq.Message;
 import io.iron.ironmq.Queue;
 import org.apache.log4j.Logger;
+import org.jfree.util.Log;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
@@ -91,6 +92,8 @@ public class IronMQNotifier extends Notifier {
         message.setExpiresIn((long) this.expirySeconds);
 
         queue.push(message.getBody(), 0, 0, message.getExpiresIn());
+
+        Log.info("Message pushed with expiry of : " +  message.getExpiresIn());
 
         return true;
     }
