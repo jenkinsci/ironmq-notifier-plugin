@@ -58,7 +58,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
     public static FormValidation doCheckPreferredServerName(@QueryParameter String value) {
         if (isValidServerName(value)) return FormValidation.ok();
-        else return FormValidation.error("Server Name must be valid server name");
+        else return FormValidation.error("Server Name cannot be empty");
     }
 
     private static boolean isValidQueueName(String name) {
