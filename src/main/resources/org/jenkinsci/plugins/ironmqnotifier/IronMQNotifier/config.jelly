@@ -11,6 +11,9 @@
     <f:entry title="Preferred Server" field="preferredServerName">
         <f:textbox />
       </f:entry>
+    <f:entry title="Expiry in Seconds" field="expirySeconds">
+        <f:textbox />
+      </f:entry>
   <f:entry title="Send on Success" field="send_success">
   	<f:checkbox />
   </f:entry>

@@ -33,7 +33,7 @@ public class IronMQNotifier extends Notifier {
 
 
     @DataBoundConstructor
-    public IronMQNotifier(String projectId, String token, String queueName, String preferredServerName, boolean send_success, boolean send_failure, boolean send_unstable) {
+    public IronMQNotifier(String projectId, String token, String queueName, String preferredServerName, boolean send_success, boolean send_failure, boolean send_unstable, int expirySeconds) {
         this.projectId = projectId;
         this.token = token;
         this.queueName = queueName;
@@ -42,7 +42,7 @@ public class IronMQNotifier extends Notifier {
         this.send_unstable = send_unstable;
         this.preferredServerName = preferredServerName;
 
-        this.expirySeconds = 806400;  // 7 days
+        this.expirySeconds = expirySeconds;
 
     }
 
