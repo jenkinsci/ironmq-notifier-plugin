@@ -14,9 +14,9 @@ public class IronMQDescriptorClassTest {
         FormValidation expectedValidation = FormValidation.ok();
 
         try {
-            validationTest = IronMQDescriptor.doCheckPort("testTEST");
+            validationTest = IronMQDescriptor.doCheckQueueName("testTEST");
         } catch (Exception exception) {
-            validationTest = FormValidation.error(exception.getMessage().toString());
+            validationTest = FormValidation.error(exception.getMessage());
         }
 
         Assert.assertEquals(expectedValidation, validationTest);
@@ -30,7 +30,7 @@ public class IronMQDescriptorClassTest {
         FormValidation testObject;
 
         try {
-            testObject = IronMQDescriptor.doCheckPort("55");  // force error
+            testObject = IronMQDescriptor.doCheckQueueName("55");  // force error
 
         } catch (Exception exception) {
 
@@ -48,7 +48,7 @@ public class IronMQDescriptorClassTest {
         FormValidation testObject;
 
         try {
-            testObject = IronMQDescriptor.doCheckPort("");
+            testObject = IronMQDescriptor.doCheckQueueName("");
 
         } catch (Exception exception) {
 

@@ -17,7 +17,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         load();
     }
 
-    public static FormValidation doCheckPort(@QueryParameter String value) {
+    public static FormValidation doCheckQueueName(@QueryParameter String value) {
         if (isValidQueueName(value)) return FormValidation.ok();
         else return FormValidation.error("QueueName must be Alpha characters only");
     }
@@ -57,6 +57,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         boolean success = formData.optBoolean("send_success");
         boolean failure = formData.optBoolean("send_failure");
         boolean unstable = formData.optBoolean("send_unstable");
+
 
         return new IronMQNotifier(projectId, tokenID, queueName, preferredServer, success, failure, unstable);
     }
