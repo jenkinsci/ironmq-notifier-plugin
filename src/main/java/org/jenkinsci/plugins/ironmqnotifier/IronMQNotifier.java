@@ -26,6 +26,7 @@ public class IronMQNotifier extends Notifier {
     public boolean send_success;
     public boolean send_failure;
     public boolean send_unstable;
+    public int expirySeconds;
     private String messageText;
 
 
@@ -38,6 +39,9 @@ public class IronMQNotifier extends Notifier {
         this.send_failure = send_failure;
         this.send_unstable = send_unstable;
         this.preferredServerName = preferredServerName;
+
+        this.expirySeconds = 806400;  // 7 days
+
     }
 
     public BuildStepMonitor getRequiredMonitorService() {
@@ -74,7 +78,7 @@ public class IronMQNotifier extends Notifier {
             return true;
         }
 
-        Client client = new Client(projectId, token, new Cloud("https", preferredServerName,443));
+        Client client = new Client(projectId, token, new Cloud("https", preferredServerName, 443));
 
         Queue queue = client.queue(queueName);
 
@@ -82,7 +86,7 @@ public class IronMQNotifier extends Notifier {
 
         message.setBody(jobName + " " + result);
 
-        message.setExpiresIn((long) 604800);  // 7 days
+        message.setExpiresIn((long) this.expirySeconds);
 
         queue.push(message.getBody(), 0, 0, message.getExpiresIn());
 
