@@ -16,7 +16,7 @@ h2. Please note : Please use 1.0.1 or above. 1.0.0 had a dependency problem that
 ***
 
 
-* For a current list of TO-DOs check at  https://github.com/MikeCaspar/ironmq-notifier/wiki/To-Do
+* For a current list of TO-DOs check at  http://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier
 * The Jenkins Wiki is located at http://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier
 * To monitor the current build in progress... https://buildhive.cloudbees.com/job/Jenkinsci/job/ironmq-notifier-plugin/
 
