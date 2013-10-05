@@ -13,6 +13,9 @@ import io.iron.ironmq.Queue;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Logger;
 
 
@@ -83,7 +86,11 @@ public class IronMQNotifier extends Notifier {
 
         Message message = new Message();
 
-        this.messageText = jobName + " " + result + "with expiry of " + this.expirySeconds;
+        DateFormat submitDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date submitDate = new Date();
+        String submitDateString = submitDateFormat.format(submitDate);
+
+        this.messageText = jobName + " " + result + "with expiry of " + this.expirySeconds + " - " + submitDateString;
 
         message.setBody(messageText);
 
