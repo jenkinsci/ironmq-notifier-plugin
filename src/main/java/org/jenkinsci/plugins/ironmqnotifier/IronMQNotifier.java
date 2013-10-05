@@ -90,7 +90,7 @@ public class IronMQNotifier extends Notifier {
         Date submitDate = new Date();
         String submitDateString = submitDateFormat.format(submitDate);
 
-        this.messageText = jobName + " " + result + "with expiry of " + this.expirySeconds + " - " + submitDateString;
+        this.messageText = jobName + " " + result + " expiry of " + this.expirySeconds + " - " + submitDateString;
 
         message.setBody(messageText);
 
