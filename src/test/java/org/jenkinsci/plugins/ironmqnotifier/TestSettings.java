@@ -9,3 +9,4 @@ public class TestSettings {
     static String TESTPREFERREDSERVERNAME = "test-mq-rackspace-ord.iron.io";
     public static int EXPIRYSETTINGS = 806400;
 }
+
