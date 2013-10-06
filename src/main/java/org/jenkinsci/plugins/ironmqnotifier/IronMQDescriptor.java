@@ -39,17 +39,16 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         String projectId = formData.optString("projectId");
         String tokenID = formData.optString("token");
         String queueName = formData.optString("queueName");
-        String preferredServer = formData.optString("preferredServerName");
+        String preferredServer = formData.optString("preferredServer");
         boolean success = formData.optBoolean("send_success");
         boolean failure = formData.optBoolean("send_failure");
         boolean unstable = formData.optBoolean("send_unstable");
-        int ExpirySeconds = formData.optInt("ExpirySeconds");
+        int expirySeconds = formData.optInt("expirySeconds");
 
-        return new IronMQNotifier(projectId, tokenID, queueName, preferredServer, success, failure, unstable, ExpirySeconds);
+        return new IronMQNotifier(projectId, tokenID, queueName, preferredServer, success, failure, unstable, expirySeconds);
     }
 
    /*                      Form Validation Logic Goes Here                */
-
 
     public static FormValidation doCheckQueueName(@QueryParameter String value) {
         if (value == null) { value = ""; }
@@ -57,7 +56,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         else return FormValidation.error("QueueName must be Alpha characters only");
     }
 
-    public static FormValidation doCheckPreferredServerName(@QueryParameter String value) {
+    public static FormValidation doCheckPreferredServer(@QueryParameter String value) {
         if (value == null ) { value = ""; }
         if (isValidServerName(value)) return FormValidation.ok();
         else return FormValidation.error("Server Name cannot be empty");

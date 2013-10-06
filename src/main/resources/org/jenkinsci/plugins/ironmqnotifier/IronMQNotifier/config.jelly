@@ -8,7 +8,7 @@
     <f:entry title="Queue Name" field="queueName">
         <f:textbox />
       </f:entry>
-    <f:entry title="Preferred Server" field="preferredServerName">
+    <f:entry title="Preferred Server" field="preferredServer">
         <f:textbox />
       </f:entry>
     <f:entry title="Expiry in Seconds" field="expirySeconds">

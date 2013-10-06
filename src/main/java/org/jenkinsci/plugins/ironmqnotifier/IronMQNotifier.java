@@ -23,29 +23,34 @@ public class IronMQNotifier extends Notifier {
     public String projectId;
     public String token;
     public String queueName;
-    public String preferredServerName;
+    public String preferredServer;
     public boolean send_success;
     public boolean send_failure;
     public boolean send_unstable;
-    public int ExpirySeconds;
+    public int expirySeconds;
     private String messageText;
 
-    private int default_ExpirySeconds = 806400;
+    private final int default_expirySeconds = 806400;
+    private final String default_preferredServer = "mq-rackspace-ord.iron.io";
 
 
     @DataBoundConstructor
-    public IronMQNotifier(String projectId, String token, String queueName, String preferredServerName,
-                          boolean send_success, boolean send_failure, boolean send_unstable, int ExpirySeconds) {
+    public IronMQNotifier(String projectId, String token, String queueName, String preferredServer,
+                          boolean send_success, boolean send_failure, boolean send_unstable, int expirySeconds) {
         this.projectId = projectId;
         this.token = token;
         this.queueName = queueName;
         this.send_success = send_success;
         this.send_failure = send_failure;
         this.send_unstable = send_unstable;
-        this.preferredServerName = preferredServerName;
 
-        if (ExpirySeconds <= 0) { this.ExpirySeconds = default_ExpirySeconds; }
-        else   { this.ExpirySeconds = ExpirySeconds; }
+        if (preferredServer == null) { preferredServer = default_preferredServer; }
+        if (preferredServer == "") { preferredServer = default_preferredServer; }
+
+        this.preferredServer = preferredServer;
+
+        if (expirySeconds <= 0) { this.expirySeconds = default_expirySeconds; }
+        else   { this.expirySeconds = expirySeconds; }
 
     }
 
@@ -83,7 +88,7 @@ public class IronMQNotifier extends Notifier {
             return true;
         }
 
-        Client client = new Client(projectId, token, new Cloud("https", preferredServerName, 443));
+        Client client = new Client(projectId, token, new Cloud("https", preferredServer, 443));
 
         Queue queue = client.queue(queueName);
 
@@ -93,11 +98,11 @@ public class IronMQNotifier extends Notifier {
         Date submitDate = new Date();
         String submitDateString = submitDateFormat.format(submitDate);
 
-        this.messageText = jobName + " " + result + " expiry of " + this.ExpirySeconds + " - " + submitDateString;
+        this.messageText = jobName + " " + result + " expiry of " + this.expirySeconds + " - " + submitDateString;
 
         message.setBody(messageText);
 
-        message.setExpiresIn((long) this.ExpirySeconds);
+        message.setExpiresIn((long) this.expirySeconds);
 
         queue.push(message.getBody(), 0, 0, message.getExpiresIn());
 
