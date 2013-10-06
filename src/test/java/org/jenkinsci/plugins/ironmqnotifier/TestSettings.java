@@ -6,7 +6,7 @@ public class TestSettings {
     static String TESTPROJECTID = "141415252";
     static String TESTTOKEN = "55255555";
     static String TESTQUEUENAME = "testjenkinsqueue";
-    static String TESTPREFERREDSERVERNAME = "test-mq-rackspace-ord.iron.io";
-    public static int EXPIRYSETTINGS = 81000;
+    static String TESTPREFERREDSERVER = "test-mq-rackspace-ord.iron.io";
+    public static long EXPIRYSETTINGS = 81000;
 }
 

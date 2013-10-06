@@ -12,7 +12,7 @@
     <version>1.0.4-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
-    <name>ironmq-notifier</name>
+    <name>IronMQ-notifier</name>
     <description>Jenkins build notification plugin which sends results to iron.io ironmq service</description>
 
     <pluginRepositories>

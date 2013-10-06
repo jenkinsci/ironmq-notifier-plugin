@@ -20,38 +20,34 @@ import java.util.Date;
 
 public class IronMQNotifier extends Notifier {
 
+    private final long default_expirySeconds = 806400;
+    private final String default_preferredServerName = "mq-rackspace-ord.iron.io";
     public String projectId;
     public String token;
     public String queueName;
-    public String preferredServer;
+    public String preferredServerName;
     public boolean send_success;
     public boolean send_failure;
     public boolean send_unstable;
-    public int expirySeconds;
-
+    public long expirySeconds;
     private String messageText;
 
-    private final int default_expirySeconds = 806400;
-    private final String DEFAULT_PREFERREDSERVER = "mq-rackspace-ord.iron.io";
-
-
     @DataBoundConstructor
-    public IronMQNotifier(String projectId, String token, String queueName, String preferredServer,
-                          boolean send_success, boolean send_failure, boolean send_unstable, int expirySeconds) {
+    public IronMQNotifier(String projectId, String token, String queueName, String preferredServerName,
+                          boolean send_success, boolean send_failure, boolean send_unstable, long expirySeconds) {
         this.projectId = projectId;
         this.token = token;
         this.queueName = queueName;
         this.send_success = send_success;
         this.send_failure = send_failure;
         this.send_unstable = send_unstable;
-        this.preferredServer = preferredServer;
+        this.preferredServerName = preferredServerName;
 
-        if (this.preferredServer == null) { this.preferredServer = DEFAULT_PREFERREDSERVER; }
-        if (this.preferredServer.trim().length() == 0 ) { this.preferredServer = DEFAULT_PREFERREDSERVER; }
-
-        if (expirySeconds <= 0) { this.expirySeconds = default_expirySeconds; }
-        else   { this.expirySeconds = expirySeconds; }
-
+        if (expirySeconds <= 0) {
+            this.expirySeconds = default_expirySeconds;
+        } else {
+            this.expirySeconds = expirySeconds;
+        }
     }
 
     public BuildStepMonitor getRequiredMonitorService() {
@@ -88,7 +84,9 @@ public class IronMQNotifier extends Notifier {
             return true;
         }
 
-        Client client = new Client(projectId, token, new Cloud("https", preferredServer, 443));
+        if (preferredServerName.trim().length() == 0) { preferredServerName = default_preferredServerName; }
+
+        Client client = new Client(projectId, token, new Cloud("https", preferredServerName, 443));
 
         Queue queue = client.queue(queueName);
 
@@ -102,7 +100,7 @@ public class IronMQNotifier extends Notifier {
 
         message.setBody(messageText);
 
-        message.setExpiresIn((long) this.expirySeconds);
+        message.setExpiresIn(this.expirySeconds);
 
         queue.push(message.getBody(), 0, 0, message.getExpiresIn());
 

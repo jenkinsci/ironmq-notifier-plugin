@@ -8,7 +8,7 @@
     <f:entry title="Queue Name" field="queueName">
         <f:textbox />
       </f:entry>
-    <f:entry title="Preferred Server" field="preferredServer">
+    <f:entry title="Preferred Server Name" field="preferredServerName" default="mq-rackspace-ord.iron.io">
         <f:textbox />
       </f:entry>
     <f:entry title="Expiry in Seconds" field="expirySeconds">

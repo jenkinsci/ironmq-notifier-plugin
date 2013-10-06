@@ -7,14 +7,18 @@ import org.junit.Test;
 public class IronMQDescriptorClassTest {
 
     //TODO: I need some help to learn how to test these without forcing static
+    //TODO: Originally, I was forcing the functions to static to be able to see them as I cannot initiate appropriate tests without making them static
+    //TODO: unfortunately, that made it so that the forms would break...
+    //TODO: work to be done one this.
 
     @Test
     public void FormCheckForValidQueueNameInDescriptor() {
         FormValidation validationTest;
         FormValidation expectedValidation = FormValidation.ok();
+        IronMQDescriptor testDescriptor = new IronMQDescriptor();
 
         try {
-            validationTest = IronMQDescriptor.doCheckQueueName("testTEST");
+            validationTest = testDescriptor.doCheckQueueName("testTEST");
         } catch (Exception exception) {
             validationTest = FormValidation.error(exception.getMessage());
         }
@@ -29,8 +33,11 @@ public class IronMQDescriptorClassTest {
         FormValidation expectedNoToGet = FormValidation.ok();
         FormValidation testObject;
 
+        IronMQDescriptor testDescriptor = new IronMQDescriptor();
+
+
         try {
-            testObject = IronMQDescriptor.doCheckQueueName("55");  // force error
+            testObject = testDescriptor.doCheckQueueName("55");  // force error
 
         } catch (Exception exception) {
 
@@ -46,9 +53,10 @@ public class IronMQDescriptorClassTest {
 
         FormValidation expectedNoToGet = FormValidation.ok();
         FormValidation testObject;
+        IronMQDescriptor testDescriptor = new IronMQDescriptor();
 
         try {
-            testObject = IronMQDescriptor.doCheckQueueName("");
+            testObject = testDescriptor.doCheckQueueName("");
 
         } catch (Exception exception) {
 
@@ -57,22 +65,6 @@ public class IronMQDescriptorClassTest {
 
         Assert.assertTrue(testObject != expectedNoToGet);
 
-    }
-
-    @Test
-    public void FormPreferredServerNameShouldHaveNotBlankValidation() {
-        FormValidation expectedNoToGet = FormValidation.ok();
-        FormValidation testObject;
-
-        try {
-            testObject = IronMQDescriptor.doCheckPreferredServer("");
-
-        } catch (Exception exception) {
-
-            testObject = FormValidation.error(exception.getMessage());
-        }
-
-        Assert.assertTrue(testObject != expectedNoToGet);
     }
 
 
