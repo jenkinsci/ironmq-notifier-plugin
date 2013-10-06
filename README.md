@@ -11,10 +11,6 @@ Examples of use might be a "mobile device" reading with and dealing with certain
 With this situation, there is no need for the Jenkins build server to communicate internally to local servers to allow message status to be securely retrieved and dealt with as needed.
 
 ***
-h2. Please note : Please use 1.0.1 or above. 1.0.0 had a dependency problem that was not visible before actual deployment
-
-***
-
 
 * For a current list of TO-DOs check at  http://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier
 * The Jenkins Wiki is located at http://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier
@@ -23,10 +19,6 @@ h2. Please note : Please use 1.0.1 or above. 1.0.0 had a dependency problem that
 
 ***
 
-Last updated : October 3, 2013
-
-
-***
 Maintainers
 
 Mike Caspar
