@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Logger;
 
 
 public class IronMQNotifier extends Notifier {
@@ -31,9 +30,12 @@ public class IronMQNotifier extends Notifier {
     public int expirySeconds;
     private String messageText;
 
+    private int default_expirySeconds = 806400;
+
 
     @DataBoundConstructor
-    public IronMQNotifier(String projectId, String token, String queueName, String preferredServerName, boolean send_success, boolean send_failure, boolean send_unstable, int expirySeconds) {
+    public IronMQNotifier(String projectId, String token, String queueName, String preferredServerName,
+                          boolean send_success, boolean send_failure, boolean send_unstable, int expirySeconds) {
         this.projectId = projectId;
         this.token = token;
         this.queueName = queueName;
@@ -42,7 +44,8 @@ public class IronMQNotifier extends Notifier {
         this.send_unstable = send_unstable;
         this.preferredServerName = preferredServerName;
 
-        this.expirySeconds = expirySeconds;
+        if (expirySeconds <= 0) { this.expirySeconds = default_expirySeconds; }
+        else   { this.expirySeconds = expirySeconds; }
 
     }
 
@@ -98,7 +101,7 @@ public class IronMQNotifier extends Notifier {
 
         queue.push(message.getBody(), 0, 0, message.getExpiresIn());
 
-    return true;
+        return true;
     }
 
     @Override

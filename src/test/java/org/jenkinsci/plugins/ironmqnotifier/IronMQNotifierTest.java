@@ -101,14 +101,23 @@ public class IronMQNotifierTest {
     }
 
     @Test
-    public void Make_Sure_We_Get_Back_An_Expiry_Bigger_Than_Zero()
+    public void Make_Sure_We_Get_Back_An_Expiry_Not_Zero_By_Default()
     {
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVERNAME, true, true, true, TestSettings.EXPIRYSETTINGS);
+                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVERNAME, true, true, true, 0);
 
         Assert.assertTrue("Expiry in seconds must be Greater than zero", notifier.expirySeconds > 0);
 
     }
 
+    @Test
+    public void Make_Sure_We_Get_Back_What_We_Set_As_An_Expiry()
+    {
+        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVERNAME, true, true, true, TestSettings.EXPIRYSETTINGS);
 
+        Assert.assertEquals(TestSettings.EXPIRYSETTINGS, notifier.expirySeconds );
+
+
+    }
 }
