@@ -48,8 +48,6 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         return new IronMQNotifier(projectId, tokenID, queueName, preferredServer, success, failure, unstable, expirySeconds);
     }
 
-   /*                      Form Validation Logic Goes Here                */
-
     public static FormValidation doCheckQueueName(@QueryParameter String value) {
         if (value == null) { value = ""; }
         if (isValidQueueName(value)) return FormValidation.ok();

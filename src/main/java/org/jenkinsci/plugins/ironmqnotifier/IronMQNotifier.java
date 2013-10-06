@@ -28,10 +28,11 @@ public class IronMQNotifier extends Notifier {
     public boolean send_failure;
     public boolean send_unstable;
     public int expirySeconds;
+
     private String messageText;
 
     private final int default_expirySeconds = 806400;
-    private final String default_preferredServer = "mq-rackspace-ord.iron.io";
+    private final String DEFAULT_PREFERREDSERVER = "mq-rackspace-ord.iron.io";
 
 
     @DataBoundConstructor
@@ -43,11 +44,10 @@ public class IronMQNotifier extends Notifier {
         this.send_success = send_success;
         this.send_failure = send_failure;
         this.send_unstable = send_unstable;
-
-        if (preferredServer == null) { preferredServer = default_preferredServer; }
-        if (preferredServer == "") { preferredServer = default_preferredServer; }
-
         this.preferredServer = preferredServer;
+
+        if (this.preferredServer == null) { this.preferredServer = DEFAULT_PREFERREDSERVER; }
+        if (this.preferredServer.trim().length() == 0 ) { this.preferredServer = DEFAULT_PREFERREDSERVER; }
 
         if (expirySeconds <= 0) { this.expirySeconds = default_expirySeconds; }
         else   { this.expirySeconds = expirySeconds; }
