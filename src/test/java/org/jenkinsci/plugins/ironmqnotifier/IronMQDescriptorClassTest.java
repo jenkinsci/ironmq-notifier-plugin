@@ -60,8 +60,7 @@ public class IronMQDescriptorClassTest {
     }
 
     @Test
-    public void FormPreferredServerNameShouldHaveNotBlankValidation()
-    {
+    public void FormPreferredServerNameShouldHaveNotBlankValidation() {
         FormValidation expectedNoToGet = FormValidation.ok();
         FormValidation testObject;
 
@@ -76,5 +75,20 @@ public class IronMQDescriptorClassTest {
         Assert.assertTrue(testObject != expectedNoToGet);
     }
 
+    @Test
+    public void Form_Validation_Should_Not_Allow_Zero_In_expirySeconds() {
+        FormValidation expectedNoToGet = FormValidation.ok();
+        FormValidation testObject;
+
+        try {
+            testObject = IronMQDescriptor.doCheckExpirySeconds(0);
+
+        } catch (Exception exception) {
+
+            testObject = FormValidation.error(exception.getMessage());
+        }
+
+        Assert.assertTrue(testObject != expectedNoToGet);
+    }
 
 }

@@ -61,15 +61,21 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         else return FormValidation.error("Server Name cannot be empty");
     }
 
+    public static FormValidation doCheckExpirySeconds(@QueryParameter Integer value) {
+        if (value > 0) return FormValidation.ok();
+        else return FormValidation.error("Expiry Seconds cannot be Zero");
+    }
+
     private static boolean isValidQueueName(String name) {
         return !name.isEmpty() && isAlpha(name);
 
     }
 
     private static boolean isValidServerName(String name) {
-        return !name.isEmpty() ;
+        return !name.isEmpty();
 
     }
+
     private static boolean isAlpha(String name) {
         return name.matches("[a-zA-Z]+");
     }
