@@ -2,6 +2,6 @@
   This view is used to render the installed plugins page.
 -->
 <div>
-  Ironmq-notified plugin transmits build results to an iron.io mq service queue
+  Ironmq-notifier plugin transmits build results to an iron.io IronMQ service queue
 
 </div>
