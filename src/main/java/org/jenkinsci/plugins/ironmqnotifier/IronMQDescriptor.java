@@ -63,7 +63,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
     public static FormValidation doCheckExpirySeconds(@QueryParameter Integer value) {
         if (value > 0) return FormValidation.ok();
-        else return FormValidation.error("Expiry Seconds cannot be Zero");
+        else return FormValidation.error("Expiry Seconds should not be zero. Default will be set");
     }
 
     private static boolean isValidQueueName(String name) {
