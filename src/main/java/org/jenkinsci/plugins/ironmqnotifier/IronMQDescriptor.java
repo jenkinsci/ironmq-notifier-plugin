@@ -52,16 +52,19 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
 
     public static FormValidation doCheckQueueName(@QueryParameter String value) {
+        if (value == null) { value = ""; }
         if (isValidQueueName(value)) return FormValidation.ok();
         else return FormValidation.error("QueueName must be Alpha characters only");
     }
 
     public static FormValidation doCheckPreferredServerName(@QueryParameter String value) {
+        if (value == null ) { value = ""; }
         if (isValidServerName(value)) return FormValidation.ok();
         else return FormValidation.error("Server Name cannot be empty");
     }
 
     public static FormValidation doCheckExpirySeconds(@QueryParameter Integer value) {
+        if (value == null) { value = 0; }
         if (value > 0) return FormValidation.ok();
         else return FormValidation.error("Expiry Seconds should not be zero. Default will be set");
     }

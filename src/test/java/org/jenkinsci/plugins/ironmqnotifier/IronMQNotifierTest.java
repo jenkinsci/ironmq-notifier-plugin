@@ -96,7 +96,7 @@ public class IronMQNotifierTest {
         Assert.assertNotNull(notifier.send_success);
         Assert.assertNotNull(notifier.send_failure);
         Assert.assertNotNull(notifier.send_unstable);
-        Assert.assertNotNull(notifier.expirySeconds);
+        Assert.assertNotNull(notifier.ExpirySeconds);
 
     }
 
@@ -106,7 +106,7 @@ public class IronMQNotifierTest {
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVERNAME, true, true, true, 0);
 
-        Assert.assertTrue("Expiry in seconds must be Greater than zero", notifier.expirySeconds > 0);
+        Assert.assertTrue("Expiry in seconds must be Greater than zero", notifier.ExpirySeconds > 0);
 
     }
 
@@ -116,7 +116,7 @@ public class IronMQNotifierTest {
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVERNAME, true, true, true, TestSettings.EXPIRYSETTINGS);
 
-        Assert.assertEquals(TestSettings.EXPIRYSETTINGS, notifier.expirySeconds );
+        Assert.assertEquals(TestSettings.EXPIRYSETTINGS, notifier.ExpirySeconds );
 
 
     }
