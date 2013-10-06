@@ -27,15 +27,15 @@ public class IronMQNotifier extends Notifier {
     public boolean send_success;
     public boolean send_failure;
     public boolean send_unstable;
-    public int expirySeconds;
+    public int ExpirySeconds;
     private String messageText;
 
-    private int default_expirySeconds = 806400;
+    private int default_ExpirySeconds = 806400;
 
 
     @DataBoundConstructor
     public IronMQNotifier(String projectId, String token, String queueName, String preferredServerName,
-                          boolean send_success, boolean send_failure, boolean send_unstable, int expirySeconds) {
+                          boolean send_success, boolean send_failure, boolean send_unstable, int ExpirySeconds) {
         this.projectId = projectId;
         this.token = token;
         this.queueName = queueName;
@@ -44,8 +44,8 @@ public class IronMQNotifier extends Notifier {
         this.send_unstable = send_unstable;
         this.preferredServerName = preferredServerName;
 
-        if (expirySeconds <= 0) { this.expirySeconds = default_expirySeconds; }
-        else   { this.expirySeconds = expirySeconds; }
+        if (ExpirySeconds <= 0) { this.ExpirySeconds = default_ExpirySeconds; }
+        else   { this.ExpirySeconds = ExpirySeconds; }
 
     }
 
@@ -93,11 +93,11 @@ public class IronMQNotifier extends Notifier {
         Date submitDate = new Date();
         String submitDateString = submitDateFormat.format(submitDate);
 
-        this.messageText = jobName + " " + result + " expiry of " + this.expirySeconds + " - " + submitDateString;
+        this.messageText = jobName + " " + result + " expiry of " + this.ExpirySeconds + " - " + submitDateString;
 
         message.setBody(messageText);
 
-        message.setExpiresIn((long) this.expirySeconds);
+        message.setExpiresIn((long) this.ExpirySeconds);
 
         queue.push(message.getBody(), 0, 0, message.getExpiresIn());
 

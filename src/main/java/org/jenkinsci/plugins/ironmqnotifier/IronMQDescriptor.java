@@ -43,9 +43,9 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         boolean success = formData.optBoolean("send_success");
         boolean failure = formData.optBoolean("send_failure");
         boolean unstable = formData.optBoolean("send_unstable");
-        int expirySeconds = formData.optInt("expirySeconds");
+        int ExpirySeconds = formData.optInt("ExpirySeconds");
 
-        return new IronMQNotifier(projectId, tokenID, queueName, preferredServer, success, failure, unstable, expirySeconds);
+        return new IronMQNotifier(projectId, tokenID, queueName, preferredServer, success, failure, unstable, ExpirySeconds);
     }
 
    /*                      Form Validation Logic Goes Here                */
