@@ -98,23 +98,32 @@ public class IronMQNotifier extends Notifier {
             preferredServerName = default_preferredServerName;
         }
 
-        Client client = new Client(projectId, token, new Cloud("https", preferredServerName, 443));
 
-        Queue queue = client.queue(queueName);
+        try {
 
-        Message message = new Message();
+            Client client = new Client(projectId, token, new Cloud("https", preferredServerName, 443));
 
-        DateFormat submitDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date submitDate = new Date();
-        String submitDateString = submitDateFormat.format(submitDate);
+            Queue queue = client.queue(queueName);
 
-        this.messageText = jobName + " " + result + " expiry of " + this.expirySeconds + " - " + submitDateString;
+            Message message = new Message();
 
-        message.setBody(messageText);
+            DateFormat submitDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date submitDate = new Date();
+            String submitDateString = submitDateFormat.format(submitDate);
 
-        message.setExpiresIn(this.expirySeconds);
+            this.messageText = jobName + " " + result + " expiry of " + this.expirySeconds + " - " + submitDateString;
 
-        queue.push(message.getBody(), 0, 0, message.getExpiresIn());
+            message.setBody(messageText);
+
+            message.setExpiresIn(this.expirySeconds);
+
+            queue.push(message.getBody(), 0, 0, message.getExpiresIn());
+
+        } catch (Exception ex) {
+
+            build.setResult(Result.UNSTABLE);
+
+        }
 
         return true;
     }
