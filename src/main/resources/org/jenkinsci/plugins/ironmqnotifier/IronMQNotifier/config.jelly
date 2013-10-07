@@ -5,13 +5,13 @@
   <f:entry title="Token" field="token">
       <f:textbox />
     </f:entry>
-    <f:entry title="Queue Name" field="queueName">
+    <f:entry title="Queue Name" field="queueName" default="Jenkins">
         <f:textbox />
       </f:entry>
     <f:entry title="Preferred Server Name" field="preferredServerName" default="mq-rackspace-ord.iron.io">
         <f:textbox />
       </f:entry>
-    <f:entry title="Expiry in Seconds" field="expirySeconds">
+    <f:entry title="Expiry in Seconds" field="expirySeconds" default="806400">
         <f:textbox />
       </f:entry>
   <f:entry title="Send on Success" field="send_success">

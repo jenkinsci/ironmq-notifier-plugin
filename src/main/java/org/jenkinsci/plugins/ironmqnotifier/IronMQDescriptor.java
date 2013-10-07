@@ -12,14 +12,13 @@ import org.kohsuke.stapler.StaplerRequest;
 @Extension
 public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
+    private final long default_expirySeconds = 806400;
+    private final String default_preferredServerName = "mq-rackspace-ord.iron.io";
+
     public IronMQDescriptor() {
         super(IronMQNotifier.class);
         load();
     }
-
-
-    private final long default_expirySeconds = 806400;
-    private final String default_preferredServerName = "mq-rackspace-ord.iron.io";
 
     @Override
     public String getDisplayName() {
@@ -43,32 +42,27 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         String projectId = formData.optString("projectId");
         String tokenID = formData.optString("token");
         String queueName = formData.optString("queueName");
-        String preferredServerName = formData.optString("preferredServerName",default_preferredServerName);
+        String preferredServerName = formData.optString("preferredServerName", default_preferredServerName);
         boolean success = formData.optBoolean("send_success");
         boolean failure = formData.optBoolean("send_failure");
         boolean unstable = formData.optBoolean("send_unstable");
-        long expirySeconds = formData.optLong("expirySeconds",default_expirySeconds);
+        long expirySeconds = formData.optLong("expirySeconds", default_expirySeconds);
 
         return new IronMQNotifier(projectId, tokenID, queueName, preferredServerName, success, failure, unstable, expirySeconds);
     }
 
-//    public FormValidation doCheckQueueName(@QueryParameter String value) {
-//        if (value == null) { value = ""; }
-//        if (isValidQueueName(value)) return FormValidation.ok();
-//        else return FormValidation.error("QueueName must be Alpha characters only");
-//    }
-//
-//    public FormValidation doCheckExpirySeconds(@QueryParameter Long value) {
-//        if (value > 0) return FormValidation.ok();
-//        else return FormValidation.error("Expiry Seconds should not be zero. Default will be set");
-//    }
+    public FormValidation doCheckQueueName(@QueryParameter String value) {
 
-    private static boolean isValidQueueName(String name) {
-        return !name.isEmpty() && isAlpha(name);
+        IronMQFormValidations validations = new IronMQFormValidations();
+
+        FormValidation validationReturn;
+
+        if (value == null) { value = ""; }
+
+        validationReturn = validations.isValidQueueName(value);
+
+        return validationReturn;
 
     }
 
-    private static boolean isAlpha(String name) {
-        return name.matches("[a-zA-Z]+");
-    }
 }
