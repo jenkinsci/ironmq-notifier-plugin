@@ -43,6 +43,11 @@ public class IronMQNotifier extends Notifier {
         this.send_unstable = send_unstable;
         this.preferredServerName = preferredServerName;
 
+        if (this.preferredServerName.trim().length() == 0 ) {
+            this.preferredServerName = default_preferredServerName;
+        }
+
+
         if (expirySeconds <= 0) {
             this.expirySeconds = default_expirySeconds;
         } else {

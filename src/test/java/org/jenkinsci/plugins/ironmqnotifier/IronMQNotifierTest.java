@@ -5,7 +5,6 @@ import org.junit.Test;
 
 public class IronMQNotifierTest {
 
-
     @Test
     public void CanInitiateNewNotifier() {
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
@@ -120,4 +119,16 @@ public class IronMQNotifierTest {
 
 
     }
+
+    @Test
+    public void If_We_Do_Not_Send_A_Server_We_Get_A_Default_Back()
+    {
+        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, "", true, true, true, TestSettings.EXPIRYSETTINGS);
+
+        Assert.assertEquals(TestSettings.STANDARDDEFAULTSERVER, notifier.preferredServerName );
+
+
+    }
+
 }

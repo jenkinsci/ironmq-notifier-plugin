@@ -52,16 +52,16 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         return new IronMQNotifier(projectId, tokenID, queueName, preferredServerName, success, failure, unstable, expirySeconds);
     }
 
-    public FormValidation doCheckQueueName(@QueryParameter String value) {
-        if (value == null) { value = ""; }
-        if (isValidQueueName(value)) return FormValidation.ok();
-        else return FormValidation.error("QueueName must be Alpha characters only");
-    }
-
-    public FormValidation doCheckExpirySeconds(@QueryParameter Long value) {
-        if (value > 0) return FormValidation.ok();
-        else return FormValidation.error("Expiry Seconds should not be zero. Default will be set");
-    }
+//    public FormValidation doCheckQueueName(@QueryParameter String value) {
+//        if (value == null) { value = ""; }
+//        if (isValidQueueName(value)) return FormValidation.ok();
+//        else return FormValidation.error("QueueName must be Alpha characters only");
+//    }
+//
+//    public FormValidation doCheckExpirySeconds(@QueryParameter Long value) {
+//        if (value > 0) return FormValidation.ok();
+//        else return FormValidation.error("Expiry Seconds should not be zero. Default will be set");
+//    }
 
     private static boolean isValidQueueName(String name) {
         return !name.isEmpty() && isAlpha(name);
