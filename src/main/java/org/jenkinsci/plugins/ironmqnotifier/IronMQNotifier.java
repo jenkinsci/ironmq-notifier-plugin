@@ -22,6 +22,7 @@ public class IronMQNotifier extends Notifier {
 
     private final long default_expirySeconds = 806400;
     private final String default_preferredServerName = "mq-rackspace-ord.iron.io";
+    private final String default_queueName = "Jenkins";
     public String projectId;
     public String token;
     public String queueName;
@@ -43,7 +44,11 @@ public class IronMQNotifier extends Notifier {
         this.send_unstable = send_unstable;
         this.preferredServerName = preferredServerName;
 
-        if (this.preferredServerName.trim().length() == 0 ) {
+        if (this.queueName.trim().length() == 0) {
+            this.queueName = default_queueName;
+        }
+
+        if (this.preferredServerName.trim().length() == 0) {
             this.preferredServerName = default_preferredServerName;
         }
 
@@ -89,7 +94,9 @@ public class IronMQNotifier extends Notifier {
             return true;
         }
 
-        if (preferredServerName.trim().length() == 0) { preferredServerName = default_preferredServerName; }
+        if (preferredServerName.trim().length() == 0) {
+            preferredServerName = default_preferredServerName;
+        }
 
         Client client = new Client(projectId, token, new Cloud("https", preferredServerName, 443));
 
