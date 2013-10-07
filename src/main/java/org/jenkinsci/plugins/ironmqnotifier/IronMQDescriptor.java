@@ -14,6 +14,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
     private final long default_expirySeconds = 806400;
     private final String default_preferredServerName = "mq-rackspace-ord.iron.io";
+    private final String default_queueName = "Jenkins";
 
     public IronMQDescriptor() {
         super(IronMQNotifier.class);
@@ -41,7 +42,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
         String projectId = formData.optString("projectId");
         String tokenID = formData.optString("token");
-        String queueName = formData.optString("queueName");
+        String queueName = formData.optString("queueName", default_queueName);
         String preferredServerName = formData.optString("preferredServerName", default_preferredServerName);
         boolean success = formData.optBoolean("send_success");
         boolean failure = formData.optBoolean("send_failure");
@@ -60,6 +61,20 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         if (value == null) { value = ""; }
 
         validationReturn = validations.isValidQueueName(value);
+
+        return validationReturn;
+
+    }
+
+    public FormValidation doCheckExpirySeconds(@QueryParameter Long value) {
+
+        IronMQFormValidations validations = new IronMQFormValidations();
+
+        FormValidation validationReturn;
+
+        if (value == null) { value = Long.valueOf(0); }
+
+        validationReturn = validations.isValidExpirySeconds(value);
 
         return validationReturn;
 

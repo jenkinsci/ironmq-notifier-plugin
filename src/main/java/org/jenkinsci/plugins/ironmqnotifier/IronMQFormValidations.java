@@ -19,4 +19,11 @@ public class IronMQFormValidations {
 
     }
 
+    public FormValidation isValidExpirySeconds(Long expirySeconds) {
+
+        if ( expirySeconds > 0) {return FormValidation.ok(); }
+             else
+            return FormValidation.warning("Expiry Should Not be Zero");
+
+    }
 }

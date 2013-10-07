@@ -5,7 +5,7 @@
   <f:entry title="Token" field="token">
       <f:textbox />
     </f:entry>
-    <f:entry title="Queue Name" field="queueName" default="Jenkins">
+    <f:entry title="Queue Name" field="queueName" >
         <f:textbox />
       </f:entry>
     <f:entry title="Preferred Server Name" field="preferredServerName" default="mq-rackspace-ord.iron.io">

@@ -23,5 +23,20 @@ public class IronMQFormValidationsTest {
 
     }
 
+    @Test
+    public void ExpirySeconds_Greater_Than_Zero_Should_Pass() {
+
+        FormValidation testResult;
+        FormValidation expectedResult = FormValidation.ok();
+
+        IronMQFormValidations testValidations = new IronMQFormValidations();
+
+
+        testResult = testValidations.isValidExpirySeconds(new Long(10005));
+
+
+        Assert.assertEquals(expectedResult, testResult);
+
+    }
 
 }
