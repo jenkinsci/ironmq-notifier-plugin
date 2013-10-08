@@ -13,9 +13,6 @@ import io.iron.ironmq.Queue;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 public class IronMQNotifier extends Notifier {
@@ -32,6 +29,7 @@ public class IronMQNotifier extends Notifier {
     public boolean send_unstable;
     public long expirySeconds;
     private String messageText;
+
 
     @DataBoundConstructor
     public IronMQNotifier(String projectId, String token, String queueName, String preferredServerName,
@@ -107,15 +105,15 @@ public class IronMQNotifier extends Notifier {
 
             Message message = new Message();
 
-            DateFormat submitDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date submitDate = new Date();
-            String submitDateString = submitDateFormat.format(submitDate);
+            IronMQMessage ironMQMessage = new IronMQMessage();
+            ironMQMessage.setBuildResult(result);
+            ironMQMessage.setJobName(jobName);
+            ironMQMessage.setExpirySeconds(this.expirySeconds);
 
-            this.messageText = jobName + " " + result + " expiry of " + this.expirySeconds + " - " + submitDateString;
-
-            message.setBody(messageText);
+            message.setBody(ironMQMessage.toJson());
 
             message.setExpiresIn(this.expirySeconds);
+            message.setBody(message.getBody());
 
             queue.push(message.getBody(), 0, 0, message.getExpiresIn());
 
