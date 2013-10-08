@@ -9,7 +9,7 @@
 
 
     <artifactId>ironmq-notifier</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
     <name>IronMQ-notifier</name>
