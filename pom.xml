@@ -15,6 +15,14 @@
     <name>IronMQ-notifier</name>
     <description>Jenkins build notification plugin which sends results to iron.io ironmq service</description>
 
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <comments>License for ironmq-notifier-plugin (please check other licenses)</comments>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
     <pluginRepositories>
 
         <pluginRepository>
