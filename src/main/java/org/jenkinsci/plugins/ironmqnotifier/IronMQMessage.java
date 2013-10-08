@@ -1,6 +1,5 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
-
 import com.google.gson.Gson;
 
 import java.util.Date;
@@ -10,7 +9,7 @@ public class IronMQMessage {
 
     private String messageVersion;
     private String jobName;
-    private String message;
+    private String messageText;
     private String buildResult;
     private Long expirySeconds;
     private Date submissionDate;
@@ -82,8 +81,8 @@ public class IronMQMessage {
     private Date CalculateNewExpiryDate(Date submissionDate, Long expirySeconds) {
 
         long t = submissionDate.getTime();
-
         return new Date(t + (expirySeconds * 1000));
+
     }
 }
 
