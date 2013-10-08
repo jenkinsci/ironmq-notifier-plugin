@@ -17,10 +17,24 @@
 
     <licenses>
         <license>
-            <name>MIT</name>
+            <name>ironmq-notifier-plugin</name>
             <comments>License for ironmq-notifier-plugin (please check other licenses)</comments>
             <url>http://www.opensource.org/licenses/mit-license.php</url>
         </license>
+
+        <license>
+            <name>IronMQLicense</name>
+            <comments>License for ironmq java library from Iron.io</comments>
+            <url>https://github.com/iron-io/iron_mq_java/blob/master/LICENSE.txt</url>
+        </license>
+
+        <license>
+            <name>GSONLicense</name>
+            <comments>License for google GSON library</comments>
+            <url>https://code.google.com/p/google-gson/source/browse/trunk/gson/LICENSE?r=369</url>
+        </license>
+
+
     </licenses>
 
     <pluginRepositories>
