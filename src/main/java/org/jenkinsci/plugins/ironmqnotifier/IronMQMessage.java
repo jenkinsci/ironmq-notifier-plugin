@@ -8,7 +8,7 @@ import java.util.Date;
 public class IronMQMessage {
 
 
-    private String apiVersion;
+    private String messageVersion;
     private String jobName;
     private String message;
     private String buildResult;
@@ -19,7 +19,7 @@ public class IronMQMessage {
 
     public IronMQMessage() {
 
-        this.apiVersion = "1.0.5";
+        this.messageVersion = "1";
 
         this.jobName = "";
         this.buildResult = "";
@@ -57,12 +57,12 @@ public class IronMQMessage {
 
     }
 
-    public String getApiVersion() {
-        return this.apiVersion;
+    public String getMessageVersion() {
+        return this.messageVersion;
     }
 
-    public void setApiVersion(String apiVersion) {
-        this.apiVersion = apiVersion;
+    public void setMessageVersion(String messageVersion) {
+        this.messageVersion = messageVersion;
     }
 
     public String toJson() {

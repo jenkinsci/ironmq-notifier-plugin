@@ -62,20 +62,20 @@ public class IronMQMessageTest {
     @Test
     public void IronMQ_Has_A_Version_For_API_Consistency() {
         IronMQMessage msg = new IronMQMessage();
-        msg.setApiVersion("1.0.5");
-        Assert.assertEquals("1.0.5", msg.getApiVersion());
+        msg.setMessageVersion("1.0.5");
+        Assert.assertEquals("1.0.5", msg.getMessageVersion());
     }
 
     @Test
     public void IronMQ_Has_A_Version_Default_If_Not_Set() {
         IronMQMessage msg = new IronMQMessage();
-        Assert.assertNotEquals(0, msg.getApiVersion().trim().length());
+        Assert.assertNotEquals(0, msg.getMessageVersion().trim().length());
     }
 
     @Test
     public void IronMQ_Has_A_Version_That_Is_Not_Null() {
         IronMQMessage msg = new IronMQMessage();
-        Assert.assertNotNull(msg.getApiVersion());
+        Assert.assertNotNull(msg.getMessageVersion());
     }
 
     @Test
