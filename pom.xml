@@ -14,28 +14,27 @@
 
     <name>IronMQ-notifier</name>
     <description>Jenkins build notification plugin which sends results to iron.io ironmq service</description>
+    <url>http://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier</url>
 
     <licenses>
+
         <license>
-            <name>ironmq-notifier-plugin</name>
-            <comments>License for ironmq-notifier-plugin (please check other licenses)</comments>
+            <distribution>repo</distribution>
+            <name>The MIT License</name>
             <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <comments>Check dependency plugins individually.</comments>
         </license>
-
-        <license>
-            <name>IronMQLicense</name>
-            <comments>License for ironmq java library from Iron.io</comments>
-            <url>https://github.com/iron-io/iron_mq_java/blob/master/LICENSE.txt</url>
-        </license>
-
-        <license>
-            <name>GSONLicense</name>
-            <comments>License for google GSON library</comments>
-            <url>https://code.google.com/p/google-gson/source/browse/trunk/gson/LICENSE?r=369</url>
-        </license>
-
 
     </licenses>
+
+    <developers>
+        <developer>
+            <id>mikecaspar</id>
+            <name>Mike Caspar</name>
+            <email>mike@caspar.com</email>
+        </developer>
+    </developers>
+
 
     <pluginRepositories>
 
@@ -67,7 +66,6 @@
 
     </repositories>
 
-    <url>http://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier</url>
 
     <dependencies>
 
@@ -86,15 +84,6 @@
 
     </dependencies>
 
-
-    <developers>
-        <developer>
-            <id>mikecaspar</id>
-            <name>Mike Caspar</name>
-            <email>mike@caspar.com</email>
-        </developer>
-    </developers>
-
     <scm>
         <connection>scm:git:ssh://github.com/jenkinsci/ironmq-notifier-plugin.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/jenkinsci/ironmq-notifier-plugin.git</developerConnection>
@@ -102,12 +91,40 @@
     </scm>
 
     <ciManagement>
+        <system>Jenkins</system>
+        <url>https://buildhive.cloudbees.com/job/jenkinsci/job/${project.artifactId}-plugin</url>
         <notifiers>
             <notifier>
                 <type>mail</type>
                 <address>mike@caspar.com</address>
+                <sendOnFailure>true</sendOnFailure>
+                <sendOnError>true</sendOnError>
+                <sendOnSuccess>true</sendOnSuccess>
             </notifier>
         </notifiers>
     </ciManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+
+        </plugins>
+    </reporting>
+
 
 </project>
