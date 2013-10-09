@@ -4,8 +4,8 @@ import com.google.gson.Gson;
 
 import java.util.Date;
 
-public class IronMQMessage {
 
+public class IronMQMessage {
 
     private String messageVersion;
     private String jobName;
@@ -16,7 +16,7 @@ public class IronMQMessage {
     private Date expiresDate;
 
 
-    public IronMQMessage() {
+    IronMQMessage() {
 
         this.messageVersion = "1";
 
@@ -67,7 +67,6 @@ public class IronMQMessage {
     public String toJson() {
         Gson gson = new Gson();
         return gson.toJson(this);
-
     }
 
     public Date getSubmissionDate() {
@@ -82,7 +81,6 @@ public class IronMQMessage {
 
         long t = submissionDate.getTime();
         return new Date(t + (expirySeconds * 1000));
-
     }
 }
 
