@@ -1,6 +1,5 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -18,7 +17,6 @@ public class IronMQMessageTest {
     public void IronMQ_Message_Contains_A_JobName() {
         IronMQMessage msg = new IronMQMessage();
         Assert.assertNotNull(msg.getJobName());
-
     }
 
     @Test
@@ -26,14 +24,12 @@ public class IronMQMessageTest {
         IronMQMessage msg = new IronMQMessage();
         msg.setJobName("testJob");
         Assert.assertEquals("testJob", msg.getJobName());
-
     }
 
     @Test
     public void IronMQ_Message_Message_Is_Not_Null() {
         IronMQMessage msg = new IronMQMessage();
         Assert.assertNotNull(msg.getBuildResult());
-
     }
 
     @Test
@@ -41,14 +37,12 @@ public class IronMQMessageTest {
         IronMQMessage msg = new IronMQMessage();
         msg.setBuildResult("testResult");
         Assert.assertEquals("testResult", msg.getBuildResult());
-
     }
 
     @Test
     public void IronMQ_Message_Expiry_Is_Not_Null() {
         IronMQMessage msg = new IronMQMessage();
         Assert.assertNotNull(msg.getExpirySeconds());
-
     }
 
     @Test
@@ -98,16 +92,13 @@ public class IronMQMessageTest {
 
     @Test
     public void IronMQ_Message_Has_A_Function_To_Calculate_Expriry_Time_Expected() {
-
         IronMQMessage msg = new IronMQMessage();
         msg.setExpirySeconds(806400L);
         Assert.assertNotNull(msg.getExpiresDate());
-
     }
 
     @Test
     public void IronMQ_Message_ExpiresDate_Should_Be_Set_Properly() {
-
         IronMQMessage msg = new IronMQMessage();
         long testExpiry = 500L;
         msg.setExpirySeconds(testExpiry);
@@ -118,7 +109,5 @@ public class IronMQMessageTest {
         Date expectedNewDateTime = new Date(expectedResultDate + (testExpiry * 1000));
 
         Assert.assertEquals(expectedNewDateTime, msg.getExpiresDate());
-
     }
 }
-
