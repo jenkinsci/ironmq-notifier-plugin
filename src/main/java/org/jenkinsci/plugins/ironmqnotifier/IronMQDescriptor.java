@@ -34,11 +34,6 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         return super.configure(req, formData);
     }
 
-//    @Override
-//    public boolean isApplicable(@SuppressWarnings("rawtypes") Class<? extends AbstractProject> arg0) {
-//        return true;
-//    }
-
     @Override
     public boolean isApplicable(@SuppressWarnings("rawtypes") Class<? extends AbstractProject> arg0) {
         return true;
