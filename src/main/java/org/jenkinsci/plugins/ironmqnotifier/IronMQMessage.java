@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import java.util.Date;
 
 
-class IronMQMessage {
+public class IronMQMessage {
 
     private String messageVersion;
     private String jobName;
