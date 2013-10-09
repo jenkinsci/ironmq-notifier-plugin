@@ -1,6 +1,5 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
-import hudson.Extension;
 import hudson.model.AbstractProject;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Publisher;
@@ -9,12 +8,12 @@ import net.sf.json.JSONObject;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
-@Extension
 public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
-    private final long default_expirySeconds = 806400;
+    private final long default_expirySeconds = 806400L;
     private final String default_preferredServerName = "mq-rackspace-ord.iron.io";
     private final String default_queueName = "Jenkins";
+
 
     public IronMQDescriptor() {
         super(IronMQNotifier.class);
@@ -58,7 +57,9 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
         FormValidation validationReturn;
 
-        if (value == null) { value = ""; }
+        if (value == null) {
+            value = "";
+        }
 
         validationReturn = validations.isValidQueueName(value);
 
@@ -72,7 +73,9 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
         FormValidation validationReturn;
 
-        if (value == null) { value = Long.valueOf(0); }
+        if (value == null) {
+            value = Long.valueOf(0);
+        }
 
         validationReturn = validations.isValidExpirySeconds(value);
 
