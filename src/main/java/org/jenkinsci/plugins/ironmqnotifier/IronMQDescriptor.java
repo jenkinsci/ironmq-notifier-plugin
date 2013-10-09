@@ -1,5 +1,6 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
+import hudson.Extension;
 import hudson.model.AbstractProject;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Publisher;
@@ -8,6 +9,8 @@ import net.sf.json.JSONObject;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
+
+@Extension
 public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
     private final long default_expirySeconds = 806400L;
@@ -30,6 +33,11 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         save();
         return super.configure(req, formData);
     }
+
+//    @Override
+//    public boolean isApplicable(@SuppressWarnings("rawtypes") Class<? extends AbstractProject> arg0) {
+//        return true;
+//    }
 
     @Override
     public boolean isApplicable(@SuppressWarnings("rawtypes") Class<? extends AbstractProject> arg0) {

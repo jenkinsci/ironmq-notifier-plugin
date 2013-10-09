@@ -14,7 +14,6 @@ import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
 
-
 public class IronMQNotifier extends Notifier {
 
     private final long default_expirySeconds = 806400L;
@@ -124,8 +123,8 @@ public class IronMQNotifier extends Notifier {
 
         } catch (Exception ex) {
 
-            build.setResult(Result.UNSTABLE);
-            throw new IOException("Did not complete successful push");
+            build.setResult(Result.FAILURE);
+
         }
         return true;
     }
