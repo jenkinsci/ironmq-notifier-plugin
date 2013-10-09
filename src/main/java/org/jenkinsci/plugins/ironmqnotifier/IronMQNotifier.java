@@ -127,7 +127,6 @@ public class IronMQNotifier extends Notifier {
             build.setResult(Result.UNSTABLE);
             throw new IOException("Did not complete successful push");
         }
-        System.gc();
         return true;
     }
 
