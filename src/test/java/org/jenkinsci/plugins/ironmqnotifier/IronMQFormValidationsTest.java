@@ -32,8 +32,7 @@ public class IronMQFormValidationsTest {
         IronMQFormValidations testValidations = new IronMQFormValidations();
 
 
-        testResult = testValidations.isValidExpirySeconds(new Long(10005));
-
+        testResult = testValidations.isValidExpirySeconds(10005L);
 
         Assert.assertEquals(expectedResult, testResult);
 
@@ -48,10 +47,11 @@ public class IronMQFormValidationsTest {
         IronMQFormValidations testValidations = new IronMQFormValidations();
 
 
-        testResult = testValidations.isValidExpirySeconds(new Long(0));
+        testResult = testValidations.isValidExpirySeconds(0L);
 
 
         Assert.assertNotEquals(notexpectedResult, testResult);
+
 
     }
 }
