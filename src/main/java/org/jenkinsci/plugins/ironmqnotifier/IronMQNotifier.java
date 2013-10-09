@@ -118,9 +118,6 @@ public class IronMQNotifier extends Notifier {
 
             String resultOfQueuePush = queue.push(message.getBody(), 0, 0, message.getExpiresIn());
 
-            if (resultOfQueuePush == null) {
-                build.setResult(Result.FAILURE);
-            }
             if ( resultOfQueuePush == null || resultOfQueuePush.length() == 0) {
                 build.setResult(Result.FAILURE);
             }
@@ -128,7 +125,7 @@ public class IronMQNotifier extends Notifier {
         } catch (Exception ex) {
 
             build.setResult(Result.UNSTABLE);
-
+            throw new IOException("Did not complete successful push");
         }
 
         return true;
