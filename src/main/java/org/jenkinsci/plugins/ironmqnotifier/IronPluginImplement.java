@@ -1,10 +1,8 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
-
 import hudson.Plugin;
 
 import java.util.logging.Logger;
-
 
 public class IronPluginImplement extends Plugin {
 

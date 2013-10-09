@@ -74,7 +74,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         FormValidation validationReturn;
 
         if (value == null) {
-            value = Long.valueOf(0);
+            value = 0L;
         }
 
         validationReturn = validations.isValidExpirySeconds(value);

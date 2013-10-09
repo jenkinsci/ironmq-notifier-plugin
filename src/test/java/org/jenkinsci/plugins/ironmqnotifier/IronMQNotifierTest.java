@@ -11,6 +11,7 @@ public class IronMQNotifierTest {
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, TestSettings.EXPIRYSETTINGS);
 
         Assert.assertNotNull(notifier);
+
     }
 
     @Test
@@ -19,6 +20,7 @@ public class IronMQNotifierTest {
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, TestSettings.EXPIRYSETTINGS);
 
         Assert.assertNotNull(notifier.projectId);
+
     }
 
     @Test
@@ -27,8 +29,8 @@ public class IronMQNotifierTest {
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, TestSettings.EXPIRYSETTINGS);
 
         Assert.assertTrue(!notifier.projectId.isEmpty());
-    }
 
+    }
 
     @Test
     public void Notifier_Has_A_Token_Not_Null() {
@@ -36,6 +38,7 @@ public class IronMQNotifierTest {
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, TestSettings.EXPIRYSETTINGS);
 
         Assert.assertNotNull(notifier.token);
+
     }
 
     @Test
@@ -44,6 +47,7 @@ public class IronMQNotifierTest {
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, TestSettings.EXPIRYSETTINGS);
 
         Assert.assertTrue(!notifier.token.isEmpty());
+
     }
 
     @Test
@@ -51,6 +55,7 @@ public class IronMQNotifierTest {
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, TestSettings.EXPIRYSETTINGS);
         Assert.assertNotNull(notifier.send_success);
+
 
     }
 
@@ -60,7 +65,7 @@ public class IronMQNotifierTest {
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, TestSettings.EXPIRYSETTINGS);
         Object result = notifier.send_success;
         String type = result.getClass().getSimpleName();
-        Assert.assertEquals("Boolean",type);
+        Assert.assertEquals("Boolean", type);
 
     }
 
@@ -70,21 +75,22 @@ public class IronMQNotifierTest {
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, TestSettings.EXPIRYSETTINGS);
         Object result = notifier.send_failure;
         String type = result.getClass().getSimpleName();
-        Assert.assertEquals("Boolean",type);
+        Assert.assertEquals("Boolean", type);
 
     }
+
     @Test
     public void Notifier_Has_Unstable_Flag_Boolean() {
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, TestSettings.EXPIRYSETTINGS);
         Object result = notifier.send_unstable;
         String type = result.getClass().getSimpleName();
-        Assert.assertEquals("Boolean",type);
+        Assert.assertEquals("Boolean", type);
 
     }
+
     @Test
-    public void Make_Sure_Our_Fields_Are_Public_So_Forms_Can_Update_Them_During_Configuration()
-    {
+    public void Make_Sure_Our_Fields_Are_Public_So_Forms_Can_Update_Them_During_Configuration() {
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, TestSettings.EXPIRYSETTINGS);
 
@@ -100,8 +106,7 @@ public class IronMQNotifierTest {
     }
 
     @Test
-    public void Make_Sure_We_Get_Back_An_Expiry_Not_Zero_By_Default()
-    {
+    public void Make_Sure_We_Get_Back_An_Expiry_Not_Zero_By_Default() {
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, 0);
 
@@ -110,25 +115,20 @@ public class IronMQNotifierTest {
     }
 
     @Test
-    public void Make_Sure_We_Get_Back_What_We_Set_As_An_Expiry()
-    {
+    public void Make_Sure_We_Get_Back_What_We_Set_As_An_Expiry() {
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, TestSettings.EXPIRYSETTINGS);
 
-        Assert.assertEquals(TestSettings.EXPIRYSETTINGS, notifier.expirySeconds );
-
+        Assert.assertEquals(TestSettings.EXPIRYSETTINGS, notifier.expirySeconds);
 
     }
 
     @Test
-    public void If_We_Do_Not_Send_A_Server_We_Get_A_Default_Back()
-    {
+    public void If_We_Do_Not_Send_A_Server_We_Get_A_Default_Back() {
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, "", true, true, true, TestSettings.EXPIRYSETTINGS);
 
-        Assert.assertEquals(TestSettings.STANDARDDEFAULTSERVER, notifier.preferredServerName );
-
+        Assert.assertEquals(TestSettings.STANDARDDEFAULTSERVER, notifier.preferredServerName);
 
     }
-
 }

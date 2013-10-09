@@ -17,9 +17,10 @@ import java.io.IOException;
 
 public class IronMQNotifier extends Notifier {
 
-    private final long default_expirySeconds = 806400;
+    private final long default_expirySeconds = 806400L;
     private final String default_preferredServerName = "mq-rackspace-ord.iron.io";
     private final String default_queueName = "Jenkins";
+
     public String projectId;
     public String token;
     public String queueName;
@@ -29,7 +30,6 @@ public class IronMQNotifier extends Notifier {
     public boolean send_unstable;
     public long expirySeconds;
     private String messageText;
-
 
     @DataBoundConstructor
     public IronMQNotifier(String projectId, String token, String queueName, String preferredServerName,
@@ -115,7 +115,15 @@ public class IronMQNotifier extends Notifier {
             message.setExpiresIn(this.expirySeconds);
             message.setBody(message.getBody());
 
-            queue.push(message.getBody(), 0, 0, message.getExpiresIn());
+
+            String resultOfQueuePush = queue.push(message.getBody(), 0, 0, message.getExpiresIn());
+
+            if (resultOfQueuePush == null) {
+                build.setResult(Result.FAILURE);
+            }
+            if ( resultOfQueuePush == null || resultOfQueuePush.length() == 0) {
+                build.setResult(Result.FAILURE);
+            }
 
         } catch (Exception ex) {
 
