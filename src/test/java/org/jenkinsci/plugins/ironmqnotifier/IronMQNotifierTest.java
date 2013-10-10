@@ -1,5 +1,6 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
+import hudson.tasks.BuildStepMonitor;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -133,12 +134,35 @@ public class IronMQNotifierTest {
     }
 
     @Test
-    public void Needs_To_Run_After_Finalized_Should_Be_Set()
-    {
+    public void Needs_To_Run_After_Finalized_Should_Be_Set() {
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, "", true, true, true, TestSettings.EXPIRYSETTINGS);
-                Assert.assertNotNull(notifier.needsToRunAfterFinalized());
+        Assert.assertNotNull(notifier.needsToRunAfterFinalized());
 
     }
 
+    @Test
+    public void Creating_Notifier_With_Blank_QueueName_Returns_A_Default() {
+        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS);
+
+        Assert.assertNotEquals(0, notifier.queueName.length());
+    }
+
+    @Test
+    public void Return_A_Valid_BuildStepMonitorService() {
+        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, "", true, true, true, TestSettings.EXPIRYSETTINGS);
+
+        Assert.assertNotNull(notifier.getRequiredMonitorService());
+        Object monitor = notifier.getRequiredMonitorService();
+
+        Assert.assertTrue(BuildStepMonitor.BUILD == monitor |
+                BuildStepMonitor.NONE == monitor |
+                BuildStepMonitor.STEP == monitor );
+
+        Object result = monitor.getClass().getSuperclass().getSimpleName().toString();
+
+        Assert.assertEquals("BuildStepMonitor", result);
+    }
 }
