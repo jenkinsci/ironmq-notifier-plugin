@@ -131,4 +131,14 @@ public class IronMQNotifierTest {
         Assert.assertEquals(TestSettings.STANDARDDEFAULTSERVER, notifier.preferredServerName);
 
     }
+
+    @Test
+    public void Needs_To_Run_After_Finalized_Should_Be_Set()
+    {
+        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, "", true, true, true, TestSettings.EXPIRYSETTINGS);
+                Assert.assertNotNull(notifier.needsToRunAfterFinalized());
+
+    }
+
 }
