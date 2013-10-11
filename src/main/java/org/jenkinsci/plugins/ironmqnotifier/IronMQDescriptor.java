@@ -60,9 +60,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
         FormValidation validationReturn;
 
-        if (value == null) {
-            value = "";
-        }
+        if (value == null) { value = ""; }
 
         validationReturn = validations.isValidQueueName(value);
 
@@ -76,9 +74,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
         FormValidation validationReturn;
 
-        if (value == null) {
-            value = 0L;
-        }
+        if (value == null) { value = 0L;  }
 
         validationReturn = validations.isValidExpirySeconds(value);
 
