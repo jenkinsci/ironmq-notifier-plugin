@@ -4,7 +4,7 @@ import hudson.util.FormValidation;
 
 public class IronMQFormValidations {
 
-    FormValidation isValidQueueName(String name) {
+    public FormValidation isValidQueueName(String name) {
 
         if (isAlpha(name)) {
             return FormValidation.ok();
@@ -14,7 +14,7 @@ public class IronMQFormValidations {
 
     }
 
-    FormValidation isValidExpirySeconds(Long expirySeconds) {
+    public FormValidation isValidExpirySeconds(Long expirySeconds) {
 
         if (expirySeconds > 0) {
             return FormValidation.ok();
