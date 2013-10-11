@@ -19,7 +19,6 @@ public class IronMQNotifier extends Notifier {
     private final long default_expirySeconds = 806400L;
     private final String default_preferredServerName = "mq-rackspace-ord.iron.io";
     private final String default_queueName = "Jenkins";
-
     public String projectId;
     public String token;
     public String queueName;
@@ -28,6 +27,7 @@ public class IronMQNotifier extends Notifier {
     public boolean send_failure;
     public boolean send_unstable;
     public long expirySeconds;
+    private String jobName;
     private String messageText;
 
     @DataBoundConstructor
@@ -55,6 +55,7 @@ public class IronMQNotifier extends Notifier {
         } else {
             this.expirySeconds = expirySeconds;
         }
+
     }
 
     public BuildStepMonitor getRequiredMonitorService() {
@@ -69,9 +70,11 @@ public class IronMQNotifier extends Notifier {
     @Override
     public boolean perform(@SuppressWarnings("rawtypes") AbstractBuild build, Launcher launcher, BuildListener listener) throws InterruptedException, IOException {
 
-        String jobName = build.getFullDisplayName();
+        jobName = build.getFullDisplayName();
+
 
         String result;
+
         if (build.getResult() == Result.SUCCESS) {
             if (!send_success) {
                 return true;
@@ -106,7 +109,7 @@ public class IronMQNotifier extends Notifier {
 
             IronMQMessage ironMQMessage = new IronMQMessage();
             ironMQMessage.setBuildResult(result);
-            ironMQMessage.setJobName(jobName);
+            ironMQMessage.setJobName(this.jobName);
             ironMQMessage.setExpirySeconds(this.expirySeconds);
 
             message.setBody(ironMQMessage.toJson());
@@ -117,7 +120,7 @@ public class IronMQNotifier extends Notifier {
 
             String resultOfQueuePush = queue.push(message.getBody(), 0, 0, message.getExpiresIn());
 
-            if ( resultOfQueuePush == null || resultOfQueuePush.length() == 0) {
+            if (resultOfQueuePush == null || resultOfQueuePush.length() == 0) {
                 build.setResult(Result.FAILURE);
             }
 
@@ -132,5 +135,9 @@ public class IronMQNotifier extends Notifier {
     @Override
     public boolean needsToRunAfterFinalized() {
         return true;
+    }
+
+    public String getJobName() {
+        return this.jobName;
     }
 }
