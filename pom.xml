@@ -4,11 +4,9 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>1.533</version>
-
+        <version>1.534</version>
 
     </parent>
-
 
 
     <artifactId>ironmq-notifier</artifactId>
