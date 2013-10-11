@@ -147,7 +147,7 @@ public class IronMQNotifierTest {
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS);
 
-        Assert.assertNotEquals(0, notifier.queueName.length());
+        Assert.assertNotSame(0, notifier.queueName.length());
     }
 
     @Test

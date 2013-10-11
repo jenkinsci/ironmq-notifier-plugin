@@ -1,5 +1,7 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
+
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -63,7 +65,7 @@ public class IronMQMessageTest {
     @Test
     public void IronMQ_Has_A_Version_Default_If_Not_Set() {
         IronMQMessage msg = new IronMQMessage();
-        Assert.assertNotEquals(0, msg.getMessageVersion().trim().length());
+        Assert.assertNotSame(0, msg.getMessageVersion().trim().length());
     }
 
     @Test
@@ -81,7 +83,7 @@ public class IronMQMessageTest {
     @Test
     public void IronMQ_Message_Returns_Json_with_data() {
         IronMQMessage msg = new IronMQMessage();
-        Assert.assertNotEquals("", msg.toJson());
+        Assert.assertNotSame("", msg.toJson());
     }
 
     @Test

@@ -48,7 +48,7 @@ public class IronMQFormValidationsTest {
 
         testResult = testValidations.isValidExpirySeconds(0L);
 
-        Assert.assertNotEquals(unexpectedResult, testResult);
+        Assert.assertNotSame(unexpectedResult, testResult);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class IronMQFormValidationsTest {
 
         testResult = testValidations.isValidQueueName("55");
 
-        Assert.assertNotEquals(notexpectedResult, testResult);
+        Assert.assertNotSame(notexpectedResult, testResult);
 
     }
 
