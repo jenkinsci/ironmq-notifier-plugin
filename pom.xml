@@ -67,26 +67,6 @@
 
     </repositories>
 
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>cobertura-maven-plugin</artifactId>
-                    <version>2.6</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.6</version>
-            </plugin>
-        </plugins>
-     </build>
-
     <dependencies>
 
         <dependency>
@@ -124,16 +104,6 @@
         </notifiers>
     </ciManagement>
 
-
-        <reporting>
-            <plugins>
-                    <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>cobertura-maven-plugin</artifactId>
-                    <version>2.6</version>
-                </plugin>
-            </plugins>
-        </reporting>
 
 
 </project>
