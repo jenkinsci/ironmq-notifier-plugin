@@ -1,7 +1,6 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
 import hudson.tasks.BuildStepMonitor;
-import hudson.tasks.Notifier;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -175,8 +174,6 @@ public class IronMQNotifierTest {
         Object notifierCheck = notifier.getClass().getSuperclass().getSimpleName().toString();
         Assert.assertEquals("Notifier", notifierCheck);
 
-        Object result = notifier instanceof Notifier;
-        Assert.assertEquals(true,result);
     }
 
     @Test
