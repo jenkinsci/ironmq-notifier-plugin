@@ -3,8 +3,9 @@
         <pluginGroup>org.jenkins-ci.tools</pluginGroup>
     </pluginGroups>
 
+
     <profiles>
-        <!-- Give access to Jenkins plugins -->
+
 
         <profile>
             <id>jenkins</id>
