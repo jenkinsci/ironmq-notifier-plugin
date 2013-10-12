@@ -179,5 +179,12 @@ public class IronMQNotifierTest {
         Assert.assertEquals(true,result);
     }
 
+    @Test
+    public void IronMQNotifier_Returns_A_Job_Name() {
+        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, "", true, true, true, TestSettings.EXPIRYSETTINGS);
+
+        Assert.assertNotNull(notifier.getJobName());
+    }
 
 }

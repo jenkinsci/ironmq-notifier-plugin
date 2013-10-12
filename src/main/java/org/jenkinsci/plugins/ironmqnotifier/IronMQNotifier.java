@@ -27,10 +27,10 @@ public class IronMQNotifier extends Notifier {
     public boolean send_failure;
     public boolean send_unstable;
     public long expirySeconds;
-    private String jobName;
+    private String jobName ="";
     private String messageText;
 
-    @DataBoundConstructor
+      @DataBoundConstructor
     public IronMQNotifier(String projectId, String token, String queueName, String preferredServerName,
                           boolean send_success, boolean send_failure, boolean send_unstable, long expirySeconds) {
         this.projectId = projectId;
