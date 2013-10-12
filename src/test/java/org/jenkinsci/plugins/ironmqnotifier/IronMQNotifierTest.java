@@ -161,7 +161,7 @@ public class IronMQNotifierTest {
                 BuildStepMonitor.NONE == monitor |
                 BuildStepMonitor.STEP == monitor);
 
-        Object result = monitor.getClass().getSuperclass().getSimpleName().toString();
+        Object result = monitor.getClass().getSuperclass().getSimpleName();
 
         Assert.assertEquals("BuildStepMonitor", result);
     }
@@ -171,7 +171,7 @@ public class IronMQNotifierTest {
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, "", true, true, true, TestSettings.EXPIRYSETTINGS);
 
-        Object notifierCheck = notifier.getClass().getSuperclass().getSimpleName().toString();
+        Object notifierCheck = notifier.getClass().getSuperclass().getSimpleName();
         Assert.assertEquals("Notifier", notifierCheck);
 
     }
