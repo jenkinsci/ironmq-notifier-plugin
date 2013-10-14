@@ -98,7 +98,7 @@
 
     <ciManagement>
         <system>Jenkins</system>
-             <url>https://jenkins.ci.cloudbees.com/job/plugins/job/${project.artifactId}-plugin/</url>
+             <url>https://jenkins.ci.cloudbees.com/job/plugins/job/ironmq-notifier-plugin/</url>
         <notifiers>
             <notifier>
                 <type>mail</type>
