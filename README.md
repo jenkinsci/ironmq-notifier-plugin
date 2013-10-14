@@ -14,7 +14,7 @@ With this situation, there is no need for the Jenkins build server to communicat
 
 * For a current list of TO-DOs check the WIKI at  http://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier
 
-* To monitor the current build in progress... https://buildhive.cloudbees.com/job/Jenkinsci/job/ironmq-notifier-plugin/
+* To monitor the current build in progress... https://jenkins.ci.cloudbees.com/job/plugins/job/ironmq-notifier-plugin/
 
 
 ***
@@ -22,9 +22,6 @@ With this situation, there is no need for the Jenkins build server to communicat
 Maintainers
 
 Mike Caspar
-
-*Build is currently....*
-[![Build Status](https://buildhive.cloudbees.com/job/jenkinsci/job/ironmq-notifier-plugin/badge/icon)](https://buildhive.cloudbees.com/job/jenkinsci/job/ironmq-notifier-plugin/)
 
 
 
