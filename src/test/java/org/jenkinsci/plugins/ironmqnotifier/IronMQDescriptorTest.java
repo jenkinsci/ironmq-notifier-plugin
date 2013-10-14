@@ -32,10 +32,19 @@ public class IronMQDescriptorTest {
 
         Assert.assertEquals(FormValidation.ok(), build.doCheckExpirySeconds(1000L));
 
+     }
 
+
+    @Test
+    public void Test_Descriptor_Form_QueueName_Works()
+
+    {
+        IronMQDescriptor build = mock(IronMQDescriptor.class);
+        when(build.doCheckQueueName("test")).thenReturn(FormValidation.ok());
+
+        Assert.assertEquals(FormValidation.ok(), build.doCheckQueueName("test"));
 
     }
-
 
 
 }
