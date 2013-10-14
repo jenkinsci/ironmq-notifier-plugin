@@ -67,6 +67,7 @@
 
     </repositories>
 
+
     <dependencies>
 
         <dependency>
@@ -89,6 +90,47 @@
 
 
     </dependencies>
+
+
+    <properties>
+
+        <maven.project.info.reports.plugin>2.6</maven.project.info.reports.plugin>
+        <maven.site.plugin>3.2</maven.site.plugin>
+
+    </properties>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven.site.plugin}</version>
+                <executions>
+                    <!-- used for multiproject builds -->
+                    <execution>
+                        <id>attach-descriptor</id>
+                        <goals>
+                            <goal>attach-descriptor</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <reportPlugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-project-info-reports-plugin</artifactId>
+                            <version>${maven.project.info.reports.plugin}</version>
+                        </plugin>
+                    </reportPlugins>
+                    <locales>en</locales>
+                </configuration>
+
+            </plugin>
+        </plugins>
+    </build>
+
+
 
     <scm>
         <connection>scm:git:ssh://github.com/jenkinsci/ironmq-notifier-plugin.git</connection>
