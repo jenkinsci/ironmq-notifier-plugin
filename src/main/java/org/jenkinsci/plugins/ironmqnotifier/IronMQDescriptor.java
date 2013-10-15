@@ -13,10 +13,9 @@ import org.kohsuke.stapler.StaplerRequest;
 @Extension
 public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
-    private final long default_expirySeconds = 806400L;
-    private final String default_preferredServerName = "mq-rackspace-ord.iron.io";
-    private final String default_queueName = "Jenkins";
-
+    private final long default_expirySeconds = IronConstants.DEFAULT_EXPIRY_SECONDS;
+    private final String default_preferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+    private final String default_queueName = IronConstants.DEFAULT_QUEUE_NAME;
 
     public IronMQDescriptor() {
         super(IronMQNotifier.class);
