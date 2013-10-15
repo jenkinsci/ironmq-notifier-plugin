@@ -12,7 +12,7 @@ With this situation, there is no need for the Jenkins build server to communicat
 
 ***
 
-* For a current list of TO-DOs check the WIKI at  http://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier
+* For a current list of TO-DOs check the WIKI at  https://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier
 
 * To monitor the current build in progress... https://jenkins.ci.cloudbees.com/job/plugins/job/ironmq-notifier-plugin/
 
