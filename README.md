@@ -21,7 +21,7 @@ With this situation, there is no need for the Jenkins build server to communicat
 
 Maintainers
 
-* Mike Caspar
+Mike Caspar
 
 
 
