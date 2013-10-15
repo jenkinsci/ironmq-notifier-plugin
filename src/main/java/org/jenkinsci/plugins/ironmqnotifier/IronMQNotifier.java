@@ -129,6 +129,7 @@ public class IronMQNotifier extends Notifier {
             build.setResult(Result.FAILURE);
 
         }
+
         return true;
     }
 
