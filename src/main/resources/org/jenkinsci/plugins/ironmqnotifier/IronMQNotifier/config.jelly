@@ -8,10 +8,10 @@
     <f:entry title="Queue Name" field="queueName" >
         <f:textbox />
       </f:entry>
-    <f:entry title="Preferred Server Name" field="preferredServerName" default="mq-rackspace-ord.iron.io">
+    <f:entry title="Preferred Server Name" field="preferredServerName">
         <f:textbox />
       </f:entry>
-    <f:entry title="Expiry in Seconds" field="expirySeconds" default="806400">
+    <f:entry title="Expiry in Seconds" field="expirySeconds">
         <f:textbox />
       </f:entry>
   <f:entry title="Send on Success" field="send_success">
