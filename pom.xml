@@ -99,6 +99,16 @@
 
     </properties>
 
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>2.5.2</version>
+            </plugin>
+        </plugins>
+    </reporting>
+
     <scm>
         <connection>scm:git:ssh://github.com/jenkinsci/ironmq-notifier-plugin.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/jenkinsci/ironmq-notifier-plugin.git</developerConnection>
