@@ -110,7 +110,7 @@ public class IronMQNotifierTest {
     public void Make_Sure_We_Get_Back_An_Expiry_Not_Zero_By_Default() {
 
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, 0);
+                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, 0L);
         Assert.assertTrue("Expiry in seconds must be Greater than zero", notifier.expirySeconds > 0);
 
     }

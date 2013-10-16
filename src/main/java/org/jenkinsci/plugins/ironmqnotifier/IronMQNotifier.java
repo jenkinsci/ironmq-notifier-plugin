@@ -16,7 +16,6 @@ import java.io.IOException;
 
 public class IronMQNotifier extends Notifier {
 
-    private final long default_expirySeconds = 806400L;
     private final String default_preferredServerName = "mq-rackspace-ord.iron.io";
     private final String default_queueName = "Jenkins";
     public String projectId;
@@ -27,12 +26,19 @@ public class IronMQNotifier extends Notifier {
     public boolean send_failure;
     public boolean send_unstable;
     public long expirySeconds;
-    private String jobName ="";
+    private String jobName = "";
     private String messageText;
 
-      @DataBoundConstructor
-    public IronMQNotifier(String projectId, String token, String queueName, String preferredServerName,
-                          boolean send_success, boolean send_failure, boolean send_unstable, long expirySeconds) {
+    @DataBoundConstructor
+    public IronMQNotifier(String projectId,
+                          String token,
+                          String queueName,
+                          String preferredServerName,
+                          boolean send_success,
+                          boolean send_failure,
+                          boolean send_unstable,
+                          long expirySeconds) {
+
         this.projectId = projectId;
         this.token = token;
         this.queueName = queueName;
@@ -40,22 +46,25 @@ public class IronMQNotifier extends Notifier {
         this.send_failure = send_failure;
         this.send_unstable = send_unstable;
         this.preferredServerName = preferredServerName;
+        this.expirySeconds = expirySeconds;
+
+        AdjustDataToAvoidCrashes();
+
+    }
+
+    private void AdjustDataToAvoidCrashes() {
 
         if (this.queueName.trim().length() == 0) {
-            this.queueName = default_queueName;
+            this.queueName = IronConstants.DEFAULT_QUEUE_NAME;
         }
 
         if (this.preferredServerName.trim().length() == 0) {
-            this.preferredServerName = default_preferredServerName;
+            this.preferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
         }
 
-
-        if (expirySeconds <= 0) {
-            this.expirySeconds = default_expirySeconds;
-        } else {
-            this.expirySeconds = expirySeconds;
+        if (this.expirySeconds <= 0) {
+            expirySeconds = IronConstants.DEFAULT_EXPIRY_SECONDS;
         }
-
     }
 
     public BuildStepMonitor getRequiredMonitorService() {
@@ -68,10 +77,13 @@ public class IronMQNotifier extends Notifier {
     }
 
     @Override
-    public boolean perform(@SuppressWarnings("rawtypes") AbstractBuild build, Launcher launcher, BuildListener listener) throws InterruptedException, IOException {
+    public boolean perform(@SuppressWarnings("rawtypes")
+                           AbstractBuild build,
+                           Launcher launcher,
+                           BuildListener listener)
+            throws InterruptedException, IOException {
 
         jobName = build.getFullDisplayName();
-
 
         String result;
 
@@ -101,7 +113,10 @@ public class IronMQNotifier extends Notifier {
 
         try {
 
-            Client client = new Client(projectId, token, new Cloud("https", preferredServerName, 443));
+            Client client = new Client(
+                    projectId,
+                    token,
+                    new Cloud("https", preferredServerName, 443));
 
             Queue queue = client.queue(queueName);
 
