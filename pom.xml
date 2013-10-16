@@ -118,14 +118,6 @@
     </dependencies>
 
 
-    <properties>
-
-        <maven.project.info.reports.plugin>2.6</maven.project.info.reports.plugin>
-        <maven.site.plugin>3.2</maven.site.plugin>
-
-    </properties>
-
-
     <scm>
         <connection>scm:git:ssh://github.com/jenkinsci/ironmq-notifier-plugin.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/jenkinsci/ironmq-notifier-plugin.git</developerConnection>
