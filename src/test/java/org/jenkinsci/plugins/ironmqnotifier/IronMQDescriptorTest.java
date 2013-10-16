@@ -46,5 +46,23 @@ public class IronMQDescriptorTest {
 
     }
 
+    @Test
+    public void formCheckQueueNameValid() throws Exception {
+        IronMQDescriptor descriptor = mock(IronMQDescriptor.class);
+        String testString = "test";
+        when(descriptor.doCheckQueueName(testString)).thenCallRealMethod();
 
+        Assert.assertEquals(FormValidation.ok(),descriptor.doCheckQueueName(testString));
+
+    }
+
+    @Test
+    public void formCheckQueueNameNotValid() throws Exception {
+        IronMQDescriptor descriptor = mock(IronMQDescriptor.class);
+        String testString = "test55";
+        when(descriptor.doCheckQueueName(testString)).thenCallRealMethod();
+
+        Assert.assertNotEquals(FormValidation.ok(), descriptor.doCheckQueueName(testString));
+
+    }
 }
