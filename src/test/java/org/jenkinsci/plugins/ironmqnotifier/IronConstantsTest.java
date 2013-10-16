@@ -44,4 +44,10 @@ public class IronConstantsTest {
                 validationForms.isValidExpirySeconds(IronConstants.DEFAULT_EXPIRY_SECONDS);
         Assert.assertEquals(FormValidation.ok(), validationResult);
     }
+
+    @Test
+    public void IronConstantsConstructorTest()
+    {
+        Assert.assertNotNull(new IronConstants());
+    }
 }
