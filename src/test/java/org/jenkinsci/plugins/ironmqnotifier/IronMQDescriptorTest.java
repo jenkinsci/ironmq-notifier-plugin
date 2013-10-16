@@ -63,6 +63,28 @@ public class IronMQDescriptorTest {
         when(descriptor.doCheckQueueName(testString)).thenCallRealMethod();
 
         Assert.assertNotEquals(FormValidation.ok(), descriptor.doCheckQueueName(testString));
+         }
 
+    @Test
+    public void formCheckQueueNameSendingNullDoesNotCrashFunction() throws Exception {
+        IronMQDescriptor descriptor = mock(IronMQDescriptor.class);
+        String testString = null;
+        when(descriptor.doCheckQueueName(testString)).thenCallRealMethod();
+
+        Assert.assertNotEquals(FormValidation.ok(), descriptor.doCheckQueueName(testString));
     }
+
+
+    @Test
+    public void formCheckExpirySecondsNullDoesNotCrashFunction() throws Exception {
+        IronMQDescriptor descriptor = mock(IronMQDescriptor.class);
+        Object badExpirySeconds = null;
+        when(descriptor.doCheckExpirySeconds((Long) badExpirySeconds)).thenCallRealMethod();
+
+        Assert.assertNotEquals(FormValidation.ok(), descriptor.doCheckExpirySeconds((Long) badExpirySeconds));
+    }
+
+
 }
+
+
