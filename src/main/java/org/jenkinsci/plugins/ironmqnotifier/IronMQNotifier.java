@@ -106,10 +106,6 @@ public class IronMQNotifier extends Notifier {
             return true;
         }
 
-        if (preferredServerName.trim().length() == 0) {
-            preferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
-        }
-
 
         try {
 
