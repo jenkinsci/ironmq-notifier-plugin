@@ -21,6 +21,12 @@ public class IronConstantsTest {
         Assert.assertNotNull(IronConstants.DEFAULT_PREFERRED_SERVER_NAME);
     }
 
+    @Test
+    public void DefaultPreferredServerPort_Valid_And_NotNull() {
+        Assert.assertNotNull(IronConstants.DEFAULT_PREFERRED_SERVER_PORT);
+        Assert.assertNotEquals(0,IronConstants.DEFAULT_PREFERRED_SERVER_PORT);
+    }
+
 
     @Test
     public void Expiry_Seconds_Valid() {
