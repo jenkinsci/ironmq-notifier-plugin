@@ -97,7 +97,7 @@ public class IronMQNotifierTest {
 
         Assert.assertNotNull(notifier.projectId);
         Assert.assertNotNull(notifier.token);
-        Assert.assertNotNull(notifier.queueName);
+        Assert.assertNotNull(notifier.getQueueName());
         Assert.assertNotNull(notifier.preferredServerName);
         Assert.assertNotNull(notifier.send_success);
         Assert.assertNotNull(notifier.send_failure);
@@ -146,8 +146,19 @@ public class IronMQNotifierTest {
 
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS);
-        Assert.assertNotSame(0, notifier.queueName.length());
+        Assert.assertNotSame(0, notifier.getQueueName().length());
     }
+
+    @Test
+    public void Can_Set_The_QueueName_Of_A_NotifierProperly() {
+
+        final String testQueueName = "fred";
+        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS);
+        notifier.setQueueName(testQueueName);
+        Assert.assertEquals(testQueueName, notifier.getQueueName());
+    }
+
 
     @Test
     public void Return_A_Valid_BuildStepMonitorService() {

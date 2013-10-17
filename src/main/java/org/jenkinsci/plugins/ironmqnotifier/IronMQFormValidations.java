@@ -4,7 +4,7 @@ import hudson.util.FormValidation;
 
 public class IronMQFormValidations {
 
-    public FormValidation isValidQueueName(String name) {
+    public final FormValidation isValidQueueName(final String name) {
 
         if (isAlpha(name)) {
             return FormValidation.ok();
@@ -14,15 +14,16 @@ public class IronMQFormValidations {
 
     }
 
-    public FormValidation isValidExpirySeconds(Long expirySeconds) {
+    public final FormValidation isValidExpirySeconds(final Long expirySeconds) {
 
         if (expirySeconds > 0) {
             return FormValidation.ok();
-        } else
+        } else {
             return FormValidation.warning("Expiry Should Not be Zero");
+        }
     }
 
-    private static boolean isAlpha(String name) {
+    private static boolean isAlpha(final String name) {
         return name.matches("[a-zA-Z]+");
 
     }

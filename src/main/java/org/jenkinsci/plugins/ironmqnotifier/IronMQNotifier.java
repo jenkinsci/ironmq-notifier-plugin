@@ -16,12 +16,13 @@ import java.io.IOException;
 
 public class IronMQNotifier extends Notifier {
 
-    private final String default_preferredServerName = "mq-rackspace-ord.iron.io";
     private final String default_queueName = "Jenkins";
     public String projectId;
     public String token;
-    public String queueName;
+    private String queueName;
     public String preferredServerName;
+    private final int preferredServerPort = IronConstants.DEFAULT_PREFERRED_SERVER_PORT;
+
     public boolean send_success;
     public boolean send_failure;
     public boolean send_unstable;
@@ -30,14 +31,14 @@ public class IronMQNotifier extends Notifier {
     private String messageText;
 
     @DataBoundConstructor
-    public IronMQNotifier(String projectId,
-                          String token,
-                          String queueName,
-                          String preferredServerName,
-                          boolean send_success,
-                          boolean send_failure,
-                          boolean send_unstable,
-                          long expirySeconds) {
+    public IronMQNotifier(final String projectId,
+                          final String token,
+                          final String queueName,
+                          final String preferredServerName,
+                          final boolean send_success,
+                          final boolean send_failure,
+                          final boolean send_unstable,
+                          final long expirySeconds) {
 
         this.projectId = projectId;
         this.token = token;
@@ -48,11 +49,12 @@ public class IronMQNotifier extends Notifier {
         this.preferredServerName = preferredServerName;
         this.expirySeconds = expirySeconds;
 
-        AdjustDataToAvoidCrashes();
+        adjustDataToAvoidCrashes();
 
     }
 
-    private void AdjustDataToAvoidCrashes() {
+
+    private void adjustDataToAvoidCrashes() {
 
         if (this.queueName.trim().length() == 0) {
             this.queueName = IronConstants.DEFAULT_QUEUE_NAME;
@@ -107,7 +109,7 @@ public class IronMQNotifier extends Notifier {
         }
 
         if (preferredServerName.trim().length() == 0) {
-            preferredServerName = default_preferredServerName;
+            preferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
         }
 
 
@@ -116,7 +118,7 @@ public class IronMQNotifier extends Notifier {
             Client client = new Client(
                     projectId,
                     token,
-                    new Cloud("https", preferredServerName, 443));
+                    new Cloud("https", preferredServerName, preferredServerPort));
 
             Queue queue = client.queue(queueName);
 
@@ -155,5 +157,14 @@ public class IronMQNotifier extends Notifier {
 
     public String getJobName() {
         return this.jobName;
+    }
+
+    public void setQueueName(final String queueName) {
+        this.queueName = queueName;
+    }
+
+    public String getQueueName()
+    {
+        return this.queueName;
     }
 }

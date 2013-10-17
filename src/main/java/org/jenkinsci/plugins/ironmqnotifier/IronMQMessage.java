@@ -21,18 +21,18 @@ public class IronMQMessage {
 
         this.jobName = "";
         this.buildResult = "";
-        this.expirySeconds = 806400L;
+        this.expirySeconds = IronConstants.DEFAULT_EXPIRY_SECONDS;
         this.submissionDate = new Date();
 
-        this.expiresDate = CalculateNewExpiryDate(this.submissionDate, this.expirySeconds);
+        this.expiresDate = calculateNewExpiryDate(this.submissionDate, this.expirySeconds);
 
     }
 
-    public String getJobName() {
-        return jobName;
+    final String getJobName() {
+        return this.jobName;
     }
 
-    public void setJobName(String name) {
+    final void setJobName(final String name) {
         this.jobName = name;
     }
 
@@ -51,7 +51,7 @@ public class IronMQMessage {
 
     public void setExpirySeconds(Long expirySeconds) {
         this.expirySeconds = expirySeconds;
-        this.expiresDate = CalculateNewExpiryDate(this.submissionDate, expirySeconds);
+        this.expiresDate = calculateNewExpiryDate(this.submissionDate, expirySeconds);
 
     }
 
@@ -76,10 +76,10 @@ public class IronMQMessage {
         return expiresDate;
     }
 
-    private Date CalculateNewExpiryDate(Date submissionDate, Long expirySeconds) {
+    private Date calculateNewExpiryDate(Date submissionDate, Long expirySeconds) {
 
         long t = submissionDate.getTime();
-        return new Date(t + (expirySeconds * 1000));
+        return new Date(t + (expirySeconds * IronConstants.MILLISECONDS_TO_SECONDS_CONVERSION));
     }
 }
 

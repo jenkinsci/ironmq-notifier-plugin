@@ -13,9 +13,9 @@ import org.kohsuke.stapler.StaplerRequest;
 @Extension
 public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
-    private final long default_expirySeconds = IronConstants.DEFAULT_EXPIRY_SECONDS;
-    private final String default_preferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
-    private final String default_queueName = IronConstants.DEFAULT_QUEUE_NAME;
+    private final long defaultExpirySeconds = IronConstants.DEFAULT_EXPIRY_SECONDS;
+    private final String defaultPreferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+    private final String defaultQueueName = IronConstants.DEFAULT_QUEUE_NAME;
 
     public IronMQDescriptor() {
         super(IronMQNotifier.class);
@@ -28,38 +28,47 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
     }
 
     @Override
-    public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
+    public boolean configure( StaplerRequest req, JSONObject formData ) throws FormException {
         save();
         return super.configure(req, formData);
     }
 
     @Override
-    public boolean isApplicable(@SuppressWarnings("rawtypes") Class<? extends AbstractProject> arg0) {
+    public boolean isApplicable( @SuppressWarnings ("rawtypes") Class<? extends AbstractProject> arg0 ) {
         return true;
     }
 
     @Override
-    public IronMQNotifier newInstance(StaplerRequest req, JSONObject formData) throws FormException {
+    public IronMQNotifier newInstance( StaplerRequest req, JSONObject formData ) throws FormException {
 
         String projectId = formData.optString("projectId");
         String tokenID = formData.optString("token");
-        String queueName = formData.optString("queueName", default_queueName);
-        String preferredServerName = formData.optString("preferredServerName", default_preferredServerName);
+        String queueName = formData.optString("queueName", defaultQueueName);
+        String preferredServerName = formData.optString("preferredServerName", defaultPreferredServerName);
         boolean success = formData.optBoolean("send_success");
         boolean failure = formData.optBoolean("send_failure");
         boolean unstable = formData.optBoolean("send_unstable");
-        long expirySeconds = formData.optLong("expirySeconds", default_expirySeconds);
+        long expirySeconds = formData.optLong("expirySeconds", defaultExpirySeconds);
 
-        return new IronMQNotifier(projectId, tokenID, queueName, preferredServerName, success, failure, unstable, expirySeconds);
+        return new IronMQNotifier(projectId,
+                tokenID,
+                queueName,
+                preferredServerName,
+                success,
+                failure,
+                unstable,
+                expirySeconds);
     }
 
-    public FormValidation doCheckQueueName(@QueryParameter String value) {
+    public FormValidation doCheckQueueName( @QueryParameter String value ) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
 
         FormValidation validationReturn;
 
-        if (value == null) { value = ""; }
+        if(value == null) {
+            value = "";
+        }
 
         validationReturn = validations.isValidQueueName(value);
 
@@ -67,13 +76,15 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
     }
 
-    public FormValidation doCheckExpirySeconds(@QueryParameter Long value) {
+    public FormValidation doCheckExpirySeconds( @QueryParameter Long value ) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
 
         FormValidation validationReturn;
 
-        if (value == null) { value = 0L;  }
+        if(value == null) {
+            value = 0L;
+        }
 
         validationReturn = validations.isValidExpirySeconds(value);
 
