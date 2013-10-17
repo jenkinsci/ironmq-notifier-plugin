@@ -24,7 +24,7 @@
         <ironmq.version>0.0.10</ironmq.version>
         <google.gson.version>2.2.4</google.gson.version>
         <mockito-all.version>1.9.5</mockito-all.version>
-        <cobertura-maven-plugin.version>2.6</cobertura-maven-plugin.version>
+        <cobertura-maven-plugin.version>2.4</cobertura-maven-plugin.version>
         <maven-checkstyle-plugin.version>2.10</maven-checkstyle-plugin.version>
 
     </properties>
