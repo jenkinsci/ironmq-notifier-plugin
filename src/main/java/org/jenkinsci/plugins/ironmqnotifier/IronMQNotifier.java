@@ -17,11 +17,12 @@ import java.io.IOException;
 public class IronMQNotifier extends Notifier {
 
     private final String default_queueName = IronConstants.DEFAULT_QUEUE_NAME;
+    private final int defaultPreferredServerPort = IronConstants.DEFAULT_PREFERRED_SERVER_PORT;
     private String projectId;
     public String token;
     private String queueName;
     public String preferredServerName;
-    private final int preferredServerPort = IronConstants.DEFAULT_PREFERRED_SERVER_PORT;
+
 
     public boolean send_success;
     public boolean send_failure;
@@ -112,7 +113,7 @@ public class IronMQNotifier extends Notifier {
             Client client = new Client(
                     projectId,
                     token,
-                    new Cloud("https", preferredServerName, preferredServerPort));
+                    new Cloud("https", preferredServerName, defaultPreferredServerPort));
 
             Queue queue = client.queue(queueName);
 
