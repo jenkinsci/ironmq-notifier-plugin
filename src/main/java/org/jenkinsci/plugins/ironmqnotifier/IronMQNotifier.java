@@ -16,8 +16,8 @@ import java.io.IOException;
 
 public class IronMQNotifier extends Notifier {
 
-    private final String default_queueName = "Jenkins";
-    public String projectId;
+    private final String default_queueName = IronConstants.DEFAULT_QUEUE_NAME;
+    private String projectId;
     public String token;
     private String queueName;
     public String preferredServerName;
@@ -167,4 +167,14 @@ public class IronMQNotifier extends Notifier {
     {
         return this.queueName;
     }
+
+    public void setProjectId(final String projectId) {
+        this.projectId = projectId;
+    }
+
+    public String getProjectId()
+    {
+        return this.projectId;
+    }
+
 }
