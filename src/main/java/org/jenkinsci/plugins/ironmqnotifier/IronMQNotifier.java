@@ -79,14 +79,12 @@ public class IronMQNotifier extends Notifier {
     }
 
     @Override
-    public boolean perform(@SuppressWarnings("rawtypes")
-                           AbstractBuild build,
+    public boolean perform(AbstractBuild<?, ?> build,
                            Launcher launcher,
                            BuildListener listener)
             throws InterruptedException, IOException {
 
         jobName = build.getFullDisplayName();
-
         String result;
 
         if (build.getResult() == Result.SUCCESS) {
