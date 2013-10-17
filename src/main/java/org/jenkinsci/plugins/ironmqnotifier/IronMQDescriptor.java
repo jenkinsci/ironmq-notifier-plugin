@@ -38,27 +38,6 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         return true;
     }
 
-    @Override
-    public IronMQNotifier newInstance( StaplerRequest req, JSONObject formData ) throws FormException {
-
-        String projectId = formData.optString("projectId");
-        String tokenID = formData.optString("token");
-        String queueName = formData.optString("queueName", defaultQueueName);
-        String preferredServerName = formData.optString("preferredServerName", defaultPreferredServerName);
-        boolean success = formData.optBoolean("send_success");
-        boolean failure = formData.optBoolean("send_failure");
-        boolean unstable = formData.optBoolean("send_unstable");
-        long expirySeconds = formData.optLong("expirySeconds", defaultExpirySeconds);
-
-        return new IronMQNotifier(projectId,
-                tokenID,
-                queueName,
-                preferredServerName,
-                success,
-                failure,
-                unstable,
-                expirySeconds);
-    }
 
     public FormValidation doCheckQueueName( @QueryParameter String value ) {
 
