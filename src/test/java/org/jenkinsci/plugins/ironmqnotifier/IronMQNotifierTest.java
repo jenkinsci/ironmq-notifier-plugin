@@ -24,7 +24,7 @@ public class IronMQNotifierTest {
     public void Notifier_Has_A_ProjectId_Not_Null() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertNotNull(notifier.projectId);
+        Assert.assertNotNull(notifier.getProjectId());
 
     }
 
@@ -32,9 +32,18 @@ public class IronMQNotifierTest {
     public void Notifier_Has_A_ProjectId_Not_Empty() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertTrue(!notifier.projectId.isEmpty());
+        Assert.assertTrue(!notifier.getProjectId().isEmpty());
+        }
 
+    @Test
+    public void Notifier_Can_Set_A_ProjectId_And_Get_It_Back() {
+
+        String testString = "t";
+        IronMQNotifier notifier = StandardTestNotifier();
+        notifier.setProjectId(testString);
+         Assert.assertEquals(testString,notifier.getProjectId());
     }
+
 
     @Test
     public void Notifier_Has_A_Token_Not_Null() {
@@ -95,7 +104,7 @@ public class IronMQNotifierTest {
 
         IronMQNotifier notifier = StandardTestNotifier();
 
-        Assert.assertNotNull(notifier.projectId);
+        Assert.assertNotNull(notifier.getProjectId());
         Assert.assertNotNull(notifier.token);
         Assert.assertNotNull(notifier.getQueueName());
         Assert.assertNotNull(notifier.preferredServerName);
