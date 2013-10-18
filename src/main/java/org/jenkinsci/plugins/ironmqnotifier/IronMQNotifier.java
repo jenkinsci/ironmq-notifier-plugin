@@ -14,6 +14,12 @@ import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
 
+/**
+ * <p>IronMQNotifier class.</p>
+ *
+ * @author mike
+ * @version $Id: $
+ */
 public class IronMQNotifier extends Notifier {
 
     private final String default_queueName = IronConstants.DEFAULT_QUEUE_NAME;
@@ -31,6 +37,18 @@ public class IronMQNotifier extends Notifier {
     private String jobName = "";
     private String messageText;
 
+    /**
+     * <p>Constructor for IronMQNotifier.</p>
+     *
+     * @param projectId a {@link java.lang.String} object.
+     * @param token a {@link java.lang.String} object.
+     * @param queueName a {@link java.lang.String} object.
+     * @param preferredServerName a {@link java.lang.String} object.
+     * @param send_success a boolean.
+     * @param send_failure a boolean.
+     * @param send_unstable a boolean.
+     * @param expirySeconds a long.
+     */
     @DataBoundConstructor
     public IronMQNotifier(final String projectId,
                           final String token,
@@ -70,6 +88,11 @@ public class IronMQNotifier extends Notifier {
         }
     }
 
+    /**
+     * <p>getRequiredMonitorService.</p>
+     *
+     * @return a {@link hudson.tasks.BuildStepMonitor} object.
+     */
     public BuildStepMonitor getRequiredMonitorService() {
         return BuildStepMonitor.BUILD;
     }
@@ -154,23 +177,53 @@ public class IronMQNotifier extends Notifier {
         return true;
     }
 
+    /**
+     * <p>Getter for the field <code>jobName</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     * @since 1.0.6
+     */
     public String getJobName() {
         return this.jobName;
     }
 
+    /**
+     * <p>Setter for the field <code>queueName</code>.</p>
+     *
+     * @param queueName a {@link java.lang.String} object.
+     * @since 1.0.6
+     */
     public void setQueueName(final String queueName) {
         this.queueName = queueName;
     }
 
+    /**
+     * <p>Getter for the field <code>queueName</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     * @since 1.0.6
+     */
     public String getQueueName()
     {
         return this.queueName;
     }
 
+    /**
+     * <p>Setter for the field <code>projectId</code>.</p>
+     *
+     * @param projectId a {@link java.lang.String} object.
+     * @since 1.0.6
+     */
     public void setProjectId(final String projectId) {
         this.projectId = projectId;
     }
 
+    /**
+     * <p>Getter for the field <code>projectId</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     * @since 1.0.6
+     */
     public String getProjectId()
     {
         return this.projectId;

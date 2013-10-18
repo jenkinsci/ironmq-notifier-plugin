@@ -9,6 +9,9 @@ final class IronConstants {
     static long DEFAULT_EXPIRY_SECONDS = 806400l;  //that's an l not a 1!
     static long MILLISECONDS_TO_SECONDS_CONVERSION = 1000;
 
+    /**
+     * <p>Constructor for IronConstants.</p>
+     */
     public IronConstants() {
         //placeholder
     }

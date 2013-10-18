@@ -11,12 +11,21 @@ import org.kohsuke.stapler.StaplerRequest;
 
 
 @Extension
+/**
+ * <p>IronMQDescriptor class.</p>
+ *
+ * @author Mike Caspar
+ * @version $Id: $
+ */
 public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
     private final long defaultExpirySeconds = IronConstants.DEFAULT_EXPIRY_SECONDS;
     private final String defaultPreferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
     private final String defaultQueueName = IronConstants.DEFAULT_QUEUE_NAME;
 
+    /**
+     * <p>Constructor for IronMQDescriptor.</p>
+     */
     public IronMQDescriptor() {
         super(IronMQNotifier.class);
         load();
@@ -41,7 +50,12 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         return true;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     *
+     * @param value a {@link java.lang.String} object.
+     * @return a {@link hudson.util.FormValidation} object.
+     */
     public FormValidation doCheckQueueName( @QueryParameter final String value ) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
@@ -62,7 +76,12 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     *
+     * @param value a long.
+     * @return a {@link hudson.util.FormValidation} object.
+     */
     public FormValidation doCheckExpirySeconds( @QueryParameter final long value ) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
