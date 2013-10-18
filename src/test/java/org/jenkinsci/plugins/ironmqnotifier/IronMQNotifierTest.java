@@ -1,15 +1,21 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
 import hudson.tasks.BuildStepMonitor;
+import hudson.tasks.Notifier;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class IronMQNotifierTest {
+public class IronMQNotifierTest{
 
 
     private IronMQNotifier StandardTestNotifier() {
         return new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, TestSettings.EXPIRYSETTINGS);
+                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTPREFERREDSERVER,
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
     }
 
     @Test
@@ -17,8 +23,16 @@ public class IronMQNotifierTest {
 
         IronMQNotifier notifier = StandardTestNotifier();
         Assert.assertNotNull(notifier);
-
     }
+
+    @Test
+    public void IronMQNotifier_Extends_ANotifier()
+    {
+        IronMQNotifier notifier = StandardTestNotifier();
+        String result = notifier.getClass().getSuperclass().getName();
+        Assert.assertEquals("hudson.tasks.Notifier", result);
+    }
+
 
     @Test
     public void Notifier_Has_A_ProjectId_Not_Null() {
@@ -33,7 +47,7 @@ public class IronMQNotifierTest {
 
         IronMQNotifier notifier = StandardTestNotifier();
         Assert.assertTrue(!notifier.getProjectId().isEmpty());
-        }
+    }
 
     @Test
     public void Notifier_Can_Set_A_ProjectId_And_Get_It_Back() {
@@ -41,9 +55,8 @@ public class IronMQNotifierTest {
         String testString = "t";
         IronMQNotifier notifier = StandardTestNotifier();
         notifier.setProjectId(testString);
-         Assert.assertEquals(testString,notifier.getProjectId());
+        Assert.assertEquals(testString, notifier.getProjectId());
     }
-
 
     @Test
     public void Notifier_Has_A_Token_Not_Null() {
@@ -167,7 +180,6 @@ public class IronMQNotifierTest {
         notifier.setQueueName(testQueueName);
         Assert.assertEquals(testQueueName, notifier.getQueueName());
     }
-
 
     @Test
     public void Return_A_Valid_BuildStepMonitorService() {
