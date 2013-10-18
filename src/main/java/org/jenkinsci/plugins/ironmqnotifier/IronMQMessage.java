@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import java.util.Date;
 
 
-class IronMQMessage {
+class IronMQMessage{
 
     private String messageVersion;
     private String jobName;
@@ -70,8 +70,10 @@ class IronMQMessage {
      * @param expirySeconds a long.
      */
     public void setExpirySeconds( final long expirySeconds ) {
-        this.expirySeconds = expirySeconds;
-        this.expiresDate = calculateNewExpiryDate(this.submissionDate, expirySeconds);
+        this.expirySeconds
+                = expirySeconds;
+        this.expiresDate
+                = calculateNewExpiryDate(this.submissionDate, expirySeconds);
 
     }
 
