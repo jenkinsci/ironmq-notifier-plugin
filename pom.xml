@@ -191,30 +191,34 @@
 
 
         <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${maven-checkstyle-plugin.version}</version>
-                    <configuration>
-                        <encoding>UTF-8</encoding>
-                        <outputFileFormat>xml</outputFileFormat>
-                       <enableRulesSummary>false</enableRulesSummary>
-                     </configuration>
-                </plugin>
 
-        </plugins>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-checkstyle-plugin</artifactId>
+                           <version>${maven-checkstyle-plugin.version}</version>
+                            <executions>
+                                <execution>
+                                    <id>compile-checkstyle</id>
+                                    <goals>
+                                       <goal>checkstyle</goal>
+                                    </goals>
+                                   <phase>compile</phase>
+                                </execution>
+                                <execution>
+                                    <id>test-check</id>
+                                    <goals>
+                                        <goal>check</goal>
+                                    </goals>
+                                    <phase>test</phase>
+                                    <configuration>
+                                        <violationSeverity>ignore</violationSeverity>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                   </plugins>
+
     </build>
 
-<reporting>
-    <plugins>
-
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>${maven-checkstyle-plugin.version}</version>
-        </plugin>
-    </plugins>
-
-</reporting>
 
 </project>
