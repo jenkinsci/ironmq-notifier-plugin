@@ -1,18 +1,20 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
 import hudson.Plugin;
-
 import java.util.logging.Logger;
 
 /**
  * <p>IronPluginImplement class.</p>
  *
- * @author mike
+ * @author Mike Caspar
  * @version $Id: $
  */
-public class IronPluginImplement extends Plugin {
+public final class IronPluginImplement extends Plugin {
 
-    private final static Logger LOG = Logger.getLogger(IronPluginImplement.class.getName());
+    /**
+     * <p>logger is used to enable debugging on plugin startup.</p>
+     */
+    private final Logger logger = Logger.getLogger(IronPluginImplement.class.getName());
 
     /**
      * <p>start.</p>
@@ -20,7 +22,7 @@ public class IronPluginImplement extends Plugin {
      * @throws java.lang.Exception if any.
      */
     public void start() throws Exception {
-        //LOG.info("starting ironmq-notifier plugin");
+        //log.info("starting ironmq-notifier plugin");
     }
 }
 
