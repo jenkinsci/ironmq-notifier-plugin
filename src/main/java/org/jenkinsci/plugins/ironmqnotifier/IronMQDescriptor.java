@@ -34,13 +34,17 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         load();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDisplayName() {
         return "Send Message to IronMQ";
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean configure( StaplerRequest req,
                               JSONObject formData ) throws FormException {
@@ -48,10 +52,12 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         return super.configure(req, formData);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isApplicable( @SuppressWarnings ("rawtypes")
-                                     Class<? extends AbstractProject> arg0 ) {
+                                 Class<? extends AbstractProject> arg0 ) {
         return true;
     }
 
@@ -70,10 +76,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
         if(value == null) {
             validationReturn = validations.isValidQueueName("");
-        }
-
-        else
-        {
+        } else {
             validationReturn = validations.isValidQueueName(value);
         }
 
