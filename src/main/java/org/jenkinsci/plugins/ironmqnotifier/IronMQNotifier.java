@@ -24,40 +24,38 @@ public class IronMQNotifier extends Notifier {
 
     private final int defaultPreferredServerPort
             = IronConstants.DEFAULT_PREFERRED_SERVER_PORT;
-    private String projectId;
     public String token;
-    private String queueName;
     public String preferredServerName;
-
-
     public boolean send_success;
     public boolean send_failure;
     public boolean send_unstable;
     public long expirySeconds;
+    private String projectId;
+    private String queueName;
     private String jobName = "";
     private String messageText;
 
     /**
      * <p>Constructor for IronMQNotifier.</p>
      *
-     * @param projectId a {@link java.lang.String} object.
-     * @param token a {@link java.lang.String} object.
-     * @param queueName a {@link java.lang.String} object.
+     * @param projectId           a {@link java.lang.String} object.
+     * @param token               a {@link java.lang.String} object.
+     * @param queueName           a {@link java.lang.String} object.
      * @param preferredServerName a {@link java.lang.String} object.
-     * @param send_success a boolean.
-     * @param send_failure a boolean.
-     * @param send_unstable a boolean.
-     * @param expirySeconds a long.
+     * @param send_success        a boolean.
+     * @param send_failure        a boolean.
+     * @param send_unstable       a boolean.
+     * @param expirySeconds       a long.
      */
     @DataBoundConstructor
-    public IronMQNotifier(final String projectId,
-                          final String token,
-                          final String queueName,
-                          final String preferredServerName,
-                          final boolean send_success,
-                          final boolean send_failure,
-                          final boolean send_unstable,
-                          final long expirySeconds) {
+    public IronMQNotifier( final String projectId,
+                           final String token,
+                           final String queueName,
+                           final String preferredServerName,
+                           final boolean send_success,
+                           final boolean send_failure,
+                           final boolean send_unstable,
+                           final long expirySeconds ) {
 
         this.projectId = projectId;
         this.token = token;
@@ -72,58 +70,63 @@ public class IronMQNotifier extends Notifier {
 
     }
 
-
     private void adjustDataToAvoidCrashes() {
 
-        if (this.queueName.trim().length() == 0) {
+        if(this.queueName.trim().length() == 0) {
             this.queueName = IronConstants.DEFAULT_QUEUE_NAME;
         }
 
-        if (this.preferredServerName.trim().length() == 0) {
+        if(this.preferredServerName.trim().length() == 0) {
             this.preferredServerName
                     = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
         }
 
-        if (this.expirySeconds <= 0) {
+        if(this.expirySeconds <= 0) {
             expirySeconds = IronConstants.DEFAULT_EXPIRY_SECONDS;
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BuildStepMonitor getRequiredMonitorService() {
         return BuildStepMonitor.BUILD;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IronMQDescriptor getDescriptor() {
         return (IronMQDescriptor) super.getDescriptor();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean perform(AbstractBuild<?, ?> build,
-                           Launcher launcher,
-                           BuildListener listener)
+    public boolean perform( AbstractBuild<?, ?> build,
+                            Launcher launcher,
+                            BuildListener listener )
             throws InterruptedException, IOException {
 
         this.jobName = build.getFullDisplayName();
 
         String result;
 
-        if (build.getResult() == Result.SUCCESS) {
-            if (!send_success) {
+        if(build.getResult() == Result.SUCCESS) {
+            if(!send_success) {
                 return true;
             }
             result = "succeeded";
-        } else if (build.getResult() == Result.UNSTABLE) {
-            if (!send_unstable) {
+        } else if(build.getResult() == Result.UNSTABLE) {
+            if(!send_unstable) {
                 return true;
             }
             result = "was unstable";
-        } else if (build.getResult() == Result.FAILURE) {
-            if (!send_failure) {
+        } else if(build.getResult() == Result.FAILURE) {
+            if(!send_failure) {
                 return true;
             }
             result = "failed";
@@ -157,9 +160,14 @@ public class IronMQNotifier extends Notifier {
 
 
             String resultOfQueuePush
-                  = queue.push(message.getBody(), 0, 0, message.getExpiresIn());
+                    = queue.push(
+                    message.getBody(),
+                    0,
+                    0,
+                    message.getExpiresIn());
 
-            if (resultOfQueuePush == null || resultOfQueuePush.length() == 0) {
+            if(resultOfQueuePush == null
+                    || resultOfQueuePush.length() == 0) {
                 build.setResult(Result.FAILURE);
             }
 
@@ -172,7 +180,9 @@ public class IronMQNotifier extends Notifier {
         return true;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean needsToRunAfterFinalized() {
         return true;
@@ -184,18 +194,8 @@ public class IronMQNotifier extends Notifier {
      * @return a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    public String getJobName() {
+    String getJobName() {
         return this.jobName;
-    }
-
-    /**
-     * <p>Setter for the field <code>queueName</code>.</p>
-     *
-     * @param queueName a {@link java.lang.String} object.
-     * @since 1.0.6
-     */
-    public void setQueueName(final String queueName) {
-        this.queueName = queueName;
     }
 
     /**
@@ -204,18 +204,18 @@ public class IronMQNotifier extends Notifier {
      * @return a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    public String getQueueName() {
+    String getQueueName() {
         return this.queueName;
     }
 
     /**
-     * <p>Setter for the field <code>projectId</code>.</p>
+     * <p>Setter for the field <code>queueName</code>.</p>
      *
-     * @param projectId a {@link java.lang.String} object.
+     * @param queueName a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    public void setProjectId(final String projectId) {
-        this.projectId = projectId;
+    void setQueueName( final String queueName ) {
+        this.queueName = queueName;
     }
 
     /**
@@ -224,9 +224,18 @@ public class IronMQNotifier extends Notifier {
      * @return a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    public String getProjectId()
-    {
+    String getProjectId() {
         return this.projectId;
+    }
+
+    /**
+     * <p>Setter for the field <code>projectId</code>.</p>
+     *
+     * @param projectId a {@link java.lang.String} object.
+     * @since 1.0.6
+     */
+    public void setProjectId( final String projectId ) {
+        this.projectId = projectId;
     }
 
 }
