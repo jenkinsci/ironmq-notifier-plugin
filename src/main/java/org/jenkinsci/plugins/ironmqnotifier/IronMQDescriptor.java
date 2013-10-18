@@ -8,6 +8,7 @@ import hudson.util.FormValidation;
 import net.sf.json.JSONObject;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
+import hudson.model.Descriptor.FormException;
 
 
 @Extension
@@ -46,8 +47,9 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
      * {@inheritDoc}
      */
     @Override
-    public boolean configure( StaplerRequest req,
-                              JSONObject formData ) throws FormException {
+    public boolean configure( final StaplerRequest req,
+                              final JSONObject formData )
+            throws FormException {
         save();
         return super.configure(req, formData);
     }
