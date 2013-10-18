@@ -1,7 +1,6 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
 import hudson.tasks.BuildStepMonitor;
-import hudson.tasks.Notifier;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,13 +25,11 @@ public class IronMQNotifierTest{
     }
 
     @Test
-    public void IronMQNotifier_Extends_ANotifier()
-    {
+    public void IronMQNotifier_Extends_ANotifier() {
         IronMQNotifier notifier = StandardTestNotifier();
         String result = notifier.getClass().getSuperclass().getName();
         Assert.assertEquals("hudson.tasks.Notifier", result);
     }
-
 
     @Test
     public void Notifier_Has_A_ProjectId_Not_Null() {
@@ -113,8 +110,7 @@ public class IronMQNotifierTest{
     }
 
     @Test
-    public void Make_Sure_Our_Fields_Are_Public_So_Forms_Can_Update_Them_During_Configuration() {
-
+    public void Configure_Has_Proper_Fields() {
         IronMQNotifier notifier = StandardTestNotifier();
 
         Assert.assertNotNull(notifier.getProjectId());
@@ -131,9 +127,18 @@ public class IronMQNotifierTest{
     @Test
     public void Make_Sure_We_Get_Back_An_Expiry_Not_Zero_By_Default() {
 
-        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, 0L);
-        Assert.assertTrue("Expiry in seconds must be Greater than zero", notifier.getExpirySeconds() > 0);
+        IronMQNotifier notifier
+                = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN,
+                TestSettings.TESTQUEUENAME,
+                TestSettings.TESTPREFERREDSERVER,
+                true,
+                true,
+                true,
+                0L);
+
+        Assert.assertTrue("expiry > 0",
+                notifier.getExpirySeconds() > 0);
 
     }
 
@@ -141,7 +146,8 @@ public class IronMQNotifierTest{
     public void Make_Sure_We_Get_Back_What_We_Set_As_The_Expiry() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertEquals(TestSettings.EXPIRYSETTINGS, notifier.getExpirySeconds());
+        Assert.assertEquals(TestSettings.EXPIRYSETTINGS,
+                notifier.getExpirySeconds());
         Assert.assertNotEquals(0, notifier.getExpirySeconds());
 
     }
@@ -150,8 +156,15 @@ public class IronMQNotifierTest{
     public void If_We_Do_Not_Send_A_Server_We_Get_A_Default_Back() {
 
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, "", true, true, true, TestSettings.EXPIRYSETTINGS);
-        Assert.assertEquals(TestSettings.STANDARDDEFAULTSERVER, notifier.preferredServerName);
+                TestSettings.TESTTOKEN,
+                TestSettings.TESTQUEUENAME,
+                "",
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
+        Assert.assertEquals(TestSettings.STANDARDDEFAULTSERVER,
+                notifier.preferredServerName);
 
     }
 
@@ -166,8 +179,15 @@ public class IronMQNotifierTest{
     @Test
     public void Creating_Notifier_With_Blank_QueueName_Returns_A_Default() {
 
-        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS);
+        IronMQNotifier notifier
+                = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN,
+                "",
+                "",
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
         Assert.assertNotSame(0, notifier.getQueueName().length());
     }
 
@@ -201,9 +221,9 @@ public class IronMQNotifierTest{
     public void IronMQNotifier_Extends_Notifier() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Object notifierCheck = notifier.getClass().getSuperclass().getSimpleName();
-        Assert.assertEquals("Notifier", notifierCheck);
-
+        Object check = notifier.getClass().getSuperclass()
+                .getSimpleName();
+        Assert.assertEquals("Notifier", check);
     }
 
     @Test
