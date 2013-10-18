@@ -190,6 +190,19 @@
         </pluginManagement>
 
 
+        <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${maven-checkstyle-plugin.version}</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                        <outputFileFormat>xml</outputFileFormat>
+                       <enableRulesSummary>false</enableRulesSummary>
+                     </configuration>
+                </plugin>
+
+        </plugins>
     </build>
 
 <reporting>
