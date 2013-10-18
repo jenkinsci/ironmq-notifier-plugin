@@ -49,7 +49,7 @@ public class IronMQNotifierTest {
     public void Notifier_Has_A_Token_Not_Null() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertNotNull(notifier.token);
+        Assert.assertNotNull(notifier.getToken());
 
     }
 
@@ -57,7 +57,7 @@ public class IronMQNotifierTest {
     public void Notifier_Has_A_Token_Not_Empty() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertTrue(!notifier.token.isEmpty());
+        Assert.assertTrue(!notifier.getToken().isEmpty());
 
     }
 
@@ -105,7 +105,7 @@ public class IronMQNotifierTest {
         IronMQNotifier notifier = StandardTestNotifier();
 
         Assert.assertNotNull(notifier.getProjectId());
-        Assert.assertNotNull(notifier.token);
+        Assert.assertNotNull(notifier.getToken());
         Assert.assertNotNull(notifier.getQueueName());
         Assert.assertNotNull(notifier.preferredServerName);
         Assert.assertNotNull(notifier.send_success);

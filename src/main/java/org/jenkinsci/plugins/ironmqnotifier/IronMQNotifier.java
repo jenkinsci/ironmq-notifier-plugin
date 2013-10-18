@@ -24,7 +24,7 @@ public class IronMQNotifier extends Notifier {
 
     private final int defaultPreferredServerPort
             = IronConstants.DEFAULT_PREFERRED_SERVER_PORT;
-    public String token;
+    private String token;
     public String preferredServerName;
     public boolean send_success;
     public boolean send_failure;
@@ -58,7 +58,7 @@ public class IronMQNotifier extends Notifier {
                            final long expirySeconds ) {
 
         this.projectId = projectId;
-        this.token = token;
+        this.setToken(token);
         this.queueName = queueName;
         this.send_success = send_success;
         this.send_failure = send_failure;
@@ -139,7 +139,7 @@ public class IronMQNotifier extends Notifier {
 
             Client client = new Client(
                     projectId,
-                    token,
+                    getToken(),
                     new Cloud("https",
                             preferredServerName,
                             defaultPreferredServerPort));
@@ -238,4 +238,23 @@ public class IronMQNotifier extends Notifier {
         this.projectId = projectId;
     }
 
+    /**
+     * <p>Getter for the field <code>token</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     * @since 1.0.6
+     */
+    String getToken() {
+        return token;
+    }
+
+    /**
+     * <p>Setter for the field <code>token</code>.</p>
+     *
+     * @param token a {@link java.lang.String} object.
+     * @since 1.0.6
+     */
+    void setToken( String token ) {
+        this.token = token;
+    }
 }
