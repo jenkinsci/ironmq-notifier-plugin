@@ -1,10 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
         <version>1.532</version>
+        <relativePath>pom.xml</relativePath>
     </parent>
 
 
@@ -13,7 +15,9 @@
     <packaging>hpi</packaging>
 
     <name>IronMQ-notifier</name>
-    <description>Jenkins build notification plugin which sends results to iron.io ironmq service</description>
+    <description>Jenkins build notification plugin which sends results to
+        iron.io ironmq service
+    </description>
     <url>http://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier</url>
 
 
@@ -22,7 +26,7 @@
         <ironmq.version>0.0.10</ironmq.version>
         <google.gson.version>2.2.4</google.gson.version>
         <mockito-all.version>1.9.5</mockito-all.version>
-
+        <maven-checkstyle-plugin.version>2.10</maven-checkstyle-plugin.version>
     </properties>
 
     <licenses>
@@ -60,7 +64,9 @@
 
     </pluginRepositories>
 
-    <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->
+    <!-- get every artifact through repo.jenkins-ci.org,
+     which proxies all the artifacts that we need -->
+
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
@@ -127,14 +133,20 @@
 
 
     <scm>
-        <connection>scm:git:ssh://github.com/jenkinsci/ironmq-notifier-plugin.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/jenkinsci/ironmq-notifier-plugin.git</developerConnection>
+        <connection>
+            scm:git:ssh://github.com/jenkinsci/ironmq-notifier-plugin.git
+        </connection>
+        <developerConnection>
+            scm:git:ssh://git@github.com/jenkinsci/ironmq-notifier-plugin.git
+        </developerConnection>
         <url>https://github.com/jenkinsci/ironmq-notifier-plugin</url>
     </scm>
 
     <ciManagement>
         <system>Jenkins</system>
-             <url>https://jenkins.ci.cloudbees.com/job/plugins/job/ironmq-notifier-plugin/</url>
+        <url>
+            https://jenkins.ci.cloudbees.com/job/plugins/job/ironmq-notifier-plugin/
+        </url>
         <notifiers>
             <notifier>
                 <type>mail</type>
@@ -164,7 +176,7 @@
                     <executions>
                         <execution>
                             <phase>package</phase>
-                             <goals>
+                            <goals>
                                 <goal>cobertura</goal>
                             </goals>
                         </execution>
@@ -173,11 +185,11 @@
 
 
                 <!--Always use the current default Check style for Jenkins Development (inherit version) -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-checkstyle-plugin</artifactId>
-                        <version>${maven-checkstyle-plugin.version}</version>
-                    </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${maven-checkstyle-plugin.version}</version>
+                </plugin>
 
                 <plugin>
                     <groupId>org.jenkins-ci.tools</groupId>
@@ -192,31 +204,31 @@
 
         <plugins>
 
-                       <plugin>
-                           <groupId>org.apache.maven.plugins</groupId>
-                           <artifactId>maven-checkstyle-plugin</artifactId>
-                           <version>${maven-checkstyle-plugin.version}</version>
-                            <executions>
-                                <execution>
-                                    <id>compile-checkstyle</id>
-                                    <goals>
-                                       <goal>checkstyle</goal>
-                                    </goals>
-                                   <phase>compile</phase>
-                                </execution>
-                                <execution>
-                                    <id>test-check</id>
-                                    <goals>
-                                        <goal>check</goal>
-                                    </goals>
-                                    <phase>test</phase>
-                                    <configuration>
-                                        <violationSeverity>ignore</violationSeverity>
-                                    </configuration>
-                                </execution>
-                            </executions>
-                        </plugin>
-                   </plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile-checkstyle</id>
+                        <goals>
+                            <goal>checkstyle</goal>
+                        </goals>
+                        <phase>compile</phase>
+                    </execution>
+                    <execution>
+                        <id>test-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <violationSeverity>ignore</violationSeverity>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
 
     </build>
 

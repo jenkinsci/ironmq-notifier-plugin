@@ -17,13 +17,13 @@ import java.io.IOException;
 /**
  * <p>IronMQNotifier class.</p>
  *
- * @author mike
+ * @author Mike Caspar
  * @version $Id: $
  */
 public class IronMQNotifier extends Notifier {
 
-    private final String default_queueName = IronConstants.DEFAULT_QUEUE_NAME;
-    private final int defaultPreferredServerPort = IronConstants.DEFAULT_PREFERRED_SERVER_PORT;
+    private final int defaultPreferredServerPort
+            = IronConstants.DEFAULT_PREFERRED_SERVER_PORT;
     private String projectId;
     public String token;
     private String queueName;
@@ -80,7 +80,8 @@ public class IronMQNotifier extends Notifier {
         }
 
         if (this.preferredServerName.trim().length() == 0) {
-            this.preferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+            this.preferredServerName
+                    = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
         }
 
         if (this.expirySeconds <= 0) {
@@ -139,7 +140,9 @@ public class IronMQNotifier extends Notifier {
             Client client = new Client(
                     projectId,
                     token,
-                    new Cloud("https", preferredServerName, defaultPreferredServerPort));
+                    new Cloud("https",
+                            preferredServerName,
+                            defaultPreferredServerPort));
 
             Queue queue = client.queue(queueName);
 
@@ -156,7 +159,8 @@ public class IronMQNotifier extends Notifier {
             message.setBody(message.getBody());
 
 
-            String resultOfQueuePush = queue.push(message.getBody(), 0, 0, message.getExpiresIn());
+            String resultOfQueuePush
+                  = queue.push(message.getBody(), 0, 0, message.getExpiresIn());
 
             if (resultOfQueuePush == null || resultOfQueuePush.length() == 0) {
                 build.setResult(Result.FAILURE);

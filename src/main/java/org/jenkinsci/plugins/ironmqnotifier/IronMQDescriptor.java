@@ -19,9 +19,12 @@ import org.kohsuke.stapler.StaplerRequest;
  */
 public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
-    private final long defaultExpirySeconds = IronConstants.DEFAULT_EXPIRY_SECONDS;
-    private final String defaultPreferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
-    private final String defaultQueueName = IronConstants.DEFAULT_QUEUE_NAME;
+    private final long defaultExpirySeconds
+            = IronConstants.DEFAULT_EXPIRY_SECONDS;
+    private final String defaultPreferredServerName
+            = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+    private final String defaultQueueName
+            = IronConstants.DEFAULT_QUEUE_NAME;
 
     /**
      * <p>Constructor for IronMQDescriptor.</p>
@@ -39,14 +42,16 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
     /** {@inheritDoc} */
     @Override
-    public boolean configure( StaplerRequest req, JSONObject formData ) throws FormException {
+    public boolean configure( StaplerRequest req,
+                              JSONObject formData ) throws FormException {
         save();
         return super.configure(req, formData);
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean isApplicable( @SuppressWarnings ("rawtypes") Class<? extends AbstractProject> arg0 ) {
+    public boolean isApplicable( @SuppressWarnings ("rawtypes")
+                                     Class<? extends AbstractProject> arg0 ) {
         return true;
     }
 
@@ -56,7 +61,8 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
      * @param value a {@link java.lang.String} object.
      * @return a {@link hudson.util.FormValidation} object.
      */
-    public FormValidation doCheckQueueName( @QueryParameter final String value ) {
+    FormValidation doCheckQueueName(
+            @QueryParameter final String value ) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
 
@@ -82,7 +88,8 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
      * @param value a long.
      * @return a {@link hudson.util.FormValidation} object.
      */
-    public FormValidation doCheckExpirySeconds( @QueryParameter final long value ) {
+    FormValidation doCheckExpirySeconds(
+            @QueryParameter final long value ) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
 
