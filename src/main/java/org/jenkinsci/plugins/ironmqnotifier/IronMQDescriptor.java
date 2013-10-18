@@ -22,23 +22,26 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
         load();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getDisplayName() {
         return "Send Message to IronMQ";
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean configure( StaplerRequest req, JSONObject formData ) throws FormException {
         save();
         return super.configure(req, formData);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean isApplicable( @SuppressWarnings ("rawtypes") Class<? extends AbstractProject> arg0 ) {
         return true;
     }
 
-
+    /** {@inheritDoc} */
     public FormValidation doCheckQueueName( @QueryParameter String value ) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
@@ -55,6 +58,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
 
     }
 
+    /** {@inheritDoc} */
     public FormValidation doCheckExpirySeconds( @QueryParameter Long value ) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
