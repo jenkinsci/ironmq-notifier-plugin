@@ -20,16 +20,16 @@ import java.io.IOException;
  * @author Mike Caspar
  * @version $Id: $
  */
-public class IronMQNotifier extends Notifier {
+public class IronMQNotifier extends Notifier{
 
     private final int defaultPreferredServerPort
             = IronConstants.DEFAULT_PREFERRED_SERVER_PORT;
-    private String token;
     public String preferredServerName;
     public boolean send_success;
     public boolean send_failure;
     public boolean send_unstable;
-    public long expirySeconds;
+    private String token;
+    private long expirySeconds;
     private String projectId;
     private String queueName;
     private String jobName = "";
@@ -64,7 +64,7 @@ public class IronMQNotifier extends Notifier {
         this.send_failure = send_failure;
         this.send_unstable = send_unstable;
         this.preferredServerName = preferredServerName;
-        this.expirySeconds = expirySeconds;
+        this.setExpirySeconds(expirySeconds);
 
         adjustDataToAvoidCrashes();
 
@@ -81,8 +81,8 @@ public class IronMQNotifier extends Notifier {
                     = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
         }
 
-        if(this.expirySeconds <= 0) {
-            expirySeconds = IronConstants.DEFAULT_EXPIRY_SECONDS;
+        if(this.getExpirySeconds() <= 0) {
+            setExpirySeconds(IronConstants.DEFAULT_EXPIRY_SECONDS);
         }
     }
 
@@ -151,11 +151,11 @@ public class IronMQNotifier extends Notifier {
             IronMQMessage ironMQMessage = new IronMQMessage();
             ironMQMessage.setBuildResult(result);
             ironMQMessage.setJobName(this.jobName);
-            ironMQMessage.setExpirySeconds(this.expirySeconds);
+            ironMQMessage.setExpirySeconds(this.getExpirySeconds());
 
             message.setBody(ironMQMessage.toJson());
 
-            message.setExpiresIn(this.expirySeconds);
+            message.setExpiresIn(this.getExpirySeconds());
             message.setBody(message.getBody());
 
 
@@ -256,5 +256,25 @@ public class IronMQNotifier extends Notifier {
      */
     void setToken( String token ) {
         this.token = token;
+    }
+
+    /**
+     * <p>Getter for the field <code>expirySeconds</code>.</p>
+     *
+     * @return a {@link long} object.
+     * @since 1.0.6
+     */
+    long getExpirySeconds() {
+        return expirySeconds;
+    }
+
+    /**
+     * <p>Setter for the field <code>expirySeconds</code>.</p>
+     *
+     * @param expirySeconds a {@link long} object.
+     * @since 1.0.6
+     */
+    void setExpirySeconds( long expirySeconds ) {
+        this.expirySeconds = expirySeconds;
     }
 }
