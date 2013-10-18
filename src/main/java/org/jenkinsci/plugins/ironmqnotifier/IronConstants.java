@@ -1,6 +1,6 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
-public class IronConstants {
+class IronConstants {
 
 
     static String DEFAULT_QUEUE_NAME = "Jenkins";
