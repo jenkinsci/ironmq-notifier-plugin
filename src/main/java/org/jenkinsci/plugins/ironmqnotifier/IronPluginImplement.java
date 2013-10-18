@@ -14,7 +14,8 @@ public final class IronPluginImplement extends Plugin {
     /**
      * <p>logger is used to enable debugging on plugin startup.</p>
      */
-    private final Logger logger = Logger.getLogger(IronPluginImplement.class.getName());
+    private final Logger logger
+            = Logger.getLogger(IronPluginImplement.class.getName());
 
     /**
      * <p>start.</p>
