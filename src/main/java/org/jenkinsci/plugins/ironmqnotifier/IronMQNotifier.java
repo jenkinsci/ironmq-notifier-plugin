@@ -74,18 +74,21 @@ public class IronMQNotifier extends Notifier {
         return BuildStepMonitor.BUILD;
     }
 
+    /** {@inheritDoc} */
     @Override
     public IronMQDescriptor getDescriptor() {
         return (IronMQDescriptor) super.getDescriptor();
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean perform(AbstractBuild<?, ?> build,
                            Launcher launcher,
                            BuildListener listener)
             throws InterruptedException, IOException {
 
-        jobName = build.getFullDisplayName();
+        this.jobName = build.getFullDisplayName();
+
         String result;
 
         if (build.getResult() == Result.SUCCESS) {
@@ -145,6 +148,7 @@ public class IronMQNotifier extends Notifier {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean needsToRunAfterFinalized() {
         return true;

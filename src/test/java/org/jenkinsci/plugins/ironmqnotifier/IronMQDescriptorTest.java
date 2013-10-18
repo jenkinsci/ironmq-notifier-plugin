@@ -75,15 +75,6 @@ public class IronMQDescriptorTest {
     }
 
 
-    @Test
-    public void formCheckExpirySecondsNullDoesNotCrashFunction() throws Exception {
-        IronMQDescriptor descriptor = mock(IronMQDescriptor.class);
-        Object badExpirySeconds = null;
-        when(descriptor.doCheckExpirySeconds((Long) badExpirySeconds)).thenCallRealMethod();
-
-        Assert.assertNotEquals(FormValidation.ok(), descriptor.doCheckExpirySeconds((Long) badExpirySeconds));
-    }
-
 
 }
 

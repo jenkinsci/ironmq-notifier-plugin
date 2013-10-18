@@ -14,9 +14,9 @@ public class IronMQFormValidations {
 
     }
 
-    public final FormValidation isValidExpirySeconds(final Long expirySeconds) {
+    public final FormValidation isValidExpirySeconds(final long expirySeconds) {
 
-        if (expirySeconds > 0) {
+        if ( expirySeconds > 0) {
             return FormValidation.ok();
         } else {
             return FormValidation.warning("Expiry Should Not be Zero");

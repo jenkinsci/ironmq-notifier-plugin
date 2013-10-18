@@ -42,32 +42,32 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
     }
 
     /** {@inheritDoc} */
-    public FormValidation doCheckQueueName( @QueryParameter String value ) {
+    public FormValidation doCheckQueueName( @QueryParameter final String value ) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
 
         FormValidation validationReturn;
 
         if(value == null) {
-            value = "";
+            validationReturn = validations.isValidQueueName("");
         }
 
-        validationReturn = validations.isValidQueueName(value);
+        else
+        {
+            validationReturn = validations.isValidQueueName(value);
+        }
+
 
         return validationReturn;
 
     }
 
     /** {@inheritDoc} */
-    public FormValidation doCheckExpirySeconds( @QueryParameter Long value ) {
+    public FormValidation doCheckExpirySeconds( @QueryParameter final long value ) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
 
         FormValidation validationReturn;
-
-        if(value == null) {
-            value = 0L;
-        }
 
         validationReturn = validations.isValidExpirySeconds(value);
 
