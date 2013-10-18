@@ -18,7 +18,7 @@ import hudson.model.Descriptor.FormException;
  * @author Mike Caspar
  * @version $Id: $
  */
-public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
+public class IronMQDescriptor extends BuildStepDescriptor<Publisher>{
 
     private final long defaultExpirySeconds
             = IronConstants.DEFAULT_EXPIRY_SECONDS;
@@ -47,8 +47,8 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
      * {@inheritDoc}
      */
     @Override
-    public boolean configure( final StaplerRequest req,
-                              final JSONObject formData )
+    public boolean configure(final StaplerRequest req,
+                             final JSONObject formData)
             throws FormException {
         save();
         return super.configure(req, formData);
@@ -58,8 +58,8 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
      * {@inheritDoc}
      */
     @Override
-    public boolean isApplicable( @SuppressWarnings ("rawtypes")
-                                 Class<? extends AbstractProject> arg0 ) {
+    public boolean isApplicable(@SuppressWarnings ("rawtypes")
+                                Class<? extends AbstractProject> arg0) {
         return true;
     }
 
@@ -70,7 +70,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
      * @return a {@link hudson.util.FormValidation} object.
      */
     FormValidation doCheckQueueName(
-            @QueryParameter final String value ) {
+            @QueryParameter final String value) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
 
@@ -94,7 +94,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher> {
      * @return a {@link hudson.util.FormValidation} object.
      */
     FormValidation doCheckExpirySeconds(
-            @QueryParameter final long value ) {
+            @QueryParameter final long value) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
 
