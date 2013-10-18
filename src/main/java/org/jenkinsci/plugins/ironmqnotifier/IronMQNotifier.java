@@ -89,11 +89,8 @@ public class IronMQNotifier extends Notifier {
         }
     }
 
-    /**
-     * <p>getRequiredMonitorService.</p>
-     *
-     * @return a {@link hudson.tasks.BuildStepMonitor} object.
-     */
+    /** {@inheritDoc} */
+    @Override
     public BuildStepMonitor getRequiredMonitorService() {
         return BuildStepMonitor.BUILD;
     }
@@ -207,8 +204,7 @@ public class IronMQNotifier extends Notifier {
      * @return a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    public String getQueueName()
-    {
+    public String getQueueName() {
         return this.queueName;
     }
 
