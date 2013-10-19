@@ -50,7 +50,7 @@ public class IronMQMessageTest {
     @Test
     public void IronMQ_Message_Expiry_Can_Be_Set_And_Returned() {
         IronMQMessage msg = new IronMQMessage();
-        Long expected = 10000L;
+        long expected = new Long(10000);
         msg.setExpirySeconds(expected);
         Assert.assertEquals(expected, msg.getExpirySeconds());
     }
@@ -58,8 +58,9 @@ public class IronMQMessageTest {
     @Test
     public void IronMQ_Has_A_Version_For_API_Consistency() {
         IronMQMessage msg = new IronMQMessage();
-        msg.setMessageVersion("1.0.5");
-        Assert.assertEquals("1.0.5", msg.getMessageVersion());
+        final String testString = "1.0.5";
+        msg.setMessageVersion(testString);
+        Assert.assertEquals(testString, msg.getMessageVersion());
     }
 
     @Test

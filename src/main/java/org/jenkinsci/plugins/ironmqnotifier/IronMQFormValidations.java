@@ -2,11 +2,34 @@ package org.jenkinsci.plugins.ironmqnotifier;
 
 import hudson.util.FormValidation;
 
-public class IronMQFormValidations {
+/**
+ * <p>IronMQFormValidations class.</p>
+ *
+ * @author mike
+ * @version $Id: $
+ */
+public class IronMQFormValidations{
 
-    public final FormValidation isValidQueueName(final String name) {
+    /**
+     * <p>isAlpha.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @return a {@link boolean} object.
+     */
+    private static boolean isAlpha( final String name ) {
+        return name.matches("[a-zA-Z]+");
 
-        if (isAlpha(name)) {
+    }
+
+    /**
+     * <p>isValidQueueName.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @return a {@link hudson.util.FormValidation} object.
+     */
+    public final FormValidation isValidQueueName( final String name ) {
+
+        if(isAlpha(name)) {
             return FormValidation.ok();
         } else {
             return FormValidation.warning("Check Queue Name");
@@ -14,18 +37,20 @@ public class IronMQFormValidations {
 
     }
 
-    public final FormValidation isValidExpirySeconds(final Long expirySeconds) {
+    /**
+     * <p>isValidExpirySeconds.</p>
+     *
+     * @param expirySeconds a long.
+     * @return a {@link hudson.util.FormValidation} object.
+     */
+    public final FormValidation isValidExpirySeconds(
+            final long expirySeconds ) {
 
-        if (expirySeconds > 0) {
+        if(expirySeconds > 0) {
             return FormValidation.ok();
         } else {
             return FormValidation.warning("Expiry Should Not be Zero");
         }
-    }
-
-    private static boolean isAlpha(final String name) {
-        return name.matches("[a-zA-Z]+");
-
     }
 
 }

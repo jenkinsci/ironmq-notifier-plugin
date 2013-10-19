@@ -1,11 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
         <version>1.532</version>
-
     </parent>
 
 
@@ -13,17 +14,18 @@
     <version>1.0.6-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
+
     <name>IronMQ-notifier</name>
-    <description>Jenkins build notification plugin which sends results to iron.io ironmq service</description>
+    <description>Jenkins build notification plugin which sends results to
+        iron.io ironmq service
+    </description>
     <url>http://wiki.jenkins-ci.org/display/JENKINS/Ironmq+Notifier</url>
 
 
     <properties>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <ironmq.version>0.0.10</ironmq.version>
-        <google.gson.version>2.2.4</google.gson.version>
-        <mockito-all.version>1.9.5</mockito-all.version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     </properties>
 
@@ -62,7 +64,9 @@
 
     </pluginRepositories>
 
-    <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->
+    <!-- get every artifact through repo.jenkins-ci.org,
+     which proxies all the artifacts that we need -->
+
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
@@ -82,21 +86,21 @@
             <dependency>
                 <groupId>ironmq</groupId>
                 <artifactId>ironmq</artifactId>
-                <version>${ironmq.version}</version>
+                <version>0.0.10</version>
                 <optional>false</optional>
             </dependency>
 
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
-                <version>${google.gson.version}</version>
+                <version>2.2.4</version>
                 <optional>false</optional>
             </dependency>
 
             <dependency>
                 <groupId>org.mockito</groupId>
-                <artifactId>mockito-all</artifactId>
-                <version>${mockito-all.version}</version>
+                <artifactId>mockito-core</artifactId>
+                <version>1.9.5</version>
                 <scope>test</scope>
             </dependency>
 
@@ -109,19 +113,19 @@
         <dependency>
             <groupId>ironmq</groupId>
             <artifactId>ironmq</artifactId>
-            <version>${ironmq.version}</version>
+            <version>0.0.10</version>
         </dependency>
 
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>${google.gson.version}</version>
+            <version>2.2.4</version>
         </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>${mockito-all.version}</version>
+            <artifactId>mockito-core</artifactId>
+            <version>1.9.5</version>
         </dependency>
 
 
@@ -129,14 +133,20 @@
 
 
     <scm>
-        <connection>scm:git:ssh://github.com/jenkinsci/ironmq-notifier-plugin.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/jenkinsci/ironmq-notifier-plugin.git</developerConnection>
+        <connection>
+            scm:git:ssh://github.com/jenkinsci/ironmq-notifier-plugin.git
+        </connection>
+        <developerConnection>
+            scm:git:ssh://git@github.com/jenkinsci/ironmq-notifier-plugin.git
+        </developerConnection>
         <url>https://github.com/jenkinsci/ironmq-notifier-plugin</url>
     </scm>
 
     <ciManagement>
         <system>Jenkins</system>
-             <url>https://jenkins.ci.cloudbees.com/job/plugins/job/ironmq-notifier-plugin/</url>
+        <url>
+            https://jenkins.ci.cloudbees.com/job/plugins/job/ironmq-notifier-plugin/
+        </url>
         <notifiers>
             <notifier>
                 <type>mail</type>
@@ -155,58 +165,15 @@
             <plugins>
 
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>cobertura-maven-plugin</artifactId>
-                    <version>${cobertura-maven-plugin.version}</version>
-                    <configuration>
-                        <formats>
-                            <format>xml</format>
-                        </formats>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>cobertura</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-checkstyle-plugin</artifactId>
-                        <version>${maven-checkstyle-plugin.version}</version>
-                    </plugin>
-
-                <plugin>
                     <groupId>org.jenkins-ci.tools</groupId>
                     <artifactId>maven-hpi-plugin</artifactId>
                     <version>1.99</version>
                 </plugin>
 
-
             </plugins>
         </pluginManagement>
 
 
-        <plugins>
-
-
-        </plugins>
-
     </build>
-
-
-    <reporting>
-        <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>${maven-checkstyle-plugin.version}</version>
-        </plugin>
-        </plugins>
-    </reporting>
 
 </project>

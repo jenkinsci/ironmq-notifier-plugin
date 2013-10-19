@@ -4,12 +4,17 @@ import hudson.tasks.BuildStepMonitor;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class IronMQNotifierTest {
+public class IronMQNotifierTest{
 
 
     private IronMQNotifier StandardTestNotifier() {
         return new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, TestSettings.EXPIRYSETTINGS);
+                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTPREFERREDSERVER,
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
     }
 
     @Test
@@ -17,7 +22,13 @@ public class IronMQNotifierTest {
 
         IronMQNotifier notifier = StandardTestNotifier();
         Assert.assertNotNull(notifier);
+    }
 
+    @Test
+    public void IronMQNotifier_Extends_ANotifier() {
+        IronMQNotifier notifier = StandardTestNotifier();
+        String result = notifier.getClass().getSuperclass().getName();
+        Assert.assertEquals("hudson.tasks.Notifier", result);
     }
 
     @Test
@@ -33,7 +44,7 @@ public class IronMQNotifierTest {
 
         IronMQNotifier notifier = StandardTestNotifier();
         Assert.assertTrue(!notifier.getProjectId().isEmpty());
-        }
+    }
 
     @Test
     public void Notifier_Can_Set_A_ProjectId_And_Get_It_Back() {
@@ -41,15 +52,14 @@ public class IronMQNotifierTest {
         String testString = "t";
         IronMQNotifier notifier = StandardTestNotifier();
         notifier.setProjectId(testString);
-         Assert.assertEquals(testString,notifier.getProjectId());
+        Assert.assertEquals(testString, notifier.getProjectId());
     }
-
 
     @Test
     public void Notifier_Has_A_Token_Not_Null() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertNotNull(notifier.token);
+        Assert.assertNotNull(notifier.getToken());
 
     }
 
@@ -57,9 +67,18 @@ public class IronMQNotifierTest {
     public void Notifier_Has_A_Token_Not_Empty() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertTrue(!notifier.token.isEmpty());
+        Assert.assertTrue(!notifier.getToken().isEmpty());
 
     }
+
+    @Test
+    public void Notifier_Can_SetAndRetrieve_Token() {
+        IronMQNotifier notifier = StandardTestNotifier();
+        final String testString = "7714717174";
+        notifier.setToken(testString);
+        Assert.assertEquals(testString, notifier.getToken());
+    }
+
 
     @Test
     public void Notifier_Has_Success_Flag_Success() {
@@ -100,27 +119,35 @@ public class IronMQNotifierTest {
     }
 
     @Test
-    public void Make_Sure_Our_Fields_Are_Public_So_Forms_Can_Update_Them_During_Configuration() {
-
+    public void Configure_Has_Proper_Fields() {
         IronMQNotifier notifier = StandardTestNotifier();
 
         Assert.assertNotNull(notifier.getProjectId());
-        Assert.assertNotNull(notifier.token);
+        Assert.assertNotNull(notifier.getToken());
         Assert.assertNotNull(notifier.getQueueName());
         Assert.assertNotNull(notifier.preferredServerName);
         Assert.assertNotNull(notifier.send_success);
         Assert.assertNotNull(notifier.send_failure);
         Assert.assertNotNull(notifier.send_unstable);
-        Assert.assertNotNull(notifier.expirySeconds);
+        Assert.assertNotNull(notifier.getExpirySeconds());
 
     }
 
     @Test
     public void Make_Sure_We_Get_Back_An_Expiry_Not_Zero_By_Default() {
 
-        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, TestSettings.TESTPREFERREDSERVER, true, true, true, 0L);
-        Assert.assertTrue("Expiry in seconds must be Greater than zero", notifier.expirySeconds > 0);
+        IronMQNotifier notifier
+                = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN,
+                TestSettings.TESTQUEUENAME,
+                TestSettings.TESTPREFERREDSERVER,
+                true,
+                true,
+                true,
+                0L);
+
+        Assert.assertTrue("expiry > 0",
+                notifier.getExpirySeconds() > 0);
 
     }
 
@@ -128,8 +155,9 @@ public class IronMQNotifierTest {
     public void Make_Sure_We_Get_Back_What_We_Set_As_The_Expiry() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertEquals(TestSettings.EXPIRYSETTINGS, notifier.expirySeconds);
-        Assert.assertNotEquals(0, notifier.expirySeconds);
+        Assert.assertEquals(TestSettings.EXPIRYSETTINGS,
+                notifier.getExpirySeconds());
+        Assert.assertNotEquals(0, notifier.getExpirySeconds());
 
     }
 
@@ -137,8 +165,15 @@ public class IronMQNotifierTest {
     public void If_We_Do_Not_Send_A_Server_We_Get_A_Default_Back() {
 
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME, "", true, true, true, TestSettings.EXPIRYSETTINGS);
-        Assert.assertEquals(TestSettings.STANDARDDEFAULTSERVER, notifier.preferredServerName);
+                TestSettings.TESTTOKEN,
+                TestSettings.TESTQUEUENAME,
+                "",
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
+        Assert.assertEquals(TestSettings.STANDARDDEFAULTSERVER,
+                notifier.preferredServerName);
 
     }
 
@@ -153,8 +188,15 @@ public class IronMQNotifierTest {
     @Test
     public void Creating_Notifier_With_Blank_QueueName_Returns_A_Default() {
 
-        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS);
+        IronMQNotifier notifier
+                = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN,
+                "",
+                "",
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
         Assert.assertNotSame(0, notifier.getQueueName().length());
     }
 
@@ -167,7 +209,6 @@ public class IronMQNotifierTest {
         notifier.setQueueName(testQueueName);
         Assert.assertEquals(testQueueName, notifier.getQueueName());
     }
-
 
     @Test
     public void Return_A_Valid_BuildStepMonitorService() {
@@ -189,9 +230,9 @@ public class IronMQNotifierTest {
     public void IronMQNotifier_Extends_Notifier() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Object notifierCheck = notifier.getClass().getSuperclass().getSimpleName();
-        Assert.assertEquals("Notifier", notifierCheck);
-
+        Object check = notifier.getClass().getSuperclass()
+                .getSimpleName();
+        Assert.assertEquals("Notifier", check);
     }
 
     @Test
