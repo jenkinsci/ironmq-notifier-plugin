@@ -19,10 +19,12 @@ public class IronMQSender{
         Message message = new Message();
 
         IronMQMessage ironMQMessage = new IronMQMessage();
+
         ironMQMessage.setBuildResult(messageSettings.getBuildResultString());
         ironMQMessage.setJobName(messageSettings.getJobName());
 
         ironMQMessage.setExpirySeconds(messageSettings.getExpirySeconds());
+
 
         message.setBody(ironMQMessage.toJson());
 
