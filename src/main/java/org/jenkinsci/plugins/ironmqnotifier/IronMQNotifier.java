@@ -8,8 +8,6 @@ import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
 import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
-import io.iron.ironmq.Message;
-import io.iron.ironmq.Queue;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
@@ -140,15 +138,11 @@ public class IronMQNotifier extends Notifier{
 
         try {
 
-            Client client = new Client(
-                                     projectId,
-                                      getToken(),
-                                        new Cloud("https",
-                                        preferredServerName,
-                                        IronConstants.DEF_PREFERRED_SERVER_PORT)
-                                         );
+            Client client = generateClientToUse();
 
-            AttemptToSend(client, result);
+            MessageSettings messageSettings = generateMessageSettings();
+
+            IronMQSender.Send(client, messageSettings);
 
         } catch (Exception ex) {
 
@@ -161,35 +155,24 @@ public class IronMQNotifier extends Notifier{
         return true;
     }
 
-    private void AttemptToSend(final Client client, String result) throws Exception {
-
-        Queue queue = client.queue(queueName);
-
-        Message message = new Message();
-
-        IronMQMessage ironMQMessage = new IronMQMessage();
-        ironMQMessage.setBuildResult(result);
-        ironMQMessage.setJobName(this.jobName);
-        ironMQMessage.setExpirySeconds(this.getExpirySeconds());
-
-        message.setBody(ironMQMessage.toJson());
-
-        message.setExpiresIn(this.getExpirySeconds());
-        message.setBody(message.getBody());
-
-
-        String resultOfQueuePush
-                = queue.push(message.getBody(),0,0,message.getExpiresIn());
-
-        if(resultOfQueuePush == null
-                || resultOfQueuePush.length() == 0) {
-
-            logWarning();
-
-           throw new IOException("Not successful in sending message");
-        }
-
+    private Client generateClientToUse() {
+        return new Client(
+                                         projectId,
+                                          getToken(),
+                                            new Cloud("https",
+                                            preferredServerName,
+                                            IronConstants.DEF_PREFERRED_SERVER_PORT)
+                                             );
     }
+
+    private MessageSettings generateMessageSettings() {
+        MessageSettings messageSettings = new MessageSettings();
+        messageSettings.setExpirySeconds(this.expirySeconds);
+        messageSettings.setJobName(this.jobName);
+        return messageSettings;
+    }
+
+
 
 
     /**
