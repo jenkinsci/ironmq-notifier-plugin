@@ -76,7 +76,7 @@ public class IronMQNotifier extends Notifier{
     private void adjustDataToAvoidCrashes() {
 
         if(this.queueName.trim().length() == 0) {
-            this.queueName = IronConstants.DEFAULT_QUEUE_NAME;
+            this.queueName = IronConstants.DEF_QUEUE_NAME;
         }
 
         if(this.preferredServerName.trim().length() == 0) {
@@ -85,7 +85,7 @@ public class IronMQNotifier extends Notifier{
         }
 
         if(this.getExpirySeconds() <= 0) {
-            setExpirySeconds(IronConstants.DEFAULT_EXPIRY_SECONDS);
+            setExpirySeconds(IronConstants.DEF_EXPIRY_SEC);
         }
     }
 
@@ -141,46 +141,18 @@ public class IronMQNotifier extends Notifier{
         try {
 
             Client client = new Client(
-                    projectId,
-                    getToken(),
-                    new Cloud("https",
-                            preferredServerName,
-                            IronConstants.DEFAULT_PREFERRED_SERVER_PORT));
+                                     projectId,
+                                      getToken(),
+                                        new Cloud("https",
+                                        preferredServerName,
+                                        IronConstants.DEF_PREFERRED_SERVER_PORT)
+                                         );
 
-            Queue queue = client.queue(queueName);
-
-            Message message = new Message();
-
-            IronMQMessage ironMQMessage = new IronMQMessage();
-            ironMQMessage.setBuildResult(result);
-            ironMQMessage.setJobName(this.jobName);
-            ironMQMessage.setExpirySeconds(this.getExpirySeconds());
-
-            message.setBody(ironMQMessage.toJson());
-
-            message.setExpiresIn(this.getExpirySeconds());
-            message.setBody(message.getBody());
-
-
-            String resultOfQueuePush
-                    = queue.push(
-                    message.getBody(),
-                    0,
-                    0,
-                    message.getExpiresIn());
-
-            if(resultOfQueuePush == null
-                    || resultOfQueuePush.length() == 0) {
-
-
-                logError();
-
-                build.setResult(Result.UNSTABLE);
-            }
+            AttemptToSend(client, result);
 
         } catch (Exception ex) {
 
-            logError();
+            logWarning();
 
             build.setResult(Result.UNSTABLE);
 
@@ -189,11 +161,36 @@ public class IronMQNotifier extends Notifier{
         return true;
     }
 
-    private void logError() {
+    private void AttemptToSend(final Client client, String result) throws Exception {
 
-        logger.warning("Check Configuration Settings");
+        Queue queue = client.queue(queueName);
+
+        Message message = new Message();
+
+        IronMQMessage ironMQMessage = new IronMQMessage();
+        ironMQMessage.setBuildResult(result);
+        ironMQMessage.setJobName(this.jobName);
+        ironMQMessage.setExpirySeconds(this.getExpirySeconds());
+
+        message.setBody(ironMQMessage.toJson());
+
+        message.setExpiresIn(this.getExpirySeconds());
+        message.setBody(message.getBody());
+
+
+        String resultOfQueuePush
+                = queue.push(message.getBody(),0,0,message.getExpiresIn());
+
+        if(resultOfQueuePush == null
+                || resultOfQueuePush.length() == 0) {
+
+            logWarning();
+
+           throw new IOException("Not successful in sending message");
+        }
 
     }
+
 
     /**
      * {@inheritDoc}
@@ -314,5 +311,9 @@ public class IronMQNotifier extends Notifier{
         return this.preferredServerName;
     }
 
+    private void logWarning() {
 
+        logger.warning("Check Configuration Settings");
+
+    }
 }

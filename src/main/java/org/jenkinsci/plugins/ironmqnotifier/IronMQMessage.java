@@ -21,7 +21,7 @@ class IronMQMessage{
 
         this.jobName = "";
         this.buildResult = "";
-        this.expirySeconds = IronConstants.DEFAULT_EXPIRY_SECONDS;
+        this.expirySeconds = IronConstants.DEF_EXPIRY_SEC;
         this.submissionDate = new Date();
 
         this.expiresDate = calculateNewExpiryDate(this.submissionDate, this.expirySeconds);
