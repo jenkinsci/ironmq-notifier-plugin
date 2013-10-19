@@ -241,4 +241,14 @@ public class IronMQNotifierTest{
         Assert.assertNotNull(notifier.getJobName());
     }
 
+    @Test
+    public void Can_Set_The_PreferredServerName_Properly() {
+
+        final String testString = "fred.test.com";
+        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS);
+        notifier.setPreferredServerName(testString);
+        Assert.assertEquals(testString, notifier.getPreferredServerName());
+    }
+
 }

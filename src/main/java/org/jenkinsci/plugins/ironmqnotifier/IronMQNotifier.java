@@ -292,4 +292,27 @@ public class IronMQNotifier extends Notifier{
     public void setExpirySeconds(long expirySeconds) {
         this.expirySeconds = expirySeconds;
     }
+
+
+    /**
+     * <p>Setter for the field <code>preferredServerName</code>.</p>
+     *
+     * @param preferredServerName a {@link java.lang.String} object.
+     * @since 1.0.6
+     */
+    public void setPreferredServerName(final String preferredServerName) {
+        this.preferredServerName = preferredServerName;
+    }
+
+    /**
+     * <p>Getter for the field <code>preferredServerName</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     * @since 1.0.6
+     */
+    public String getPreferredServerName() {
+        return this.preferredServerName;
+    }
+
+
 }
