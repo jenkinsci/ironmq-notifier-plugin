@@ -5,10 +5,10 @@ import hudson.util.FormValidation;
 /**
  * <p>IronMQFormValidations class.</p>
  *
- * @author mike
+ * @author Mike Caspar
  * @version $Id: $
  */
-public class IronMQFormValidations{
+class IronMQFormValidations{
 
     /**
      * <p>isAlpha.</p>
@@ -16,7 +16,7 @@ public class IronMQFormValidations{
      * @param name a {@link java.lang.String} object.
      * @return a {@link boolean} object.
      */
-    private static boolean isAlpha( final String name ) {
+    protected static boolean isAlpha( final String name ) {
         return name.matches("[a-zA-Z]+");
 
     }
@@ -27,7 +27,7 @@ public class IronMQFormValidations{
      * @param name a {@link java.lang.String} object.
      * @return a {@link hudson.util.FormValidation} object.
      */
-    public final FormValidation isValidQueueName( final String name ) {
+    protected final FormValidation isValidQueueName( final String name ) {
 
         if(isAlpha(name)) {
             return FormValidation.ok();
@@ -43,8 +43,7 @@ public class IronMQFormValidations{
      * @param expirySeconds a long.
      * @return a {@link hudson.util.FormValidation} object.
      */
-    public final FormValidation isValidExpirySeconds(
-            final long expirySeconds ) {
+    protected final FormValidation isValidExpirySeconds( final long expirySeconds ) {
 
         if(expirySeconds > 0) {
             return FormValidation.ok();

@@ -10,7 +10,6 @@ import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 import hudson.model.Descriptor.FormException;
 
-
 @Extension
 /**
  * <p>IronMQDescriptor class.</p>
@@ -19,13 +18,6 @@ import hudson.model.Descriptor.FormException;
  * @version $Id: $
  */
 public class IronMQDescriptor extends BuildStepDescriptor<Publisher>{
-
-    private final long defaultExpirySeconds
-            = IronConstants.DEFAULT_EXPIRY_SECONDS;
-    private final String defaultPreferredServerName
-            = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
-    private final String defaultQueueName
-            = IronConstants.DEFAULT_QUEUE_NAME;
 
     /**
      * <p>Constructor for IronMQDescriptor.</p>

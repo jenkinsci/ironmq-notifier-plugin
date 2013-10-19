@@ -13,6 +13,7 @@ import io.iron.ironmq.Queue;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /**
  * <p>IronMQNotifier class.</p>
@@ -22,6 +23,9 @@ import java.io.IOException;
  */
 public class IronMQNotifier extends Notifier{
 
+
+    private static final Logger logger
+            = Logger.getLogger(IronPluginImplement.class.getName());
 
     public String preferredServerName;
     public boolean send_success;
@@ -167,16 +171,28 @@ public class IronMQNotifier extends Notifier{
 
             if(resultOfQueuePush == null
                     || resultOfQueuePush.length() == 0) {
-                build.setResult(Result.FAILURE);
+
+
+                logError();
+
+                build.setResult(Result.UNSTABLE);
             }
 
         } catch (Exception ex) {
 
-            build.setResult(Result.FAILURE);
+            logError();
+
+            build.setResult(Result.UNSTABLE);
 
         }
 
         return true;
+    }
+
+    private void logError() {
+
+        logger.warning("Check Configuration Settings");
+
     }
 
     /**
