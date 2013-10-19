@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.ironmqnotifier;
+package org.jenkinsci.plugins.ironmqnotifier.send;
 
 
 

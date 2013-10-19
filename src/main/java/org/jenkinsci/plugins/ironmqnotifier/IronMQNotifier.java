@@ -8,6 +8,8 @@ import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
 import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
+import org.jenkinsci.plugins.ironmqnotifier.send.IronMQSender;
+import org.jenkinsci.plugins.ironmqnotifier.send.MessageSettings;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
@@ -59,13 +61,13 @@ public class IronMQNotifier extends Notifier{
                           final long expirySeconds) {
 
         this.projectId = projectId;
-        this.setToken(token);
+        this.token = token;
         this.queueName = queueName;
         this.send_success = send_success;
         this.send_failure = send_failure;
         this.send_unstable = send_unstable;
         this.preferredServerName = preferredServerName;
-        this.setExpirySeconds(expirySeconds);
+        this.expirySeconds = expirySeconds;
 
         adjustDataToAvoidCrashes();
 
@@ -82,7 +84,7 @@ public class IronMQNotifier extends Notifier{
                     = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
         }
 
-        if(this.getExpirySeconds() <= 0) {
+        if(this.expirySeconds <= 0) {
             setExpirySeconds(IronConstants.DEF_EXPIRY_SEC);
         }
     }
@@ -142,7 +144,9 @@ public class IronMQNotifier extends Notifier{
 
             MessageSettings messageSettings = generateMessageSettings();
 
-            IronMQSender.Send(client, messageSettings);
+            IronMQSender sender = new IronMQSender();
+
+            sender.Send(client, messageSettings);
 
         } catch (Exception ex) {
 
@@ -171,8 +175,6 @@ public class IronMQNotifier extends Notifier{
         messageSettings.setJobName(this.jobName);
         return messageSettings;
     }
-
-
 
 
     /**

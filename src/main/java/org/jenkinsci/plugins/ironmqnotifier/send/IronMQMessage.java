@@ -1,8 +1,9 @@
-package org.jenkinsci.plugins.ironmqnotifier;
+package org.jenkinsci.plugins.ironmqnotifier.send;
 
 import com.google.gson.Gson;
-import java.util.Date;
+import org.jenkinsci.plugins.ironmqnotifier.IronConstants;
 
+import java.util.Date;
 
 class IronMQMessage{
 
@@ -59,6 +60,7 @@ class IronMQMessage{
      *
      * @return a long.
      */
+
     public long getExpirySeconds() {
         return expirySeconds;
 

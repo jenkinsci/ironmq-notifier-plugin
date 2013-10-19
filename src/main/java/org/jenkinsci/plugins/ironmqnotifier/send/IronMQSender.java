@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.ironmqnotifier;
+package org.jenkinsci.plugins.ironmqnotifier.send;
 
 
 import io.iron.ironmq.Client;
@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class IronMQSender{
 
-        protected static void Send(final Client client,
+         public void Send(final Client client,
                                final MessageSettings messageSettings)
 
             throws Exception {

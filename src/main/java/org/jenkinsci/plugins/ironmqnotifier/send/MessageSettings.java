@@ -1,5 +1,7 @@
-package org.jenkinsci.plugins.ironmqnotifier;
+package org.jenkinsci.plugins.ironmqnotifier.send;
 
+
+import org.jenkinsci.plugins.ironmqnotifier.IronConstants;
 
 public class MessageSettings{
 
@@ -8,7 +10,7 @@ public class MessageSettings{
     private String jobName = "UNKNOWN";
     private String queueName = IronConstants.DEF_QUEUE_NAME;
 
-    protected void setExpirySeconds(final long expirySeconds)  {
+    public void setExpirySeconds(final long expirySeconds)  {
 
         this.expirySeconds = expirySeconds;
     }
