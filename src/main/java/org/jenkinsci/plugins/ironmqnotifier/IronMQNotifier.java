@@ -262,7 +262,7 @@ public class IronMQNotifier extends Notifier{
      * @since 1.0.6
      */
     public long getExpirySeconds() {
-        return expirySeconds;
+        return this.expirySeconds;
     }
 
     /**
