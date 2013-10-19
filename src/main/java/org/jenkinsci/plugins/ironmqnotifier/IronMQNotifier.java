@@ -89,7 +89,7 @@ public class IronMQNotifier extends Notifier{
     /**
      * {@inheritDoc}
      */
-
+    @Override
     public BuildStepMonitor getRequiredMonitorService() {
         return BuildStepMonitor.BUILD;
     }
@@ -194,7 +194,7 @@ public class IronMQNotifier extends Notifier{
      * @return a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    String getJobName() {
+    protected String getJobName() {
         return this.jobName;
     }
 
@@ -204,7 +204,7 @@ public class IronMQNotifier extends Notifier{
      * @return a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    String getQueueName() {
+    public String getQueueName() {
         return this.queueName;
     }
 
@@ -214,7 +214,7 @@ public class IronMQNotifier extends Notifier{
      * @param queueName a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    void setQueueName( final String queueName ) {
+    public void setQueueName( final String queueName ) {
         this.queueName = queueName;
     }
 
@@ -224,7 +224,7 @@ public class IronMQNotifier extends Notifier{
      * @return a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    String getProjectId() {
+    public String getProjectId() {
         return this.projectId;
     }
 
@@ -244,7 +244,7 @@ public class IronMQNotifier extends Notifier{
      * @return a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    String getToken() {
+    public String getToken() {
         return token;
     }
 
@@ -254,7 +254,7 @@ public class IronMQNotifier extends Notifier{
      * @param token a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    void setToken( String token ) {
+    public void setToken( String token ) {
         this.token = token;
     }
 
@@ -264,7 +264,7 @@ public class IronMQNotifier extends Notifier{
      * @return a {@link long} object.
      * @since 1.0.6
      */
-    long getExpirySeconds() {
+    public long getExpirySeconds() {
         return expirySeconds;
     }
 
@@ -274,7 +274,7 @@ public class IronMQNotifier extends Notifier{
      * @param expirySeconds a {@link long} object.
      * @since 1.0.6
      */
-    void setExpirySeconds( long expirySeconds ) {
+    public void setExpirySeconds( long expirySeconds ) {
         this.expirySeconds = expirySeconds;
     }
 }

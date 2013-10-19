@@ -72,6 +72,15 @@ public class IronMQNotifierTest{
     }
 
     @Test
+    public void Notifier_Can_SetAndRetrieve_Token() {
+        IronMQNotifier notifier = StandardTestNotifier();
+        final String testString = "7714717174";
+        notifier.setToken(testString);
+        Assert.assertEquals(testString, notifier.getToken());
+    }
+
+
+    @Test
     public void Notifier_Has_Success_Flag_Success() {
 
         IronMQNotifier notifier = StandardTestNotifier();

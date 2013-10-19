@@ -26,12 +26,7 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <ironmq.version>0.0.10</ironmq.version>
-        <google.gson.version>2.2.4</google.gson.version>
-        <mockito.version>1.9.5</mockito.version>
-        <maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
-        <maven-surefire-report-plugin.version>2.16</maven-surefire-report-plugin.version>
-        <maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
+
     </properties>
 
     <licenses>
@@ -91,21 +86,21 @@
             <dependency>
                 <groupId>ironmq</groupId>
                 <artifactId>ironmq</artifactId>
-                <version>${ironmq.version}</version>
+                <version>0.0.10</version>
                 <optional>false</optional>
             </dependency>
 
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
-                <version>${google.gson.version}</version>
+                <version>2.2.4</version>
                 <optional>false</optional>
             </dependency>
 
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>${mockito.version}</version>
+                <version>1.9.5</version>
                 <scope>test</scope>
             </dependency>
 
@@ -118,19 +113,19 @@
         <dependency>
             <groupId>ironmq</groupId>
             <artifactId>ironmq</artifactId>
-            <version>${ironmq.version}</version>
+            <version>0.0.10</version>
         </dependency>
 
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>${google.gson.version}</version>
+            <version>2.2.4</version>
         </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>${mockito.version}</version>
+            <version>1.9.5</version>
         </dependency>
 
 
@@ -180,30 +175,5 @@
 
 
     </build>
-<reporting>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>${maven-javadoc-plugin.version}</version>
-        </plugin>
-
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-changelog-plugin</artifactId>
-            <version>${maven-changelog-plugin.version}</version>
-        </plugin>
-
-
-        <!--Always use the current default Check style
-                 for Jenkins Development (inherit version) -->
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>2.10</version>
-        </plugin>
-    </plugins>
-
-</reporting>
 
 </project>
