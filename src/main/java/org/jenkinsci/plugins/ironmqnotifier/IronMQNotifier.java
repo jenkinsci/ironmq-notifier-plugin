@@ -22,8 +22,7 @@ import java.io.IOException;
  */
 public class IronMQNotifier extends Notifier{
 
-    private final int defaultPreferredServerPort
-            = IronConstants.DEFAULT_PREFERRED_SERVER_PORT;
+
     public String preferredServerName;
     public boolean send_success;
     public boolean send_failure;
@@ -48,14 +47,14 @@ public class IronMQNotifier extends Notifier{
      * @param expirySeconds       a long.
      */
     @DataBoundConstructor
-    public IronMQNotifier( final String projectId,
-                           final String token,
-                           final String queueName,
-                           final String preferredServerName,
-                           final boolean send_success,
-                           final boolean send_failure,
-                           final boolean send_unstable,
-                           final long expirySeconds ) {
+    public IronMQNotifier(final String projectId,
+                          final String token,
+                          final String queueName,
+                          final String preferredServerName,
+                          final boolean send_success,
+                          final boolean send_failure,
+                          final boolean send_unstable,
+                          final long expirySeconds) {
 
         this.projectId = projectId;
         this.setToken(token);
@@ -106,9 +105,9 @@ public class IronMQNotifier extends Notifier{
      * {@inheritDoc}
      */
     @Override
-    public boolean perform( AbstractBuild<?, ?> build,
-                            Launcher launcher,
-                            BuildListener listener )
+    public boolean perform(AbstractBuild<?, ?> build,
+                           Launcher launcher,
+                           BuildListener listener)
             throws InterruptedException, IOException {
 
         this.jobName = build.getFullDisplayName();
@@ -142,7 +141,7 @@ public class IronMQNotifier extends Notifier{
                     getToken(),
                     new Cloud("https",
                             preferredServerName,
-                            defaultPreferredServerPort));
+                            IronConstants.DEFAULT_PREFERRED_SERVER_PORT));
 
             Queue queue = client.queue(queueName);
 
@@ -214,7 +213,7 @@ public class IronMQNotifier extends Notifier{
      * @param queueName a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    public void setQueueName( final String queueName ) {
+    public void setQueueName(final String queueName) {
         this.queueName = queueName;
     }
 
@@ -234,7 +233,7 @@ public class IronMQNotifier extends Notifier{
      * @param projectId a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    public void setProjectId( final String projectId ) {
+    public void setProjectId(final String projectId) {
         this.projectId = projectId;
     }
 
@@ -254,7 +253,7 @@ public class IronMQNotifier extends Notifier{
      * @param token a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    public void setToken( String token ) {
+    public void setToken(String token) {
         this.token = token;
     }
 
@@ -274,7 +273,7 @@ public class IronMQNotifier extends Notifier{
      * @param expirySeconds a {@link long} object.
      * @since 1.0.6
      */
-    public void setExpirySeconds( long expirySeconds ) {
+    public void setExpirySeconds(long expirySeconds) {
         this.expirySeconds = expirySeconds;
     }
 }
