@@ -1,7 +1,8 @@
 package org.jenkinsci.plugins.ironmqnotifier.send;
 
+import org.jenkinsci.plugins.ironmqnotifier.*;
 
-import org.jenkinsci.plugins.ironmqnotifier.IronConstants;
+
 
 public class MessageSettings{
 
