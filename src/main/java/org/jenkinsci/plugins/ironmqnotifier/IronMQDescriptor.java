@@ -10,13 +10,14 @@ import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 import hudson.model.Descriptor.FormException;
 
-@Extension
+
 /**
  * <p>IronMQDescriptor class.</p>
  *
  * @author Mike Caspar
  * @version $Id: $
  */
+@Extension
 public class IronMQDescriptor extends BuildStepDescriptor<Publisher>{
 
     /**
