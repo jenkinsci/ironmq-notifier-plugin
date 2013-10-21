@@ -38,6 +38,7 @@ public class IronMQNotifier extends Notifier{
     private String queueName;
     private String jobName = "";
     private String messageText;
+    private String resultString = "UNKNOWN";
 
     /**
      * <p>Constructor for IronMQNotifier.</p>
@@ -117,23 +118,21 @@ public class IronMQNotifier extends Notifier{
 
         this.jobName = build.getFullDisplayName();
 
-        String result;
-
         if(build.getResult() == Result.SUCCESS) {
             if(!send_success) {
                 return true;
             }
-            result = "succeeded";
+            this.resultString = "succeeded";
         } else if(build.getResult() == Result.UNSTABLE) {
             if(!send_unstable) {
                 return true;
             }
-            result = "was unstable";
+            this.resultString = "was unstable";
         } else if(build.getResult() == Result.FAILURE) {
             if(!send_failure) {
                 return true;
             }
-            result = "failed";
+            this.resultString = "failed";
         } else {
             return true;
         }
@@ -174,6 +173,7 @@ public class IronMQNotifier extends Notifier{
         MessageSettings messageSettings = new MessageSettings();
         messageSettings.setExpirySeconds(this.expirySeconds);
         messageSettings.setJobName(this.jobName);
+        messageSettings.setBuildResultString (this.resultString);
         return messageSettings;
     }
 
