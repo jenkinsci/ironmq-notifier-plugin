@@ -23,7 +23,7 @@ public final class IronPluginImplement extends Plugin {
      * @throws java.lang.Exception if any.
      */
     public void start() throws Exception {
-        //log.info("starting ironmq-notifier plugin");
+        logger.info("starting ironmq-notifier plugin");
     }
 }
 

@@ -62,7 +62,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher>{
      * @param value a {@link java.lang.String} object.
      * @return a {@link hudson.util.FormValidation} object.
      */
-    FormValidation doCheckQueueName(
+    public FormValidation doCheckQueueName(
             @QueryParameter final String value) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
@@ -86,7 +86,7 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher>{
      * @param value a long.
      * @return a {@link hudson.util.FormValidation} object.
      */
-    FormValidation doCheckExpirySeconds(
+    public FormValidation doCheckExpirySeconds(
             @QueryParameter final long value) {
 
         IronMQFormValidations validations = new IronMQFormValidations();
