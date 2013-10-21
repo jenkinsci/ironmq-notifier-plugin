@@ -93,7 +93,7 @@ public class IronMQNotifier extends Notifier{
     /**
      * {@inheritDoc}
      */
-    @Override
+
     public BuildStepMonitor getRequiredMonitorService() {
         return BuildStepMonitor.BUILD;
     }
