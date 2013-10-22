@@ -44,6 +44,7 @@ public class IronMQNotifier extends Notifier{
     private int preferredServerPort = IronConstants.DEF_PREFERRED_SERVER_PORT;
     private String preferredServerScheme = "https";
 
+    @DataBoundConstructor
     public IronMQNotifier(final String projectId,
                           final String token,
                           final String queueName,
