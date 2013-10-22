@@ -9,6 +9,7 @@ import hudson.tasks.Notifier;
 import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
 
+import org.jenkinsci.plugins.ironmqnotifier.send.ClientWrapper;
 import org.jenkinsci.plugins.ironmqnotifier.send.IronMQSender;
 import org.jenkinsci.plugins.ironmqnotifier.send.MessageSettings;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -29,6 +30,7 @@ public class IronMQNotifier extends Notifier{
             = Logger.getLogger(IronPluginImplement.class.getName());
 
     public String preferredServerName;
+
     public boolean send_success;
     public boolean send_failure;
     public boolean send_unstable;
@@ -39,20 +41,9 @@ public class IronMQNotifier extends Notifier{
     private String jobName = "";
     private String messageText;
     private String resultString = "UNKNOWN";
+    private int preferredServerPort = IronConstants.DEF_PREFERRED_SERVER_PORT;
+    private String preferredServerScheme = "https";
 
-    /**
-     * <p>Constructor for IronMQNotifier.</p>
-     *
-     * @param projectId           a {@link java.lang.String} object.
-     * @param token               a {@link java.lang.String} object.
-     * @param queueName           a {@link java.lang.String} object.
-     * @param preferredServerName a {@link java.lang.String} object.
-     * @param send_success        a boolean.
-     * @param send_failure        a boolean.
-     * @param send_unstable       a boolean.
-     * @param expirySeconds       a long.
-     */
-    @DataBoundConstructor
     public IronMQNotifier(final String projectId,
                           final String token,
                           final String queueName,
@@ -160,14 +151,16 @@ public class IronMQNotifier extends Notifier{
     }
 
     private Client generateClientToUse() {
-        return new Client(
-                                         projectId,
-                                          getToken(),
-                                            new Cloud("https",
-                                            preferredServerName,
-                                            IronConstants.DEF_PREFERRED_SERVER_PORT)
+        return new ClientWrapper (
+                                         this.projectId,
+                                          this.token,
+                                            new Cloud(this.preferredServerScheme,
+                                            this.preferredServerName,
+                                            this.preferredServerPort)
                                              );
     }
+
+
 
     private MessageSettings generateMessageSettings() {
         MessageSettings messageSettings = new MessageSettings();
