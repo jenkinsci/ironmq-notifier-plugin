@@ -1,7 +1,6 @@
 package org.jenkinsci.plugins.ironmqnotifier.Iron;
 
 
-
 import io.iron.ironmq.Client;
 import io.iron.ironmq.Message;
 import io.iron.ironmq.Queue;
@@ -18,13 +17,11 @@ public class IronMQSender {
                        final MessageSettings messageSettings )
             throws IOException, IllegalArgumentException {
 
-        String test = messageSettings.getQueueName ();
-
-        checkMessageParameters(messageSettings);
+        checkMessageParameters (messageSettings);
 
         Queue queue = client.queue (messageSettings.getQueueName ());
 
-        Message message = new Message();
+        Message message = new Message ();
 
         IronMQMessage ironMQMessage = new IronMQMessage ();
 
@@ -49,17 +46,16 @@ public class IronMQSender {
         }
     }
 
-    private void checkMessageParameters (final MessageSettings messageSettings)
+    private void checkMessageParameters ( final MessageSettings messageSettings )
             throws IllegalArgumentException {
 
-        if  (messageSettings.getExpirySeconds() == 0 ) {
+        if(messageSettings.getExpirySeconds () == 0) {
             throw new IllegalArgumentException ("expiry seconds Zero exception");
         }
 
-        String queueString = messageSettings.getQueueName();
+        String queueString = messageSettings.getQueueName ();
 
-        if (queueString == null || queueString.length () == 0 )
-        {
+        if(queueString == null || queueString.length () == 0) {
             throw new IllegalArgumentException ("queueName is invalid exception");
         }
 
