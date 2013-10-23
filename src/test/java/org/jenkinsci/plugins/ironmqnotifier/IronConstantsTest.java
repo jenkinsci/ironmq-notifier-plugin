@@ -27,6 +27,11 @@ public class IronConstantsTest {
         Assert.assertNotEquals(0,IronConstants.DEF_PREFERRED_SERVER_PORT);
     }
 
+    @Test
+    public void DefaultPreferredServerScheme_Valid_And_NotNull() {
+        Assert.assertNotNull(IronConstants.DEF_PREFERRED_SERVER_SCHEME);
+        Assert.assertNotEquals(0,IronConstants.DEF_PREFERRED_SERVER_SCHEME);
+    }
 
     @Test
     public void Expiry_Seconds_Valid() {

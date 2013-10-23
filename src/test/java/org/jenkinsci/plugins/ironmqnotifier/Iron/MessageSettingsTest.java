@@ -1,6 +1,7 @@
-package org.jenkinsci.plugins.ironmqnotifier.send;
+package org.jenkinsci.plugins.ironmqnotifier.Iron;
 
 
+import org.jenkinsci.plugins.ironmqnotifier.Iron.MessageSettings;
 import org.jenkinsci.plugins.ironmqnotifier.IronConstants;
 import org.junit.Assert;
 import org.junit.Test;

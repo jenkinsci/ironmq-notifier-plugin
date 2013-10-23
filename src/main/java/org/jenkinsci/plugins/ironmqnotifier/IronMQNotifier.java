@@ -9,9 +9,9 @@ import hudson.tasks.Notifier;
 import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
 
-import org.jenkinsci.plugins.ironmqnotifier.send.ClientWrapper;
-import org.jenkinsci.plugins.ironmqnotifier.send.IronMQSender;
-import org.jenkinsci.plugins.ironmqnotifier.send.MessageSettings;
+import org.jenkinsci.plugins.ironmqnotifier.Iron.ClientWrapper;
+import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMQSender;
+import org.jenkinsci.plugins.ironmqnotifier.Iron.MessageSettings;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
@@ -41,8 +41,8 @@ public class IronMQNotifier extends Notifier{
     private String jobName = "";
     private String messageText;
     private String resultString = "UNKNOWN";
-    private int preferredServerPort = IronConstants.DEF_PREFERRED_SERVER_PORT;
-    private String preferredServerScheme = "https";
+
+    private Client client;
 
     @DataBoundConstructor
     public IronMQNotifier(final String projectId,
@@ -62,6 +62,7 @@ public class IronMQNotifier extends Notifier{
         this.send_unstable = send_unstable;
         this.preferredServerName = preferredServerName;
         this.expirySeconds = expirySeconds;
+
 
         adjustDataToAvoidCrashes();
 
@@ -132,7 +133,7 @@ public class IronMQNotifier extends Notifier{
 
         try {
 
-            Client client = generateClientToUse();
+            client = generateClientToUse();
 
             MessageSettings messageSettings = generateMessageSettings();
 
@@ -155,9 +156,9 @@ public class IronMQNotifier extends Notifier{
         return new ClientWrapper (
                                          this.projectId,
                                           this.token,
-                                            new Cloud(this.preferredServerScheme,
+                                            new Cloud(IronConstants.DEF_PREFERRED_SERVER_SCHEME,
                                             this.preferredServerName,
-                                            this.preferredServerPort)
+                                            IronConstants.DEF_PREFERRED_SERVER_PORT)
                                              );
     }
 

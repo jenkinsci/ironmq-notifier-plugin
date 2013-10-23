@@ -3,6 +3,7 @@ package org.jenkinsci.plugins.ironmqnotifier;
 public final class IronConstants {
 
 
+    public static final String DEF_PREFERRED_SERVER_SCHEME = "https" ;
     public static String DEF_QUEUE_NAME = "Jenkins";
     public static String DEFAULT_PREFERRED_SERVER_NAME
             = "mq-rackspace-ord.iron.io";
