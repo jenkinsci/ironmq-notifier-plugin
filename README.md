@@ -16,6 +16,9 @@ With this situation, there is no need for the Jenkins build server to communicat
 
 * To monitor the current build in progress... https://jenkins.ci.cloudbees.com/job/plugins/job/ironmq-notifier-plugin/
 
+***
+
+To test locally in development, execute mvn hpi:run
 
 ***
 

@@ -1,5 +1,5 @@
 *target*
-*.class
+
 .classpath
 .project
 .settings/
@@ -14,7 +14,7 @@
 *.iml
 
 #work files
-work/
+work
 
 
 
