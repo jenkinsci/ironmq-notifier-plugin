@@ -193,7 +193,7 @@ limitations under the License.
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.2.4</version>
+            <version>2.3.1</version>
         </dependency>
 
         <dependency>
@@ -235,23 +235,6 @@ limitations under the License.
 
     <build>
 
-        <pluginManagement>
-            <plugins>
-
-                <plugin>
-                    <groupId>org.jenkins-ci.tools</groupId>
-                    <artifactId>maven-hpi-plugin</artifactId>
-                    <version>1.99</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>cobertura-maven-plugin</artifactId>
-                    <version>2.6</version>
-                </plugin>
-
-            </plugins>
-        </pluginManagement>
 
         <plugins>
             <plugin>
