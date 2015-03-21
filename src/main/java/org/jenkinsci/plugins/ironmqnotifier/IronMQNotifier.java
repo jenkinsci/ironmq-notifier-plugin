@@ -27,7 +27,7 @@ public class IronMQNotifier extends Notifier{
 
 
     private static final Logger logger
-            = Logger.getLogger(IronPluginImplement.class.getName());
+            = Logger.getLogger("IronMQNotifier");
 
     public String preferredServerName;
 
@@ -144,9 +144,10 @@ public class IronMQNotifier extends Notifier{
 
         } catch (Exception ex) {
 
-            logWarning();
+            logConfigurationWarning();
 
-            build.setResult(Result.UNSTABLE);
+            // build.setResult(Result.UNSTABLE);  // not legal
+            return false;
 
         }
 
@@ -293,7 +294,7 @@ public class IronMQNotifier extends Notifier{
         return this.preferredServerName;
     }
 
-    private void logWarning() {
+    private void logConfigurationWarning() {
 
         logger.warning("Check Configuration Settings");
 
