@@ -4,7 +4,7 @@ import org.jenkinsci.plugins.ironmqnotifier.*;
 
 
 
-public class MessageSettings{
+public class IronMessageSettings {
 
     private long expirySeconds;
     private String setBuildResultString;

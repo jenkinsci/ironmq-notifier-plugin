@@ -2,8 +2,6 @@ package org.jenkinsci.plugins.ironmqnotifier.Iron;
 
 
 
-import hudson.util.FormValidation;
-import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMQSender;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -27,12 +25,12 @@ public class IronMQSenderTest{
             throws IOException, IllegalArgumentException {
 
         ClientWrapper mockClient = mock(ClientWrapper.class);
-        MessageSettings mockMessageSettings = mock(MessageSettings.class);
-        when(mockMessageSettings.getExpirySeconds ()).thenReturn(0L);
+        IronMessageSettings mockIronMessageSettings = mock(IronMessageSettings.class);
+        when(mockIronMessageSettings.getExpirySeconds ()).thenReturn(0L);
 
         IronMQSender sender =  new IronMQSender();
 
-        sender.Send (mockClient, mockMessageSettings);
+        sender.Send (mockClient, mockIronMessageSettings);
 
     }
 
@@ -41,13 +39,13 @@ public class IronMQSenderTest{
             throws IOException, IllegalArgumentException {
 
         ClientWrapper mockClient = mock(ClientWrapper.class);
-        MessageSettings mockMessageSettings = mock(MessageSettings.class);
-        when(mockMessageSettings.getExpirySeconds ()).thenReturn(1000L); //avoid exception
-        when(mockMessageSettings.getQueueName ()).thenReturn ("");
+        IronMessageSettings mockIronMessageSettings = mock(IronMessageSettings.class);
+        when(mockIronMessageSettings.getExpirySeconds ()).thenReturn(1000L); //avoid exception
+        when(mockIronMessageSettings.getQueueName ()).thenReturn ("");
 
         IronMQSender sender =  new IronMQSender();
 
-        sender.Send (mockClient, mockMessageSettings);
+        sender.Send (mockClient, mockIronMessageSettings);
 
     }
 
@@ -56,13 +54,13 @@ public class IronMQSenderTest{
             throws IOException, IllegalArgumentException {
 
         ClientWrapper mockClient = mock(ClientWrapper.class);
-        MessageSettings mockMessageSettings = mock(MessageSettings.class);
-        when(mockMessageSettings.getExpirySeconds ()).thenReturn(1000L); //avoid exception
-        when(mockMessageSettings.getQueueName ()).thenReturn (null);
+        IronMessageSettings mockIronMessageSettings = mock(IronMessageSettings.class);
+        when(mockIronMessageSettings.getExpirySeconds ()).thenReturn(1000L); //avoid exception
+        when(mockIronMessageSettings.getQueueName ()).thenReturn (null);
 
         IronMQSender sender =  new IronMQSender();
 
-        sender.Send (mockClient, mockMessageSettings);
+        sender.Send (mockClient, mockIronMessageSettings);
 
     }
 }

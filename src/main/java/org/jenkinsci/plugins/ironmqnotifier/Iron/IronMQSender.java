@@ -14,26 +14,26 @@ public class IronMQSender {
     }
 
     public void Send ( final Client client,
-                       final MessageSettings messageSettings )
+                       final IronMessageSettings ironMessageSettings)
             throws IOException, IllegalArgumentException {
 
-        checkMessageParameters (messageSettings);
+        checkMessageParameters (ironMessageSettings);
 
-        Queue queue = client.queue (messageSettings.getQueueName ());
+        Queue queue = client.queue (ironMessageSettings.getQueueName ());
 
         Message message = new Message ();
 
         IronMQMessage ironMQMessage = new IronMQMessage ();
 
-        ironMQMessage.setBuildResult (messageSettings.getBuildResultString ());
-        ironMQMessage.setJobName (messageSettings.getJobName ());
+        ironMQMessage.setBuildResult (ironMessageSettings.getBuildResultString ());
+        ironMQMessage.setJobName (ironMessageSettings.getJobName ());
 
-        ironMQMessage.setExpirySeconds (messageSettings.getExpirySeconds ());
+        ironMQMessage.setExpirySeconds (ironMessageSettings.getExpirySeconds ());
 
 
         message.setBody (ironMQMessage.toJson ());
 
-        message.setExpiresIn (messageSettings.getExpirySeconds ());
+        message.setExpiresIn (ironMessageSettings.getExpirySeconds ());
         message.setBody (message.getBody ());
 
 
@@ -46,14 +46,14 @@ public class IronMQSender {
         }
     }
 
-    private void checkMessageParameters ( final MessageSettings messageSettings )
+    private void checkMessageParameters ( final IronMessageSettings ironMessageSettings)
             throws IllegalArgumentException {
 
-        if(messageSettings.getExpirySeconds () == 0) {
+        if(ironMessageSettings.getExpirySeconds () == 0) {
             throw new IllegalArgumentException ("expiry seconds Zero exception");
         }
 
-        String queueString = messageSettings.getQueueName ();
+        String queueString = ironMessageSettings.getQueueName ();
 
         if(queueString == null || queueString.length () == 0) {
             throw new IllegalArgumentException ("queueName is invalid exception");
