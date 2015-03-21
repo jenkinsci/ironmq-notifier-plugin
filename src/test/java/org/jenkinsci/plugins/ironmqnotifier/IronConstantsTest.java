@@ -1,6 +1,5 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
-import org.jenkinsci.plugins.ironmqnotifier.Iron.IronConstants;
 import org.junit.Assert;
 import org.junit.Test;
 import hudson.util.FormValidation;

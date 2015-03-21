@@ -1,8 +1,6 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
 
-import org.jenkinsci.plugins.ironmqnotifier.Iron.IronConstants;
-
 public class TestSettings {
 
     static String TESTPROJECTID = "141415252";
