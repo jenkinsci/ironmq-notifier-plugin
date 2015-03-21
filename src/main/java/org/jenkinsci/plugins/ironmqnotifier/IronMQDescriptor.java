@@ -33,8 +33,10 @@ public class IronMQDescriptor extends BuildStepDescriptor<Publisher>{
      */
     @Override
     public String getDisplayName() {
-        return "Send Message to IronMQ";
+        return Messages.IronMQNotifier_DisplayName();
+
     }
+
 
     /**
      * {@inheritDoc}
