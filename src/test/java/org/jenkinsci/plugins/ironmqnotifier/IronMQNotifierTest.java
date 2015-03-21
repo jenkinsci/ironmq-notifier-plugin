@@ -125,7 +125,7 @@ public class IronMQNotifierTest{
         Assert.assertNotNull(notifier.getProjectId());
         Assert.assertNotNull(notifier.getToken());
         Assert.assertNotNull(notifier.getQueueName());
-        Assert.assertNotNull(notifier.getPreferredServerName());
+        Assert.assertNotNull(notifier.preferredServerName);
         Assert.assertNotNull(notifier.send_success);
         Assert.assertNotNull(notifier.send_failure);
         Assert.assertNotNull(notifier.send_unstable);
@@ -173,7 +173,7 @@ public class IronMQNotifierTest{
                 true,
                 TestSettings.EXPIRYSETTINGS);
         Assert.assertEquals(TestSettings.STANDARDDEFAULTSERVER,
-                notifier.getPreferredServerName());
+                notifier.preferredServerName);
 
     }
 
