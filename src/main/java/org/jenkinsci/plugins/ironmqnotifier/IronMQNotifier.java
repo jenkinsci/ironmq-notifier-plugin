@@ -10,6 +10,7 @@ import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
 
 import org.jenkinsci.plugins.ironmqnotifier.Iron.ClientWrapper;
+import org.jenkinsci.plugins.ironmqnotifier.Iron.IronConstants;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMQSender;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMessageSettings;
 import org.kohsuke.stapler.DataBoundConstructor;
