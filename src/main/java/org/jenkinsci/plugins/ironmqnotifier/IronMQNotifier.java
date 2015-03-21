@@ -10,6 +10,7 @@ import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
 
 import org.jenkinsci.plugins.ironmqnotifier.Iron.ClientWrapper;
+import org.jenkinsci.plugins.ironmqnotifier.Iron.IronConstants;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMQSender;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMessageSettings;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -27,9 +28,9 @@ public class IronMQNotifier extends Notifier{
 
 
     private static final Logger logger
-            = Logger.getLogger(IronPluginImplement.class.getName());
+            = Logger.getLogger("IronMQNotifier");
 
-    public String preferredServerName;
+    private String preferredServerName;
 
     public boolean send_success;
     public boolean send_failure;
