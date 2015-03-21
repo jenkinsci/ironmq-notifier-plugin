@@ -11,7 +11,7 @@ import io.iron.ironmq.Cloud;
 
 import org.jenkinsci.plugins.ironmqnotifier.Iron.ClientWrapper;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMQSender;
-import org.jenkinsci.plugins.ironmqnotifier.Iron.MessageSettings;
+import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMessageSettings;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
@@ -136,11 +136,11 @@ public class IronMQNotifier extends Notifier{
 
             client = generateClientToUse();
 
-            MessageSettings messageSettings = generateMessageSettings();
+            IronMessageSettings ironMessageSettings = generateMessageSettings();
 
             IronMQSender sender = new IronMQSender();
 
-            sender.Send(client, messageSettings);
+            sender.Send(client, ironMessageSettings);
 
         } catch (Exception ex) {
 
@@ -165,12 +165,12 @@ public class IronMQNotifier extends Notifier{
 
 
 
-    private MessageSettings generateMessageSettings() {
-        MessageSettings messageSettings = new MessageSettings();
-        messageSettings.setExpirySeconds(this.expirySeconds);
-        messageSettings.setJobName(this.jobName);
-        messageSettings.setBuildResultString (this.resultString);
-        return messageSettings;
+    private IronMessageSettings generateMessageSettings() {
+        IronMessageSettings ironMessageSettings = new IronMessageSettings();
+        ironMessageSettings.setExpirySeconds(this.expirySeconds);
+        ironMessageSettings.setJobName(this.jobName);
+        ironMessageSettings.setBuildResultString (this.resultString);
+        return ironMessageSettings;
     }
 
 
