@@ -1,11 +1,14 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
+import hudson.Extension;
 import hudson.Launcher;
-import hudson.model.AbstractBuild;
-import hudson.model.BuildListener;
-import hudson.model.Result;
+import hudson.model.*;
+import hudson.model.labels.LabelExpression;
+import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
+import hudson.tasks.Publisher;
+import hudson.util.FormValidation;
 import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
 
@@ -14,6 +17,7 @@ import org.jenkinsci.plugins.ironmqnotifier.Iron.IronConstants;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMQSender;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMessageSettings;
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.kohsuke.stapler.QueryParameter;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -24,8 +28,7 @@ import java.util.logging.Logger;
  * @author Mike Caspar
  * @version $Id: $
  */
-public class IronMQNotifier extends Notifier{
-
+public class IronMQNotifier extends Notifier {
 
     private static final Logger logger
             = Logger.getLogger("IronMQNotifier");
@@ -72,16 +75,16 @@ public class IronMQNotifier extends Notifier{
 
     private void adjustDataToAvoidCrashes() {
 
-        if(this.queueName.trim().length() == 0) {
+        if (this.queueName.trim().length() == 0) {
             this.queueName = IronConstants.DEF_QUEUE_NAME;
         }
 
-        if(this.preferredServerName.trim().length() == 0) {
+        if (this.preferredServerName.trim().length() == 0) {
             this.preferredServerName
                     = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
         }
 
-        if(this.expirySeconds <= 0) {
+        if (this.expirySeconds <= 0) {
             setExpirySeconds(IronConstants.DEF_EXPIRY_SEC);
         }
     }
@@ -99,8 +102,8 @@ public class IronMQNotifier extends Notifier{
      * {@inheritDoc}
      */
     @Override
-    public IronMQDescriptor getDescriptor() {
-        return (IronMQDescriptor) super.getDescriptor();
+    public Descriptor getDescriptor() {
+        return (Descriptor) super.getDescriptor();
     }
 
     /**
@@ -114,18 +117,18 @@ public class IronMQNotifier extends Notifier{
 
         this.jobName = build.getFullDisplayName();
 
-        if(build.getResult() == Result.SUCCESS) {
-            if(!send_success) {
+        if (build.getResult() == Result.SUCCESS) {
+            if (!send_success) {
                 return true;
             }
             this.resultString = "succeeded";
-        } else if(build.getResult() == Result.UNSTABLE) {
-            if(!send_unstable) {
+        } else if (build.getResult() == Result.UNSTABLE) {
+            if (!send_unstable) {
                 return true;
             }
             this.resultString = "was unstable";
-        } else if(build.getResult() == Result.FAILURE) {
-            if(!send_failure) {
+        } else if (build.getResult() == Result.FAILURE) {
+            if (!send_failure) {
                 return true;
             }
             this.resultString = "failed";
@@ -157,22 +160,21 @@ public class IronMQNotifier extends Notifier{
     }
 
     private Client generateClientToUse() {
-        return new ClientWrapper (
-                                         this.projectId,
-                                          this.token,
-                                            new Cloud(IronConstants.DEF_PREFERRED_SERVER_SCHEME,
-                                            this.preferredServerName,
-                                            IronConstants.DEF_PREFERRED_SERVER_PORT)
-                                             );
+        return new ClientWrapper(
+                this.projectId,
+                this.token,
+                new Cloud(IronConstants.DEF_PREFERRED_SERVER_SCHEME,
+                        this.preferredServerName,
+                        IronConstants.DEF_PREFERRED_SERVER_PORT)
+        );
     }
-
 
 
     private IronMessageSettings generateMessageSettings() {
         IronMessageSettings ironMessageSettings = new IronMessageSettings();
         ironMessageSettings.setExpirySeconds(this.expirySeconds);
         ironMessageSettings.setJobName(this.jobName);
-        ironMessageSettings.setBuildResultString (this.resultString);
+        ironMessageSettings.setBuildResultString(this.resultString);
         return ironMessageSettings;
     }
 
@@ -283,7 +285,9 @@ public class IronMQNotifier extends Notifier{
      * @since 1.0.6
      */
     public void setPreferredServerName(final String preferredServerName) {
+
         this.preferredServerName = preferredServerName;
+
     }
 
     /**
@@ -301,4 +305,61 @@ public class IronMQNotifier extends Notifier{
         logger.warning("Check Configuration Settings");
 
     }
+
+
+    // ...............................................  Descriptor .............................................
+
+    @Extension
+    public static class Descriptor extends BuildStepDescriptor<Publisher> {
+
+
+        @Override
+        public boolean isApplicable(Class<? extends AbstractProject> aClass) {
+            return true;
+        }
+
+        @Override
+        public String getDisplayName() {
+            return Messages.IronMQNotifier_DisplayName();
+        }
+
+        public FormValidation doCheckQueueName(
+                @QueryParameter final String value) {
+
+            IronMQFormValidations validations = new IronMQFormValidations();
+
+            FormValidation validationReturn;
+
+            if (value == null) {
+                validationReturn = validations.isValidQueueName("");
+            } else {
+                validationReturn = validations.isValidQueueName(value);
+            }
+
+
+            return validationReturn;
+
+        }
+
+        public FormValidation doCheckExpirySeconds(
+                @QueryParameter final long value) {
+
+            IronMQFormValidations validations = new IronMQFormValidations();
+
+            FormValidation validationReturn;
+
+            validationReturn = validations.isValidExpirySeconds(value);
+
+            return validationReturn;
+
+        }
+
+    }
+
+
 }
+
+
+
+
+
