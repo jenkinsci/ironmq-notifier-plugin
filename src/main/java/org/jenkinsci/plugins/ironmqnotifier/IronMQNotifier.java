@@ -28,9 +28,9 @@ public class IronMQNotifier extends Notifier{
 
 
     private static final Logger logger
-            = Logger.getLogger(IronPluginImplement.class.getName());
+            = Logger.getLogger("IronMQNotifier");
 
-    public String preferredServerName;
+    private String preferredServerName;
 
     public boolean send_success;
     public boolean send_failure;
