@@ -29,6 +29,12 @@ Mike Caspar
 
 [![Build Status](https://jenkins.ci.cloudbees.com/job/plugins/job/ironmq-notifier-plugin/badge/icon)](https://jenkins.ci.cloudbees.com/job/plugins/job/ironmq-notifier-plugin/)
 
+***
+
+To Debug Locally (in Dev) ..
+export MAVEN_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=8000,suspend=n"
+
+then... setup remote debug in intelliJ or appropriate tool
 
 
 

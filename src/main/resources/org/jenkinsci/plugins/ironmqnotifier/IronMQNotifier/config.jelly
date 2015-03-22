@@ -1,38 +1,32 @@
-<j:jelly
-        xmlns:j="jelly:core"
-        xmlns:st="jelly:stapler"
-        xmlns:d="jelly:define"
-        xmlns:l="/lib/layout"
-        xmlns:t="/lib/hudson"
-        xmlns:f="/lib/form">
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
 
-    <f:entry title="Project Id" field="projectId" help="/plugin/ironmq-notifier/help/help-projectId.html">
+    <f:entry title="${%description.projectId}" field="projectId" help="/plugin/ironmq-notifier/help/help-projectId.html">
     <f:textbox />
   </f:entry>
 
-  <f:entry title="Token" field="token" help="/plugin/ironmq-notifier/help/help-token.html">
+  <f:entry title="${%description.token}" field="token" help="/plugin/ironmq-notifier/help/help-token.html">
       <f:textbox />
     </f:entry>
 
-    <f:entry title="Queue Name" field="queueName" help="/plugin/ironmq-notifier/help/help-queueName.html">
-        <f:textbox />
+    <f:entry title="${%description.queueName}" field="queueName" help="/plugin/ironmq-notifier/help/help-queueName.html">
+        <f:textbox default="${%default.QueueName}" />
       </f:entry>
 
     <f:entry title="Preferred Server Name" field="preferredServerName" help="/plugin/ironmq-notifier/help/help-preferredServerName.html">
-        <f:textbox />
+        <f:textbox default="${%default.PreferredServer}" />
       </f:entry>
 
     <f:entry title="Expiry in Seconds" field="expirySeconds" help="/plugin/ironmq-notifier/help/help-expirySeconds.html">
-        <f:textbox />
+        <f:textbox default="806400" />
       </f:entry>
 
   <f:entry title="Send on Success" field="send_success">
-  	<f:checkbox />
+  	<f:checkbox default="true"/>
   </f:entry>
   <f:entry title="Send on Failure" field="send_failure">
-  	<f:checkbox />
+  	<f:checkbox default="true"/>
   </f:entry>
   <f:entry title="Send on Unstable" field="send_unstable">
-  	<f:checkbox />
+  	<f:checkbox default="true" />
   </f:entry>
 </j:jelly>

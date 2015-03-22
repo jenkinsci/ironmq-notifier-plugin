@@ -3,7 +3,6 @@ package org.jenkinsci.plugins.ironmqnotifier;
 import hudson.Extension;
 import hudson.Launcher;
 import hudson.model.*;
-import hudson.model.labels.LabelExpression;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
@@ -28,12 +27,13 @@ import java.util.logging.Logger;
  * @author Mike Caspar
  * @version $Id: $
  */
-public class IronMQNotifier extends Notifier {
+public class IronMQNotifier extends Publisher {
 
     private static final Logger logger
             = Logger.getLogger("IronMQNotifier");
 
     private String preferredServerName;
+    private String defaultPreferredServerName;
 
     public boolean send_success;
     public boolean send_failure;
@@ -73,6 +73,7 @@ public class IronMQNotifier extends Notifier {
 
     }
 
+
     private void adjustDataToAvoidCrashes() {
 
         if (this.queueName.trim().length() == 0) {
@@ -102,8 +103,8 @@ public class IronMQNotifier extends Notifier {
      * {@inheritDoc}
      */
     @Override
-    public Descriptor getDescriptor() {
-        return (Descriptor) super.getDescriptor();
+    public IronMQDescriptor getDescriptor() {
+        return (IronMQDescriptor) super.getDescriptor();
     }
 
     /**
@@ -264,6 +265,8 @@ public class IronMQNotifier extends Notifier {
      * @since 1.0.6
      */
     public long getExpirySeconds() {
+
+
         return this.expirySeconds;
     }
 
@@ -290,6 +293,7 @@ public class IronMQNotifier extends Notifier {
 
     }
 
+
     /**
      * <p>Getter for the field <code>preferredServerName</code>.</p>
      *
@@ -297,8 +301,33 @@ public class IronMQNotifier extends Notifier {
      * @since 1.0.6
      */
     public String getPreferredServerName() {
+
         return this.preferredServerName;
     }
+
+    /**
+     * <p>Getter for the field <code>defaultPreferredServer</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     * @since 1.0.6
+     */
+    public String getDefaultPreferredServerName() {
+
+        return this.defaultPreferredServerName;
+    }
+
+    /**
+     * <p>Setter for the field <code>defaultPreferredServerName</code>.</p>
+     *
+     * @param defaultPreferredServerName a {@link java.lang.String} object.
+     * @since 1.0.6
+     */
+    public void setDefaultPreferredServerName(final String defaultPreferredServerName) {
+
+        this.defaultPreferredServerName = defaultPreferredServerName;
+
+    }
+
 
     private void logConfigurationWarning() {
 
@@ -307,28 +336,28 @@ public class IronMQNotifier extends Notifier {
     }
 
 
+
+
     // ...............................................  Descriptor .............................................
 
     @Extension
-    public static class Descriptor extends BuildStepDescriptor<Publisher> {
+    public static class IronMQDescriptor extends Descriptor<Publisher> {
 
-
-        @Override
-        public boolean isApplicable(Class<? extends AbstractProject> aClass) {
-            return true;
-        }
 
         @Override
         public String getDisplayName() {
+
             return Messages.IronMQNotifier_DisplayName();
+
+
         }
 
-        public FormValidation doCheckQueueName(
-                @QueryParameter final String value) {
+
+        public FormValidation doCheckQueueName( @QueryParameter final String value) {
 
             IronMQFormValidations validations = new IronMQFormValidations();
 
-            FormValidation validationReturn;
+            hudson.util.FormValidation validationReturn;
 
             if (value == null) {
                 validationReturn = validations.isValidQueueName("");
@@ -341,25 +370,20 @@ public class IronMQNotifier extends Notifier {
 
         }
 
-        public FormValidation doCheckExpirySeconds(
-                @QueryParameter final long value) {
+        public FormValidation doCheckExpirySeconds( @QueryParameter final long value) {
 
             IronMQFormValidations validations = new IronMQFormValidations();
 
-            FormValidation validationReturn;
-
-            validationReturn = validations.isValidExpirySeconds(value);
-
-            return validationReturn;
+            return validations.isValidExpirySeconds(value);
 
         }
 
     }
 
 
+
+
 }
-
-
 
 
 
