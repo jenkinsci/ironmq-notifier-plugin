@@ -4,6 +4,8 @@
 .project
 .settings/
 
+settings.xml
+
 # Package Files #
 *.jar
 *.war
