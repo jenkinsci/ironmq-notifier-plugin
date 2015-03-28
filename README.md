@@ -36,6 +36,14 @@ export MAVEN_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=8000,s
 
 then... setup remote debug in intelliJ or appropriate tool
 
+*** 
+
+If having problems deploying, look here...
+
+[https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins](https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins)
+
+
+
 
 
 
