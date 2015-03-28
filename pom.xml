@@ -76,7 +76,7 @@ limitations under the License.
 
 
     <artifactId>ironmq-notifier</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.8-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
 
