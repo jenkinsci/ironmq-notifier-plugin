@@ -227,7 +227,7 @@ public class IronMQNotifierTest{
     }
 
     @Test
-    public void IronMQNotifier_Extends_Notifier() {
+    public void IronMQNotifier_Extends_Publisher() {
 
         IronMQNotifier notifier = StandardTestNotifier();
         Object check = notifier.getClass().getSuperclass()
@@ -250,5 +250,16 @@ public class IronMQNotifierTest{
         notifier.setPreferredServerName(testString);
         Assert.assertEquals(testString, notifier.getPreferredServerName());
     }
+
+    @Test
+    public void Can_Set_The_DEFAULT_PreferredServerName_Properly() {
+
+        final String testString = "fredDefault.test.com";
+        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS);
+        notifier.setDefaultPreferredServerName(testString);
+        Assert.assertEquals(testString, notifier.getDefaultPreferredServerName());
+    }
+
 
 }
