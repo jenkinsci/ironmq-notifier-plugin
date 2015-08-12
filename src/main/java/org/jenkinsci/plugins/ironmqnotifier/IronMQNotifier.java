@@ -11,12 +11,15 @@ import hudson.util.FormValidation;
 import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
 
+
+import net.sf.json.JSONObject;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.ClientWrapper;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronConstants;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMQSender;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMessageSettings;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
+import org.kohsuke.stapler.StaplerRequest;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -348,14 +351,50 @@ public class IronMQNotifier extends Publisher {
     @Extension
     public static class IronMQDescriptor extends Descriptor<Publisher> {
 
+        private String defaultPreferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+        private String defaultProjectId = "";
+        private String defaultToken = "";
+        private String defaultQueueName = IronConstants.DEF_QUEUE_NAME;
+        private Long defaultExpirySeconds = IronConstants.DEF_EXPIRY_SEC;
 
         @Override
         public String getDisplayName() {
 
             return Messages.IronMQNotifier_DisplayName();
 
-
         }
+
+
+
+        public IronMQDescriptor() {
+            load();
+        }
+
+        public String getDefaultPreferredServerName() {
+            return defaultPreferredServerName;
+        }
+
+        public String getDefaultProjectId() { return defaultProjectId;}
+
+        public String getDefaultToken() { return defaultToken;}
+
+        public String getDefaultQueueName() { return defaultQueueName; }
+
+        public Long getDefaultExpirySeconds() { return defaultExpirySeconds; }
+
+        @Override
+        public boolean configure(StaplerRequest req, JSONObject json) throws FormException {
+            json = json.getJSONObject("ironmqNotifier");
+            defaultPreferredServerName =  json.getString("defaultPreferredServerName");
+            defaultProjectId = json.getString("defaultProjectId");
+            defaultToken = json.getString("defaultToken");
+            defaultQueueName = json.getString("defaultQueueName");
+            defaultExpirySeconds = json.getLong("defaultExpirySeconds");
+
+            save();
+            return true;
+        }
+
 
 
         public FormValidation doCheckQueueName( @QueryParameter final String value) {
