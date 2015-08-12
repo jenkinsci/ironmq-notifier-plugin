@@ -29,7 +29,7 @@ public class IronMQNotifierTest{
     public void IronMQNotifier_Extends_ANotifier() {
         IronMQNotifier notifier = StandardTestNotifier();
         String result = notifier.getClass().getSuperclass().getName();
-        Assert.assertEquals("hudson.tasks.Publisher", result);
+        Assert.assertEquals("hudson.tasks.Notifier", result);
     }
 
     @Test
@@ -233,7 +233,7 @@ public class IronMQNotifierTest{
         IronMQNotifier notifier = StandardTestNotifier();
         Object check = notifier.getClass().getSuperclass()
                 .getSimpleName();
-        Assert.assertEquals("Publisher", check);
+        Assert.assertEquals("Notifier", check);
     }
 
     @Test

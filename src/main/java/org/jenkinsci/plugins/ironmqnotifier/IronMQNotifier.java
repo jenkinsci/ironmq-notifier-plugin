@@ -30,7 +30,7 @@ import java.util.logging.Logger;
  * @author Mike Caspar
  * @version $Id: $
  */
-public class IronMQNotifier extends Publisher {
+public class IronMQNotifier extends Notifier {
 
     private static final Logger logger
             = Logger.getLogger("IronMQNotifier");
@@ -106,8 +106,8 @@ public class IronMQNotifier extends Publisher {
      * {@inheritDoc}
      */
     @Override
-    public IronMQDescriptor getDescriptor() {
-        return (IronMQDescriptor) super.getDescriptor();
+    public DescriptorImpl getDescriptor() {
+        return (DescriptorImpl) super.getDescriptor();
     }
 
     /**
@@ -349,7 +349,7 @@ public class IronMQNotifier extends Publisher {
     // ...............................................  Descriptor .............................................
 
     @Extension
-    public static class IronMQDescriptor extends Descriptor<Publisher> {
+    public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
 
         private String defaultPreferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
         private String defaultProjectId = "";
@@ -365,9 +365,21 @@ public class IronMQNotifier extends Publisher {
         }
 
 
-
-        public IronMQDescriptor() {
+        public DescriptorImpl() {
+            super(IronMQNotifier.class);
             load();
+        }
+
+        @Override
+        public Publisher newInstance(StaplerRequest req, JSONObject formData)
+                throws FormException {
+            return super.newInstance(req, formData);
+        }
+
+
+        @Override
+        public boolean isApplicable(Class<? extends AbstractProject> aClass) {
+            return true;
         }
 
         public String getDefaultPreferredServerName() {
