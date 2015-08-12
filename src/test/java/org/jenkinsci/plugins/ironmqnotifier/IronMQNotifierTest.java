@@ -1,6 +1,7 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
 import hudson.tasks.BuildStepMonitor;
+import org.jenkinsci.plugins.ironmqnotifier.Iron.IronConstants;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -258,6 +259,17 @@ public class IronMQNotifierTest{
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS);
         notifier.setDefaultPreferredServerName(testString);
+        Assert.assertEquals(testString, notifier.getDefaultPreferredServerName());
+    }
+
+    @Test
+    public void The_DEFAULT_Preferred_ServerNameWillBeProperAndNotEmpty() {
+
+        final String  testString =  IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+
+        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS);
+
         Assert.assertEquals(testString, notifier.getDefaultPreferredServerName());
     }
 

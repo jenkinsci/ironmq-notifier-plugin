@@ -313,6 +313,11 @@ public class IronMQNotifier extends Publisher {
      */
     public String getDefaultPreferredServerName() {
 
+        if (this.defaultPreferredServerName == null)
+        {
+            this.defaultPreferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+
+        }
         return this.defaultPreferredServerName;
     }
 
