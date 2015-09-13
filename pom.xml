@@ -90,7 +90,11 @@ limitations under the License.
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+        <findbugs-maven-plugin.version>3.0.1</findbugs-maven-plugin.version>
+        <findbugs.failOnError>true</findbugs.failOnError>
+
     </properties>
+
 
     <licenses>
 
@@ -162,8 +166,15 @@ limitations under the License.
             <version>1.10.19</version>
         </dependency>
 
+         <dependency>
+             <groupId>com.google.code.findbugs</groupId>
+             <artifactId>annotations</artifactId>
+             <version>3.0.0</version>
+             <scope>provided</scope>
+         </dependency>
 
-    </dependencies>
+
+     </dependencies>
 
 
     <scm>
@@ -218,6 +229,24 @@ limitations under the License.
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs-maven-plugin.version}</version>
+                <configuration>
+                    <xmlOutput>true</xmlOutput>
+                    <failOnError>${findbugs.failOnError}</failOnError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>run-findbugs</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
         </plugins>
 
