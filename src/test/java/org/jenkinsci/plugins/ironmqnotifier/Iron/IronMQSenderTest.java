@@ -15,7 +15,7 @@ public class IronMQSenderTest{
     @Test
     public void Can_Create_A_Sender()
     {
-        ironMQSender sender = new ironMQSender();
+        IronMQSender sender = new IronMQSender();
 
         Assert.assertNotNull(sender);
     }
@@ -28,9 +28,9 @@ public class IronMQSenderTest{
         IronMessageSettings mockIronMessageSettings = mock(IronMessageSettings.class);
         when(mockIronMessageSettings.getExpirySeconds ()).thenReturn(0L);
 
-        ironMQSender sender =  new ironMQSender();
+        IronMQSender sender =  new IronMQSender();
 
-        sender.Send (mockClient, mockIronMessageSettings);
+        sender.send (mockClient, mockIronMessageSettings);
 
     }
 
@@ -43,9 +43,9 @@ public class IronMQSenderTest{
         when(mockIronMessageSettings.getExpirySeconds ()).thenReturn(1000L); //avoid exception
         when(mockIronMessageSettings.getQueueName ()).thenReturn ("");
 
-        ironMQSender sender =  new ironMQSender();
+        IronMQSender sender =  new IronMQSender();
 
-        sender.Send (mockClient, mockIronMessageSettings);
+        sender.send (mockClient, mockIronMessageSettings);
 
     }
 
@@ -58,9 +58,9 @@ public class IronMQSenderTest{
         when(mockIronMessageSettings.getExpirySeconds ()).thenReturn(1000L); //avoid exception
         when(mockIronMessageSettings.getQueueName ()).thenReturn (null);
 
-        ironMQSender sender =  new ironMQSender();
+        IronMQSender sender =  new IronMQSender();
 
-        sender.Send (mockClient, mockIronMessageSettings);
+        sender.send (mockClient, mockIronMessageSettings);
 
     }
 }

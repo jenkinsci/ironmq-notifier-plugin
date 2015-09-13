@@ -7,13 +7,13 @@ import io.iron.ironmq.Queue;
 
 import java.io.IOException;
 
-public class ironMQSender {
+public class IronMQSender {
 
-    public ironMQSender() {
+    public IronMQSender() {
         // placeholder for testing
     }
 
-    public void Send ( final Client client,
+    public void send ( final Client client,
                        final IronMessageSettings ironMessageSettings)
             throws IOException, IllegalArgumentException {
 

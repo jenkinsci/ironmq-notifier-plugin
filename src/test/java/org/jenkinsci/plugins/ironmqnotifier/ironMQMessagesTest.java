@@ -6,7 +6,7 @@ import org.jvnet.localizer.Localizable;
 import org.jvnet.localizer.Localizable;
 import org.jvnet.localizer.ResourceBundleHolder;
 
-public class IronMQMessagesTest {
+public class ironMQMessagesTest {
 
 
     @Test

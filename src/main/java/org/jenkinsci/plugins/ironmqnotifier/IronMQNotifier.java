@@ -15,7 +15,7 @@ import io.iron.ironmq.Cloud;
 import net.sf.json.JSONObject;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.clientWrapper;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronConstants;
-import org.jenkinsci.plugins.ironmqnotifier.Iron.ironMQSender;
+import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMQSender;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMessageSettings;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
@@ -147,9 +147,9 @@ public class IronMQNotifier extends Notifier {
 
             IronMessageSettings ironMessageSettings = generateMessageSettings();
 
-            ironMQSender sender = new ironMQSender();
+            IronMQSender sender = new IronMQSender();
 
-            sender.Send(client, ironMessageSettings);
+            sender.send(client, ironMessageSettings);
 
         } catch (Exception ex) {
 
