@@ -5,7 +5,7 @@ import io.iron.ironmq.Message;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ironMqGsonDependencyTest {
+public class IronMqGsonDependencyTest {
 
     @Test
     public void GsonExistsForMessageClassTest() {

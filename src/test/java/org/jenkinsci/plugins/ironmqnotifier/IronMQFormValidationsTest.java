@@ -4,7 +4,7 @@ import hudson.util.FormValidation;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ironMQFormValidationsTest {
+public class IronMQFormValidationsTest {
 
 
     @Test

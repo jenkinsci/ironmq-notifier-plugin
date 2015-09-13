@@ -153,9 +153,9 @@ public class IronMQNotifier extends Notifier {
 
         } catch (Exception ex) {
 
-            logConfigurationWarning();
+            logConfigurationWarning(ex);
 
-            // build.setResult(Result.UNSTABLE);  // not legal
+
             return false;
 
         }
@@ -337,9 +337,10 @@ public class IronMQNotifier extends Notifier {
     }
 
 
-    private void logConfigurationWarning() {
+    private void logConfigurationWarning(Exception ex) {
 
-        logger.warning("Check Configuration Settings");
+
+        logger.warning("Check Configuration Settings - " +  ex.getMessage());
 
     }
 

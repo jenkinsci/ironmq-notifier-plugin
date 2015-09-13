@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import hudson.util.FormValidation;
 
-public class ironConstantsTest {
+public class IronConstantsTest {
 
     @Test
     public void Expiry_Seconds_Not_Null() {
