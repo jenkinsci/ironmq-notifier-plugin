@@ -8,7 +8,6 @@ class IronMQMessage{
 
     private String messageVersion;
     private String jobName;
-    private String messageText;
     private String buildResult;
     private Long expirySeconds;
     private Date submissionDate;
