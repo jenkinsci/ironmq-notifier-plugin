@@ -4,9 +4,9 @@ import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
 
 
-public class ClientWrapper extends Client {
+public class clientWrapper extends Client {
 
-    public ClientWrapper ( String projectId, String token, Cloud cloud ) {
+    public clientWrapper(String projectId, String token, Cloud cloud) {
         super (projectId, token, cloud);
     }
 

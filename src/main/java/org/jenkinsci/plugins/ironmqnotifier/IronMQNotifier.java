@@ -13,9 +13,9 @@ import io.iron.ironmq.Cloud;
 
 
 import net.sf.json.JSONObject;
-import org.jenkinsci.plugins.ironmqnotifier.Iron.ClientWrapper;
+import org.jenkinsci.plugins.ironmqnotifier.Iron.clientWrapper;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronConstants;
-import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMQSender;
+import org.jenkinsci.plugins.ironmqnotifier.Iron.ironMQSender;
 import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMessageSettings;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
@@ -147,7 +147,7 @@ public class IronMQNotifier extends Notifier {
 
             IronMessageSettings ironMessageSettings = generateMessageSettings();
 
-            IronMQSender sender = new IronMQSender();
+            ironMQSender sender = new ironMQSender();
 
             sender.Send(client, ironMessageSettings);
 
@@ -164,7 +164,7 @@ public class IronMQNotifier extends Notifier {
     }
 
     private Client generateClientToUse() {
-        return new ClientWrapper(
+        return new clientWrapper(
                 this.projectId,
                 this.token,
                 new Cloud(IronConstants.DEF_PREFERRED_SERVER_SCHEME,

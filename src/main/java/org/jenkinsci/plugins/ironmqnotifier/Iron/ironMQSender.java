@@ -7,9 +7,9 @@ import io.iron.ironmq.Queue;
 
 import java.io.IOException;
 
-public class IronMQSender {
+public class ironMQSender {
 
-    public IronMQSender () {
+    public ironMQSender() {
         // placeholder for testing
     }
 

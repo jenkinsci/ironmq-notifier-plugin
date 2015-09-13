@@ -15,7 +15,7 @@ public class IronMQSenderTest{
     @Test
     public void Can_Create_A_Sender()
     {
-        IronMQSender sender = new IronMQSender();
+        ironMQSender sender = new ironMQSender();
 
         Assert.assertNotNull(sender);
     }
@@ -24,11 +24,11 @@ public class IronMQSenderTest{
     public void SenderThrows_An_Arg_Exception_On_Zero_Expiry()
             throws IOException, IllegalArgumentException {
 
-        ClientWrapper mockClient = mock(ClientWrapper.class);
+        clientWrapper mockClient = mock(clientWrapper.class);
         IronMessageSettings mockIronMessageSettings = mock(IronMessageSettings.class);
         when(mockIronMessageSettings.getExpirySeconds ()).thenReturn(0L);
 
-        IronMQSender sender =  new IronMQSender();
+        ironMQSender sender =  new ironMQSender();
 
         sender.Send (mockClient, mockIronMessageSettings);
 
@@ -38,12 +38,12 @@ public class IronMQSenderTest{
     public void SenderThrows_An_Arg_Exception_On_Empty_QueueName()
             throws IOException, IllegalArgumentException {
 
-        ClientWrapper mockClient = mock(ClientWrapper.class);
+        clientWrapper mockClient = mock(clientWrapper.class);
         IronMessageSettings mockIronMessageSettings = mock(IronMessageSettings.class);
         when(mockIronMessageSettings.getExpirySeconds ()).thenReturn(1000L); //avoid exception
         when(mockIronMessageSettings.getQueueName ()).thenReturn ("");
 
-        IronMQSender sender =  new IronMQSender();
+        ironMQSender sender =  new ironMQSender();
 
         sender.Send (mockClient, mockIronMessageSettings);
 
@@ -53,12 +53,12 @@ public class IronMQSenderTest{
     public void SenderThrows_An_Arg_Exception_On_Null_QueueName()
             throws IOException, IllegalArgumentException {
 
-        ClientWrapper mockClient = mock(ClientWrapper.class);
+        clientWrapper mockClient = mock(clientWrapper.class);
         IronMessageSettings mockIronMessageSettings = mock(IronMessageSettings.class);
         when(mockIronMessageSettings.getExpirySeconds ()).thenReturn(1000L); //avoid exception
         when(mockIronMessageSettings.getQueueName ()).thenReturn (null);
 
-        IronMQSender sender =  new IronMQSender();
+        ironMQSender sender =  new ironMQSender();
 
         sender.Send (mockClient, mockIronMessageSettings);
 
