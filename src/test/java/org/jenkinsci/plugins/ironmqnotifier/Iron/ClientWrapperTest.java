@@ -10,14 +10,14 @@ public class ClientWrapperTest {
 
     @Test
     public void GenerateClientToUseIsNotNull () {
-        Client testWrapper = new clientWrapper("testproject", "test", new Cloud ("https", "test.com", 443));
+        Client testWrapper = new ClientWrapper("testproject", "test", new Cloud ("https", "test.com", 443));
         Assert.assertNotNull (testWrapper);
 
     }
 
     @Test
     public void GeneratedClientWrapperIsAClient () {
-        clientWrapper testWrapper = new clientWrapper("testproject", "test", new Cloud ("https", "test.com", 443));
+        ClientWrapper testWrapper = new ClientWrapper("testproject", "test", new Cloud ("https", "test.com", 443));
         Assert.assertEquals ("Client", testWrapper.getClass ().getSuperclass ().getSimpleName ());
 
     }
