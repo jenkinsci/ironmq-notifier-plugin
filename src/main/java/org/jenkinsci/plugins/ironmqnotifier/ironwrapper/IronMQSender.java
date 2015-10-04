@@ -1,10 +1,9 @@
-package org.jenkinsci.plugins.ironmqnotifier.Iron;
+package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 
 import io.iron.ironmq.Client;
 import io.iron.ironmq.Message;
 import io.iron.ironmq.Queue;
-import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronMessageSettings;
 
 import java.io.IOException;
 

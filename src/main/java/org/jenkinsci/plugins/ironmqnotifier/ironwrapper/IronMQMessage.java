@@ -1,7 +1,6 @@
-package org.jenkinsci.plugins.ironmqnotifier.Iron;
+package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 import com.google.gson.Gson;
-import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 
 import java.util.Date;
 

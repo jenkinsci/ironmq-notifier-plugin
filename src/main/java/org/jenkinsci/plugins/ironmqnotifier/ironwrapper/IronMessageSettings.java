@@ -1,8 +1,6 @@
 package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 
-import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
-
 public class IronMessageSettings {
 
     private long expirySeconds;

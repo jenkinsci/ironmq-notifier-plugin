@@ -1,9 +1,8 @@
-package org.jenkinsci.plugins.ironmqnotifier.Iron;
+package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 
 import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
-import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.ClientWrapper;
 import org.junit.Assert;
 import org.junit.Test;
 
