@@ -2,7 +2,10 @@ package org.jenkinsci.plugins.ironmqnotifier;
 
 import hudson.Extension;
 import hudson.Launcher;
-import hudson.model.*;
+import hudson.model.AbstractBuild;
+import hudson.model.AbstractProject;
+import hudson.model.BuildListener;
+import hudson.model.Result;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
@@ -10,9 +13,8 @@ import hudson.tasks.Publisher;
 import hudson.util.FormValidation;
 import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
-
-
 import net.sf.json.JSONObject;
+import org.apache.log4j.Logger;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.ClientWrapper;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronMQSender;
@@ -22,7 +24,6 @@ import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 
 /**
  * <p>IronMQNotifier class.</p>
@@ -47,7 +48,7 @@ public class IronMQNotifier extends Notifier {
     private String projectId;
     private String queueName;
     private String jobName = "";
-    private String messageText;
+
     private String resultString = "UNKNOWN";
 
     private Client client;
@@ -316,8 +317,7 @@ public class IronMQNotifier extends Notifier {
      */
     public String getDefaultPreferredServerName() {
 
-        if (this.defaultPreferredServerName == null)
-        {
+        if (this.defaultPreferredServerName == null) {
             this.defaultPreferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
 
         }
@@ -340,11 +340,9 @@ public class IronMQNotifier extends Notifier {
     private void logConfigurationWarning(Exception ex) {
 
 
-        logger.warning("Check Configuration Settings - " +  ex.getMessage());
+        logger.error("Check Configuration Settings - " + ex.getMessage());
 
     }
-
-
 
 
     // ...............................................  Descriptor .............................................
@@ -387,18 +385,26 @@ public class IronMQNotifier extends Notifier {
             return defaultPreferredServerName;
         }
 
-        public String getDefaultProjectId() { return defaultProjectId;}
+        public String getDefaultProjectId() {
+            return defaultProjectId;
+        }
 
-        public String getDefaultToken() { return defaultToken;}
+        public String getDefaultToken() {
+            return defaultToken;
+        }
 
-        public String getDefaultQueueName() { return defaultQueueName; }
+        public String getDefaultQueueName() {
+            return defaultQueueName;
+        }
 
-        public Long getDefaultExpirySeconds() { return defaultExpirySeconds; }
+        public Long getDefaultExpirySeconds() {
+            return defaultExpirySeconds;
+        }
 
         @Override
         public boolean configure(StaplerRequest req, JSONObject json) throws FormException {
             json = json.getJSONObject("ironmqNotifier");
-            defaultPreferredServerName =  json.getString("defaultPreferredServerName");
+            defaultPreferredServerName = json.getString("defaultPreferredServerName");
             defaultProjectId = json.getString("defaultProjectId");
             defaultToken = json.getString("defaultToken");
             defaultQueueName = json.getString("defaultQueueName");
@@ -409,8 +415,7 @@ public class IronMQNotifier extends Notifier {
         }
 
 
-
-        public FormValidation doCheckQueueName( @QueryParameter final String value) {
+        public FormValidation doCheckQueueName(@QueryParameter final String value) {
 
             IronMQFormValidations validations = new IronMQFormValidations();
 
@@ -427,7 +432,7 @@ public class IronMQNotifier extends Notifier {
 
         }
 
-        public FormValidation doCheckExpirySeconds( @QueryParameter final long value) {
+        public FormValidation doCheckExpirySeconds(@QueryParameter final long value) {
 
             IronMQFormValidations validations = new IronMQFormValidations();
 
@@ -436,8 +441,6 @@ public class IronMQNotifier extends Notifier {
         }
 
     }
-
-
 
 
 }
