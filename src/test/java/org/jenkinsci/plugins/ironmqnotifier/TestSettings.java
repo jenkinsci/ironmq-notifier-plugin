@@ -1,7 +1,7 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
 
-import org.jenkinsci.plugins.ironmqnotifier.Iron.IronConstants;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 
 public class TestSettings {
 

@@ -2,6 +2,8 @@ package org.jenkinsci.plugins.ironmqnotifier.Iron;
 
 
 
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.ClientWrapper;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronMessageSettings;
 import org.junit.Assert;
 import org.junit.Test;
 

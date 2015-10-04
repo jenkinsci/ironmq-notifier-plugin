@@ -1,5 +1,7 @@
-package org.jenkinsci.plugins.ironmqnotifier.Iron;
+package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
+
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 
 public class IronMessageSettings {
 

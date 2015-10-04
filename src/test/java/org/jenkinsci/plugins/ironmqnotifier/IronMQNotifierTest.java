@@ -1,7 +1,7 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
 import hudson.tasks.BuildStepMonitor;
-import org.jenkinsci.plugins.ironmqnotifier.Iron.IronConstants;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.junit.Assert;
 import org.junit.Test;
 
