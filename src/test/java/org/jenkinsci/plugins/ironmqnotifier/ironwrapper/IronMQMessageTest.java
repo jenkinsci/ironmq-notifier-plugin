@@ -1,8 +1,6 @@
-package org.jenkinsci.plugins.ironmqnotifier.Iron;
+package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 
-
-import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMQMessage;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -51,7 +49,7 @@ public class IronMQMessageTest {
     @Test
     public void IronMQ_Message_Expiry_Can_Be_Set_And_Returned() {
         IronMQMessage msg = new IronMQMessage();
-        long expected = new Long(10000);
+        long expected = (long) 10000;
         msg.setExpirySeconds(expected);
         Assert.assertEquals(expected, msg.getExpirySeconds());
     }

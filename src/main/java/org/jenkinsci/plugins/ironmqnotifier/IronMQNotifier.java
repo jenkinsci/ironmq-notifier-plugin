@@ -2,7 +2,10 @@ package org.jenkinsci.plugins.ironmqnotifier;
 
 import hudson.Extension;
 import hudson.Launcher;
-import hudson.model.*;
+import hudson.model.AbstractBuild;
+import hudson.model.AbstractProject;
+import hudson.model.BuildListener;
+import hudson.model.Result;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
@@ -10,16 +13,17 @@ import hudson.tasks.Publisher;
 import hudson.util.FormValidation;
 import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
-
-import org.jenkinsci.plugins.ironmqnotifier.Iron.ClientWrapper;
-import org.jenkinsci.plugins.ironmqnotifier.Iron.IronConstants;
-import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMQSender;
-import org.jenkinsci.plugins.ironmqnotifier.Iron.IronMessageSettings;
+import net.sf.json.JSONObject;
+import org.apache.log4j.Logger;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.ClientWrapper;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronMQSender;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronMessageSettings;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
+import org.kohsuke.stapler.StaplerRequest;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 
 /**
  * <p>IronMQNotifier class.</p>
@@ -27,7 +31,7 @@ import java.util.logging.Logger;
  * @author Mike Caspar
  * @version $Id: $
  */
-public class IronMQNotifier extends Publisher {
+public class IronMQNotifier extends Notifier {
 
     private static final Logger logger
             = Logger.getLogger("IronMQNotifier");
@@ -44,7 +48,7 @@ public class IronMQNotifier extends Publisher {
     private String projectId;
     private String queueName;
     private String jobName = "";
-    private String messageText;
+
     private String resultString = "UNKNOWN";
 
     private Client client;
@@ -103,8 +107,8 @@ public class IronMQNotifier extends Publisher {
      * {@inheritDoc}
      */
     @Override
-    public IronMQDescriptor getDescriptor() {
-        return (IronMQDescriptor) super.getDescriptor();
+    public DescriptorImpl getDescriptor() {
+        return (DescriptorImpl) super.getDescriptor();
     }
 
     /**
@@ -146,13 +150,13 @@ public class IronMQNotifier extends Publisher {
 
             IronMQSender sender = new IronMQSender();
 
-            sender.Send(client, ironMessageSettings);
+            sender.send(client, ironMessageSettings);
 
         } catch (Exception ex) {
 
-            logConfigurationWarning();
+            logConfigurationWarning(ex);
 
-            // build.setResult(Result.UNSTABLE);  // not legal
+
             return false;
 
         }
@@ -313,6 +317,10 @@ public class IronMQNotifier extends Publisher {
      */
     public String getDefaultPreferredServerName() {
 
+        if (this.defaultPreferredServerName == null) {
+            this.defaultPreferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+
+        }
         return this.defaultPreferredServerName;
     }
 
@@ -329,31 +337,85 @@ public class IronMQNotifier extends Publisher {
     }
 
 
-    private void logConfigurationWarning() {
+    private void logConfigurationWarning(Exception ex) {
 
-        logger.warning("Check Configuration Settings");
+
+        logger.error("Check Configuration Settings - " + ex.getMessage());
 
     }
-
-
 
 
     // ...............................................  Descriptor .............................................
 
     @Extension
-    public static class IronMQDescriptor extends Descriptor<Publisher> {
+    public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
 
+        private String defaultPreferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+        private String defaultProjectId = "";
+        private String defaultToken = "";
+        private String defaultQueueName = IronConstants.DEF_QUEUE_NAME;
+        private Long defaultExpirySeconds = IronConstants.DEF_EXPIRY_SEC;
 
         @Override
         public String getDisplayName() {
 
             return Messages.IronMQNotifier_DisplayName();
 
-
         }
 
 
-        public FormValidation doCheckQueueName( @QueryParameter final String value) {
+        public DescriptorImpl() {
+            super(IronMQNotifier.class);
+            load();
+        }
+
+        @Override
+        public Publisher newInstance(StaplerRequest req, JSONObject formData)
+                throws FormException {
+            return super.newInstance(req, formData);
+        }
+
+
+        @Override
+        public boolean isApplicable(Class<? extends AbstractProject> aClass) {
+            return true;
+        }
+
+        public String getDefaultPreferredServerName() {
+            return defaultPreferredServerName;
+        }
+
+        public String getDefaultProjectId() {
+            return defaultProjectId;
+        }
+
+        public String getDefaultToken() {
+            return defaultToken;
+        }
+
+        public String getDefaultQueueName() {
+            return defaultQueueName;
+        }
+
+        public Long getDefaultExpirySeconds() {
+            return defaultExpirySeconds;
+        }
+
+        @Override
+        public boolean configure(StaplerRequest req, JSONObject json) throws FormException {
+            json = json.getJSONObject("ironmqNotifier");
+            defaultPreferredServerName = json.getString("defaultPreferredServerName");
+            defaultProjectId = json.getString("defaultProjectId");
+            defaultToken = json.getString("defaultToken");
+            defaultQueueName = json.getString("defaultQueueName");
+            defaultExpirySeconds = json.getLong("defaultExpirySeconds");
+
+            save();
+            return true;
+        }
+
+
+        public FormValidation doCheckQueueName(@QueryParameter final String value) {
 
             IronMQFormValidations validations = new IronMQFormValidations();
 
@@ -370,7 +432,7 @@ public class IronMQNotifier extends Publisher {
 
         }
 
-        public FormValidation doCheckExpirySeconds( @QueryParameter final long value) {
+        public FormValidation doCheckExpirySeconds(@QueryParameter final long value) {
 
             IronMQFormValidations validations = new IronMQFormValidations();
 
@@ -379,8 +441,6 @@ public class IronMQNotifier extends Publisher {
         }
 
     }
-
-
 
 
 }

@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.ironmqnotifier.Iron;
+package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 
 import io.iron.ironmq.Client;
@@ -9,11 +9,11 @@ import java.io.IOException;
 
 public class IronMQSender {
 
-    public IronMQSender () {
+    public IronMQSender() {
         // placeholder for testing
     }
 
-    public void Send ( final Client client,
+    public void send ( final Client client,
                        final IronMessageSettings ironMessageSettings)
             throws IOException, IllegalArgumentException {
 

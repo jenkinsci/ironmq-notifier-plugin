@@ -1,10 +1,11 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
 import hudson.tasks.BuildStepMonitor;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class IronMQNotifierTest{
+public class IronMQNotifierTest {
 
 
     private IronMQNotifier StandardTestNotifier() {
@@ -28,7 +29,7 @@ public class IronMQNotifierTest{
     public void IronMQNotifier_Extends_ANotifier() {
         IronMQNotifier notifier = StandardTestNotifier();
         String result = notifier.getClass().getSuperclass().getName();
-        Assert.assertEquals("hudson.tasks.Publisher", result);
+        Assert.assertEquals("hudson.tasks.Notifier", result);
     }
 
     @Test
@@ -227,12 +228,12 @@ public class IronMQNotifierTest{
     }
 
     @Test
-    public void IronMQNotifier_Extends_Notifier() {
+    public void IronMQNotifier_Extends_Publisher() {
 
         IronMQNotifier notifier = StandardTestNotifier();
         Object check = notifier.getClass().getSuperclass()
                 .getSimpleName();
-        Assert.assertEquals("Publisher", check);
+        Assert.assertEquals("Notifier", check);
     }
 
     @Test
@@ -250,5 +251,27 @@ public class IronMQNotifierTest{
         notifier.setPreferredServerName(testString);
         Assert.assertEquals(testString, notifier.getPreferredServerName());
     }
+
+    @Test
+    public void Can_Set_The_DEFAULT_PreferredServerName_Properly() {
+
+        final String testString = "fredDefault.test.com";
+        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS);
+        notifier.setDefaultPreferredServerName(testString);
+        Assert.assertEquals(testString, notifier.getDefaultPreferredServerName());
+    }
+
+    @Test
+    public void The_DEFAULT_Preferred_ServerNameWillBeProperAndNotEmpty() {
+
+        final String  testString =  IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+
+        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS);
+
+        Assert.assertEquals(testString, notifier.getDefaultPreferredServerName());
+    }
+
 
 }
