@@ -1,18 +1,6 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
 
-import static org.junit.Assert.*;
-
-
-import hudson.PluginWrapper;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
-import org.jvnet.hudson.test.JenkinsRule;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 /*
  * The MIT License
  *
@@ -41,6 +29,13 @@ import java.util.ArrayList;
 /**
  * @author Mike Caspar (imod)
  */
+
+import hudson.PluginWrapper;
+import org.junit.Rule;
+import org.junit.Test;
+import org.jvnet.hudson.test.JenkinsRule;
+
+import static org.junit.Assert.assertNotNull;
 
 
 public class ConfigTest {
