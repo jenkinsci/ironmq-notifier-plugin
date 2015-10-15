@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.ironmqnotifier.Iron;
+package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 
 import io.iron.ironmq.Client;
@@ -10,14 +10,14 @@ public class ClientWrapperTest {
 
     @Test
     public void GenerateClientToUseIsNotNull () {
-        Client testWrapper = new ClientWrapper ("testproject", "test", new Cloud ("https", "test.com", 443));
+        Client testWrapper = new ClientWrapper("testproject", "test", new Cloud ("https", "test.com", 443));
         Assert.assertNotNull (testWrapper);
 
     }
 
     @Test
     public void GeneratedClientWrapperIsAClient () {
-        ClientWrapper testWrapper = new ClientWrapper ("testproject", "test", new Cloud ("https", "test.com", 443));
+        ClientWrapper testWrapper = new ClientWrapper("testproject", "test", new Cloud ("https", "test.com", 443));
         Assert.assertEquals ("Client", testWrapper.getClass ().getSuperclass ().getSimpleName ());
 
     }

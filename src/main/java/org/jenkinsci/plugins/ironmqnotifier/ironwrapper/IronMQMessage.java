@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.ironmqnotifier.Iron;
+package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 import com.google.gson.Gson;
 
@@ -8,7 +8,6 @@ class IronMQMessage{
 
     private String messageVersion;
     private String jobName;
-    private String messageText;
     private String buildResult;
     private Long expirySeconds;
     private Date submissionDate;

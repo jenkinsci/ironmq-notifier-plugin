@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.ironmqnotifier.Iron;
+package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 
 
@@ -30,7 +30,7 @@ public class IronMQSenderTest{
 
         IronMQSender sender =  new IronMQSender();
 
-        sender.Send (mockClient, mockIronMessageSettings);
+        sender.send(mockClient, mockIronMessageSettings);
 
     }
 
@@ -45,7 +45,7 @@ public class IronMQSenderTest{
 
         IronMQSender sender =  new IronMQSender();
 
-        sender.Send (mockClient, mockIronMessageSettings);
+        sender.send(mockClient, mockIronMessageSettings);
 
     }
 
@@ -60,7 +60,7 @@ public class IronMQSenderTest{
 
         IronMQSender sender =  new IronMQSender();
 
-        sender.Send (mockClient, mockIronMessageSettings);
+        sender.send(mockClient, mockIronMessageSettings);
 
     }
 }

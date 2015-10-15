@@ -69,7 +69,7 @@ limitations under the License.
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>1.612</version>
+        <version>1.624</version>
     </parent>
 
 
@@ -90,7 +90,11 @@ limitations under the License.
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+        <findbugs-maven-plugin.version>3.0.1</findbugs-maven-plugin.version>
+        <findbugs.failOnError>true</findbugs.failOnError>
+
     </properties>
+
 
     <licenses>
 
@@ -126,11 +130,7 @@ limitations under the License.
             <url>http://repo.jenkins-ci.org/public/</url>
         </pluginRepository>
 
-        <pluginRepository>
-            <id>iron-io-repo</id>
-            <name>Iron.io Maven repository on GitHub</name>
-            <url>http://iron-io.github.io/maven/repository/</url>
-        </pluginRepository>
+
 
     </pluginRepositories>
 
@@ -143,20 +143,15 @@ limitations under the License.
             <url>http://repo.jenkins-ci.org/public/</url>
         </repository>
 
-        <repository>
-            <id>iron-io-repo</id>
-            <name>Iron.io Maven repository on GitHub</name>
-            <url>http://iron-io.github.io/maven/repository/</url>
-        </repository>
 
     </repositories>
 
      <dependencies>
 
         <dependency>
-            <groupId>ironmq</groupId>
+            <groupId>io.iron.ironmq</groupId>
             <artifactId>ironmq</artifactId>
-            <version>0.0.10</version>
+            <version>0.0.19</version>
         </dependency>
 
         <dependency>
@@ -171,8 +166,15 @@ limitations under the License.
             <version>1.10.19</version>
         </dependency>
 
+         <dependency>
+             <groupId>com.google.code.findbugs</groupId>
+             <artifactId>annotations</artifactId>
+             <version>3.0.0</version>
+             <scope>provided</scope>
+         </dependency>
 
-    </dependencies>
+
+     </dependencies>
 
 
     <scm>
@@ -227,6 +229,24 @@ limitations under the License.
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs-maven-plugin.version}</version>
+                <configuration>
+                    <xmlOutput>true</xmlOutput>
+                    <failOnError>${findbugs.failOnError}</failOnError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>run-findbugs</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
         </plugins>
 
