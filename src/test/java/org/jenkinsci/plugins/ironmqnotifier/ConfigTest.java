@@ -30,6 +30,8 @@ package org.jenkinsci.plugins.ironmqnotifier;
  * @author Mike Caspar (imod)
  */
 
+import com.gargoylesoftware.htmlunit.WebAssert;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import hudson.PluginWrapper;
 import org.junit.Rule;
 import org.junit.Test;
@@ -57,6 +59,18 @@ public class ConfigTest {
         PluginWrapper wrapper = j.getPluginManager().getPlugin("ironmq-notifier");
 
         assertNotNull("should have a valid plugin", wrapper);
+
+
+    }
+
+    @Test
+    public void JenkinsConfigShouldShowConfigForDefaults() throws Exception {
+
+
+
+        HtmlPage page = j.createWebClient().goTo("configure");
+
+        WebAssert.assertTextPresent(page, "IronMQ Notifier");
 
 
     }

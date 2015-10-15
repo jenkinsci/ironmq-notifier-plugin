@@ -63,7 +63,8 @@ limitations under the License.
 
   -->
 
-  <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -131,7 +132,6 @@ limitations under the License.
         </pluginRepository>
 
 
-
     </pluginRepositories>
 
     <!-- get every artifact through repo.jenkins-ci.org,
@@ -146,7 +146,7 @@ limitations under the License.
 
     </repositories>
 
-     <dependencies>
+    <dependencies>
 
         <dependency>
             <groupId>io.iron.ironmq</groupId>
@@ -166,15 +166,31 @@ limitations under the License.
             <version>1.10.19</version>
         </dependency>
 
-         <dependency>
-             <groupId>com.google.code.findbugs</groupId>
-             <artifactId>annotations</artifactId>
-             <version>3.0.0</version>
-             <scope>provided</scope>
-         </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>annotations</artifactId>
+            <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
 
 
-     </dependencies>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>1.3</version>
+        </dependency>
+
+    </dependencies>
 
 
     <scm>
@@ -185,8 +201,8 @@ limitations under the License.
             scm:git:ssh://git@github.com/jenkinsci/ironmq-notifier-plugin.git
         </developerConnection>
         <url>https://github.com/jenkinsci/ironmq-notifier-plugin</url>
-      <tag>ironmq-notifier-1.0.8</tag>
-  </scm>
+        <tag>ironmq-notifier-1.0.8</tag>
+    </scm>
 
     <ciManagement>
         <system>Jenkins</system>
@@ -249,8 +265,6 @@ limitations under the License.
             </plugin>
 
         </plugins>
-
-
 
 
     </build>
