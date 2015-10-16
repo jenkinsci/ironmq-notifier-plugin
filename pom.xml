@@ -96,7 +96,7 @@ limitations under the License.
         <findbugs-annotations.version>3.0.1</findbugs-annotations.version>
 
         <mockito.version>1.10.19</mockito.version>
-        <gson.version>2.3.1</gson.version>
+        <gson.version>2.4</gson.version>
         <hamcrest.version>1.2.1</hamcrest.version>
 
     </properties>
