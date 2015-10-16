@@ -66,14 +66,23 @@ public class ConfigTest {
     @Test
     public void JenkinsConfigShouldShowConfigForDefaults() throws Exception {
 
-
-
         HtmlPage page = j.createWebClient().goTo("configure");
-
         WebAssert.assertTextPresent(page, "IronMQ Notifier");
-
 
     }
 
+
+    @Test
+    public void ConfigureShowsAppropriateFields() throws Exception {
+        HtmlPage page = j.createWebClient().goTo("configure");
+
+        WebAssert.assertInputPresent(page, "_.defaultPreferredServerName");
+        WebAssert.assertInputPresent(page, "_.defaultProjectId");
+        WebAssert.assertInputPresent(page, "_.defaultToken");
+        WebAssert.assertInputPresent(page, "_.defaultQueueName");
+        WebAssert.assertInputPresent(page, "_.defaultExpirySeconds");
+
+
+    }
 
 }
