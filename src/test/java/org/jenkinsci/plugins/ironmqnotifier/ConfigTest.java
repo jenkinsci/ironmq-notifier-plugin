@@ -90,7 +90,7 @@ public class ConfigTest {
     }
 
     @Test
-    public void ConfigureShowsDefaults() throws Exception {
+    public void ConfigureShowsConstantDefaultPreferredServer() throws Exception {
 
         HtmlPage page = j.createWebClient().goTo("configure");
         HtmlTextInput inputElement = page.getElementByName("_.defaultPreferredServerName");
@@ -102,7 +102,35 @@ public class ConfigTest {
         assertNotEquals("", inputElement);
         assertEquals(expectedDefaultServer, inputElement.getDefaultValue());
 
+    }
+
+    @Test
+    public void ConfigureShowsConstantDefaultQueueName() throws Exception {
+
+        HtmlPage page = j.createWebClient().goTo("configure");
+        HtmlTextInput inputElement = page.getElementByName("_.defaultQueueName");
+
+        String expectedDefaultServer = IronConstants.DEF_QUEUE_NAME;
+
+
+        assertNotNull(inputElement);
+        assertNotEquals("", inputElement);
+        assertEquals(expectedDefaultServer, inputElement.getDefaultValue());
 
     }
 
+    @Test
+    public void ConfigureShowsConstantDefaultExpirySeconds() throws Exception {
+
+        HtmlPage page = j.createWebClient().goTo("configure");
+        HtmlTextInput inputElement = page.getElementByName("_.defaultExpirySeconds");
+
+        long expectedDefaultServer = IronConstants.DEF_EXPIRY_SEC;
+
+
+        assertNotNull(inputElement);
+        assertNotEquals("", inputElement);
+        assertEquals(expectedDefaultServer,Long.parseLong(inputElement.getDefaultValue()));
+
+    }
 }
