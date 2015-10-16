@@ -31,6 +31,7 @@ package org.jenkinsci.plugins.ironmqnotifier;
  */
 
 import com.gargoylesoftware.htmlunit.WebAssert;
+
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import hudson.PluginWrapper;
@@ -111,7 +112,6 @@ public class ConfigTest {
         HtmlTextInput inputElement = page.getElementByName("_.defaultQueueName");
 
         String expectedDefaultServer = IronConstants.DEF_QUEUE_NAME;
-
 
         assertNotNull(inputElement);
         assertNotEquals("", inputElement);
