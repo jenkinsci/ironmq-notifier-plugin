@@ -32,11 +32,15 @@ package org.jenkinsci.plugins.ironmqnotifier;
 
 import com.gargoylesoftware.htmlunit.WebAssert;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import hudson.PluginWrapper;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 
@@ -74,6 +78,7 @@ public class ConfigTest {
 
     @Test
     public void ConfigureShowsAppropriateFields() throws Exception {
+
         HtmlPage page = j.createWebClient().goTo("configure");
 
         WebAssert.assertInputPresent(page, "_.defaultPreferredServerName");
@@ -81,6 +86,21 @@ public class ConfigTest {
         WebAssert.assertInputPresent(page, "_.defaultToken");
         WebAssert.assertInputPresent(page, "_.defaultQueueName");
         WebAssert.assertInputPresent(page, "_.defaultExpirySeconds");
+
+    }
+
+    @Test
+    public void ConfigureShowsDefaults() throws Exception {
+
+        HtmlPage page = j.createWebClient().goTo("configure");
+        HtmlTextInput inputElement = page.getElementByName("_.defaultPreferredServerName");
+
+        String expectedDefaultServer = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+
+
+        assertNotNull(inputElement);
+        assertNotEquals("", inputElement);
+        assertEquals(expectedDefaultServer, inputElement.getDefaultValue());
 
 
     }
