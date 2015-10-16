@@ -356,17 +356,17 @@ public class IronMQNotifier extends Notifier {
         private String defaultQueueName = IronConstants.DEF_QUEUE_NAME;
         private Long defaultExpirySeconds = IronConstants.DEF_EXPIRY_SEC;
 
+
+        public DescriptorImpl() {
+            super(IronMQNotifier.class);
+            load();
+        }
+
         @Override
         public String getDisplayName() {
 
             return Messages.IronMQNotifier_DisplayName();
 
-        }
-
-
-        public DescriptorImpl() {
-            super(IronMQNotifier.class);
-            load();
         }
 
         @Override
