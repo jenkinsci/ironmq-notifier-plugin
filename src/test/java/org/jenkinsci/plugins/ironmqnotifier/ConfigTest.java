@@ -72,7 +72,11 @@ public class ConfigTest {
     public void JenkinsConfigShouldShowConfigForDefaults() throws Exception {
 
         HtmlPage page = j.createWebClient().goTo("configure");
-        WebAssert.assertTextPresent(page, "IronMQ Notifier");
+
+        assertEquals("Expect to find one instance of this name", page.getElementsByName("ironmqNotifier").size(), 1);
+
+        assertEquals("Expect to find one instance of this name",
+                page.getElementsByName("org-jenkinsci-plugins-ironmqnotifier-IronMQNotifier").size(), 1);
 
     }
 
@@ -130,7 +134,7 @@ public class ConfigTest {
 
         assertNotNull(inputElement);
         assertNotEquals("", inputElement);
-        assertEquals(expectedDefaultServer,Long.parseLong(inputElement.getDefaultValue()));
+        assertEquals(expectedDefaultServer, Long.parseLong(inputElement.getDefaultValue()));
 
     }
 }
