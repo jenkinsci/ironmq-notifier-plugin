@@ -33,7 +33,7 @@ import java.io.IOException;
  */
 public class IronMQNotifier extends Notifier {
 
-    private static final Logger logger
+    private static final Logger LOGGER
             = Logger.getLogger("IronMQNotifier");
 
     private String preferredServerName;
@@ -340,7 +340,7 @@ public class IronMQNotifier extends Notifier {
     private void logConfigurationWarning(Exception ex) {
 
 
-        logger.error("Check Configuration Settings - " + ex.getMessage());
+        LOGGER.error("Check Configuration Settings - " + ex.getMessage());
 
     }
 
