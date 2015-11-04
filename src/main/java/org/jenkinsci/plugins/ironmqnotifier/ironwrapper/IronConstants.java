@@ -12,11 +12,5 @@ public final class IronConstants {
 
     public static final long MILLISECONDS_TO_SECONDS_CONVERSION = 1000;
 
-    /**
-     * <p>Constructor for IronConstants.</p>
-     */
-    public IronConstants() {
-        //placeholder
-    }
 
 }
