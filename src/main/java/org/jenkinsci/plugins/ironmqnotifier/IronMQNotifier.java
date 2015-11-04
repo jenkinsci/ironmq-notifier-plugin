@@ -402,8 +402,10 @@ public class IronMQNotifier extends Notifier {
         }
 
         @Override
-        public boolean configure(StaplerRequest req, JSONObject json) throws FormException {
-            json = json.getJSONObject("ironmqNotifier");
+        public boolean configure(StaplerRequest req, JSONObject formdata) throws FormException {
+
+            JSONObject json = formdata.getJSONObject("ironmqNotifier");
+
             defaultPreferredServerName = json.getString("defaultPreferredServerName");
             defaultProjectId = json.getString("defaultProjectId");
             defaultToken = json.getString("defaultToken");
