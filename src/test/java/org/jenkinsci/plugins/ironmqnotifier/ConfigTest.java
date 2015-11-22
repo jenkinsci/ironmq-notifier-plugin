@@ -31,8 +31,6 @@ package org.jenkinsci.plugins.ironmqnotifier;
  */
 
 import com.gargoylesoftware.htmlunit.WebAssert;
-
-import com.gargoylesoftware.htmlunit.html.HtmlNumberInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import hudson.PluginWrapper;
@@ -41,9 +39,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 
 public class ConfigTest {
@@ -129,7 +125,7 @@ public class ConfigTest {
 
         HtmlPage page = j.createWebClient().goTo("configure");
 
-        HtmlNumberInput inputElement = page.getElementByName("_.defaultExpirySeconds");
+        HtmlTextInput inputElement = page.getElementByName("_.defaultExpirySeconds");
 
         long expectedDefaultServer = IronConstants.DEF_EXPIRY_SEC;
 
