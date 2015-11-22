@@ -32,6 +32,7 @@ package org.jenkinsci.plugins.ironmqnotifier;
 
 import com.gargoylesoftware.htmlunit.WebAssert;
 
+import com.gargoylesoftware.htmlunit.html.HtmlNumberInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import hudson.PluginWrapper;
@@ -127,7 +128,8 @@ public class ConfigTest {
     public void ConfigureShowsConstantDefaultExpirySeconds() throws Exception {
 
         HtmlPage page = j.createWebClient().goTo("configure");
-        HtmlTextInput inputElement = page.getElementByName("_.defaultExpirySeconds");
+
+        HtmlNumberInput inputElement = page.getElementByName("_.defaultExpirySeconds");
 
         long expectedDefaultServer = IronConstants.DEF_EXPIRY_SEC;
 
