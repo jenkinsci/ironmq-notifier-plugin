@@ -38,7 +38,7 @@ public class IronMQSender {
 
 
         String resultOfQueuePush
-                = queue.push (message.getBody (), 0, 0, message.getExpiresIn ());
+                = queue.push (message.getBody(), 0, message.getExpiresIn()) ;
 
         if(resultOfQueuePush == null
                 || resultOfQueuePush.length () == 0) {
