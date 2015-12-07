@@ -52,6 +52,10 @@ public class IronConstantsTest {
     }
 
     @Test
+    public void DefaultServerForVersion3IsCorrect() {
+        Assert.assertEquals("mq-aws-us-east-1-1.iron.io", IronConstants.DEFAULT_PREFERRED_SERVER_NAME);
+    }
+    @Test
     public void DefaultPreferredServerPort_Valid_And_NotNull() {
         Assert.assertNotNull(IronConstants.DEF_PREFERRED_SERVER_PORT);
         Assert.assertNotEquals(0,IronConstants.DEF_PREFERRED_SERVER_PORT);
