@@ -3,8 +3,8 @@ Jenkins ironmq-notifier plugin
 
 For information about the iron.io notifier, see http://www.iron.io/mq
 
-* Warning.. This version uses ironmq api version 3 (version 2 has been deprecated)  After doing this upgrade, you will likely need to change your servers to version 3 api servers !
-
+- Warning.. This version uses ironmq api version 3 (version 2 has been deprecated)  After doing this upgrade, you will likely need to change your servers to version 3 api servers !
+- Warning.. Due to major changes in the message expiry approach on queues, the expiry time will still be part of fields for backward compatibility but are ignored.
 
 ***
 This plugin uses the IronMQ messaging service to send status updates of build information into an enterprise level cloud based message queue.  The messages have FIFO ordering so they can be dealt with by different clients as needed.
