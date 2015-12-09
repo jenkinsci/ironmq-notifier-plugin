@@ -4,9 +4,6 @@ package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Date;
-import java.util.regex.Pattern;
-
 public class IronMQMessageTest {
 
     @Test
@@ -113,24 +110,7 @@ public class IronMQMessageTest {
         Assert.assertEquals("Date", msg.getSubmissionDate().getClass().getSimpleName());
     }
 
-    @Test
-    public void IronMQ_Message_Has_A_Function_To_Calculate_Expriry_Time_Expected() {
-        IronMQMessage msg = new IronMQMessage();
-        msg.setExpirySeconds(806400L);
-        Assert.assertNotNull(msg.getExpiresDate());
-    }
 
-    @Test
-    public void IronMQ_Message_ExpiresDate_Should_Be_Set_Properly() {
-        IronMQMessage msg = new IronMQMessage();
-        long testExpiry = 500L;
-        msg.setExpirySeconds(testExpiry);
 
-        Date startDate = msg.getSubmissionDate();
 
-        long expectedResultDate = startDate.getTime();
-        Date expectedNewDateTime = new Date(expectedResultDate + (testExpiry * 1000));
-
-        Assert.assertEquals(expectedNewDateTime, msg.getExpiresDate());
-    }
 }

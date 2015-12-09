@@ -11,7 +11,6 @@ class IronMQMessage{
     private String buildResult;
     private Long expirySeconds;
     private Date submissionDate;
-    private Date expiresDate;
 
 
     IronMQMessage() {
@@ -23,7 +22,6 @@ class IronMQMessage{
         this.expirySeconds = IronConstants.DEF_EXPIRY_SEC;
         this.submissionDate = new Date();
 
-        this.expiresDate = calculateNewExpiryDate(this.submissionDate, this.expirySeconds);
 
     }
 
@@ -72,8 +70,6 @@ class IronMQMessage{
     public void setExpirySeconds( final long expirySeconds ) {
         this.expirySeconds
                 = expirySeconds;
-        this.expiresDate
-                = calculateNewExpiryDate(this.submissionDate, expirySeconds);
 
     }
 
@@ -114,22 +110,5 @@ class IronMQMessage{
         return submissionDate;
     }
 
-    /**
-     * <p>Getter for the field <code>expiresDate</code>.</p>
-     *
-     * @return a {@link java.util.Date} object.
-     */
-    public Date getExpiresDate() {
-        return expiresDate;
-    }
-
-    private Date calculateNewExpiryDate( final Date submissionDate,
-                                         final long expirySeconds ) {
-
-        long t = submissionDate.getTime();
-        return new
-                Date(t + (expirySeconds * IronConstants
-                .MILLISECONDS_TO_SECONDS_CONVERSION));
-    }
 }
 
