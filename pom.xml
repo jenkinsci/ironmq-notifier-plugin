@@ -200,7 +200,7 @@ limitations under the License.
             scm:git:ssh://git@github.com/jenkinsci/ironmq-notifier-plugin.git
         </developerConnection>
         <url>https://github.com/jenkinsci/ironmq-notifier-plugin</url>
-        <tag>ironmq-notifier-1.0.12</tag>
+        <tag>ironmq-notifier-1.0.13</tag>
     </scm>
 
     <ciManagement>
