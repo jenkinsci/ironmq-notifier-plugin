@@ -46,6 +46,20 @@ If having problems deploying, look here...
 [https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins](https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins)
 
 
+I am deploying on my system by using the command...
+
+mvn release:prepare release:perform  (local m2/settings.xml has userid and pasword)
+
+local m2 settings has...
+
+
+    <servers>
+        <server>
+          <id>maven.jenkins-ci.org</id>
+          <username>mikecaspar</username>
+          <password>**************</password>  (jira password)
+        </server>
+      </servers>
 
 
 
