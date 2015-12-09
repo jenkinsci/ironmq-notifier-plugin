@@ -1,8 +1,6 @@
 package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 import com.google.gson.Gson;
-import com.google.gson.internal.ObjectConstructor;
-import jenkins.model.Jenkins;
 
 import java.util.Date;
 

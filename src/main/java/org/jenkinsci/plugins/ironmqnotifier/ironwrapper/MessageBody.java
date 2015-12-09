@@ -8,22 +8,21 @@ public class MessageBody {
     private String jobName;
     private String buildResult;
     private Date submissionDate;
-    private String version;
 
 
-    public void setMessageVersion(String messageVersion) {
+    public void setMessageVersion(final String messageVersion) {
         this.messageVersion = messageVersion;
     }
 
-    public void setJobName(String jobName) {
+    public void setJobName(final String jobName) {
         this.jobName = jobName;
     }
 
-    public void setBuildResult(String buildResult) {
+    public void setBuildResult(final String buildResult) {
         this.buildResult = buildResult;
     }
 
-    public void setSubmissionDate(Date submissionDate) {
+    public void setSubmissionDate(final Date submissionDate) {
         this.submissionDate = submissionDate;
     }
 
@@ -36,11 +35,15 @@ public class MessageBody {
         return buildResult;
     }
 
-    public Date getSubmissionDate() {
-        return submissionDate;
-    }
-
     public String getMessageVersion() {
         return messageVersion;
     }
+
+    public Date getSubmissionDate() {
+
+        return submissionDate;
+
+
+    }
+
 }
