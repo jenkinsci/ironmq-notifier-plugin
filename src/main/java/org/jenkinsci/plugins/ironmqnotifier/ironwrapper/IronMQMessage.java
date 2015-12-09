@@ -16,7 +16,7 @@ class IronMQMessage{
 
     IronMQMessage() {
 
-        this.messageVersion = "1";
+        this.messageVersion = IronConstants.DEF_MESSAGE_VERSION;
 
         this.jobName = "";
         this.buildResult = "";

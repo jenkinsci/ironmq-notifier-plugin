@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.regex.Pattern;
 
 public class IronMQMessageTest {
 
@@ -60,6 +61,26 @@ public class IronMQMessageTest {
         final String testString = "1.0.5";
         msg.setMessageVersion(testString);
         Assert.assertEquals(testString, msg.getMessageVersion());
+    }
+
+    @Test
+    public void IronMQ_Has_Message_Version_GT_3_By_Default() {
+        IronMQMessage msg = new IronMQMessage();
+
+        final String stringToMatch = "3";
+
+        Boolean result = msg.getMessageVersion().startsWith(stringToMatch);
+
+
+        Assert.assertEquals("Expected a version greater than 3 but was not", true, result);
+    }
+    @Test
+    public void IronMQ_Version_Default_Is_Obtained_From_Constants_For_Easy_Upgrade() {
+        IronMQMessage msg = new IronMQMessage();
+
+
+        Assert.assertEquals("Expected a version that matches Constants but was not set", IronConstants.DEF_MESSAGE_VERSION, msg.getMessageVersion());
+
     }
 
     @Test

@@ -17,7 +17,7 @@
             <f:textbox default="Jenkins" />
         </f:entry>
 
-        <f:entry title="${%Default Expiry in Seconds}" field="defaultExpirySeconds">
+        <f:entry title="${%Default Expiry in Seconds} (deprecated)" field="defaultExpirySeconds">
             <f:number default = "=806401" />
         </f:entry>
 

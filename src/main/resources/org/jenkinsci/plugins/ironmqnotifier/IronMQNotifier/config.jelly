@@ -16,7 +16,7 @@
         <f:textbox default="${descriptor.getDefaultPreferredServerName()}" />
     </f:entry>
 
-    <f:entry title="Expiry in Seconds" field="expirySeconds" help="/plugin/ironmq-notifier/help/help-expirySeconds.html">
+    <f:entry title="Expiry in Seconds (deprecated)" field="expirySeconds" help="/plugin/ironmq-notifier/help/help-expirySeconds.html">
         <f:number default="${descriptor.getDefaultExpirySeconds()}" />
       </f:entry>
 
