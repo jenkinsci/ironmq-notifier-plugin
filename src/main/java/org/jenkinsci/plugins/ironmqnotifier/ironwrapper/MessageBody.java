@@ -23,7 +23,10 @@ public class MessageBody {
     }
 
     public void setSubmissionDate(final Date submissionDate) {
-        this.submissionDate = submissionDate;
+
+        this.submissionDate = submissionDate == null ? null : (Date) submissionDate.clone();
+
+
     }
 
 
@@ -41,8 +44,7 @@ public class MessageBody {
 
     public Date getSubmissionDate() {
 
-        return submissionDate;
-
+        return submissionDate == null ? null : (Date) submissionDate.clone();
 
     }
 
