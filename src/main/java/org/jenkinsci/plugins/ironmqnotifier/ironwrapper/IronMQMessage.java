@@ -1,6 +1,8 @@
 package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 import com.google.gson.Gson;
+import com.google.gson.internal.ObjectConstructor;
+import jenkins.model.Jenkins;
 
 import java.util.Date;
 
@@ -97,8 +99,17 @@ class IronMQMessage{
      * @return a {@link java.lang.String} object.
      */
     public String toJson() {
+
+        MessageBody messageBody = new MessageBody();
+        messageBody.setMessageVersion(getMessageVersion());
+        messageBody.setJobName(getJobName());
+        messageBody.setBuildResult(getBuildResult());
+        messageBody.setSubmissionDate(getSubmissionDate());
+
+
         Gson gson = new Gson();
-        return gson.toJson(this);
+        return gson.toJson(messageBody);
+
     }
 
     /**
