@@ -93,6 +93,6 @@ public class IronConstantsTest {
     @Test
     public void IronConstantsConstructorTest()
     {
-        Assert.assertNotNull(new IronConstants());
+        Assert.assertNotNull(IronConstants.class);
     }
 }
