@@ -37,7 +37,7 @@ public class IronMessageSettings {
         return this.queueName;
     }
 
-    public void setQueueName(final String queueName) throws IllegalArgumentException{
+    public void setQueueName(final String queueName) {
         if (queueName==null) {
             throw new IllegalArgumentException("queueName Cannot be null");
         }
