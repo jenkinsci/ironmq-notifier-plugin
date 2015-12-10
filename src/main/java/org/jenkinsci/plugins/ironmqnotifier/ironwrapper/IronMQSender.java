@@ -15,7 +15,7 @@ public class IronMQSender {
 
     public void send(final Client client,
                      final IronMessageSettings ironMessageSettings)
-            throws IOException, IllegalArgumentException {
+            throws IOException {
 
         checkMessageParameters(ironMessageSettings);
 
