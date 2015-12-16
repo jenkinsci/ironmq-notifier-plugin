@@ -46,8 +46,7 @@ public class IronMQSender {
         }
     }
 
-    private void checkMessageParameters(final IronMessageSettings ironMessageSettings)
-            throws IllegalArgumentException {
+    private void checkMessageParameters(final IronMessageSettings ironMessageSettings) {
 
         if (ironMessageSettings.getExpirySeconds() == 0) {
             throw new IllegalArgumentException("expiry seconds Zero exception");
