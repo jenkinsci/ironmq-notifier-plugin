@@ -48,7 +48,9 @@ If having problems deploying, look here...
 
 I am deploying on my system by using the command...
 
-mvn release:prepare release:perform  (local m2/settings.xml has userid and pasword)
+`mvn release:prepare release:perform `
+
+(local m2/settings.xml has userid and pasword)
 
 local m2 settings has...
 
