@@ -95,8 +95,6 @@ limitations under the License.
         <findbugs.failOnError>true</findbugs.failOnError>
         <findbugs-annotations.version>3.0.0</findbugs-annotations.version>
 
-        <mockito.version>1.10.19</mockito.version>
-
     </properties>
 
 
@@ -166,7 +164,7 @@ limitations under the License.
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <version>${mockito.version}</version>
+            <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
 
