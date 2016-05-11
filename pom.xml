@@ -160,7 +160,7 @@ limitations under the License.
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.4</version>
+            <version>2.6.2</version>
         </dependency>
 
         <dependency>
@@ -199,7 +199,7 @@ limitations under the License.
             scm:git:ssh://git@github.com/jenkinsci/ironmq-notifier-plugin.git
         </developerConnection>
         <url>https://github.com/jenkinsci/ironmq-notifier-plugin</url>
-        <tag>ironmq-notifier-1.0.13</tag>
+        <tag>ironmq-notifier-1.0.14</tag>
     </scm>
 
     <ciManagement>
