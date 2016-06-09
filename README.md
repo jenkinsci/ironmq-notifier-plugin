@@ -45,10 +45,7 @@ If having problems deploying, look here...
 
 [https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins](https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins)
 
-
-I am deploying on my system by using the command...
-
-`mvn release:prepare release:perform `
+To Deploy.. first check
 
 (local m2/settings.xml has userid and pasword)
 
@@ -63,6 +60,11 @@ local m2 settings has...
         </server>
       </servers>
 
+and ensure that the password is the current Jenkins WIKI account password
+
+Then, to deploy, use the command...
+
+`mvn release:prepare release:perform `
 
 
 
