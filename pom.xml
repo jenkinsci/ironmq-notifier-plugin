@@ -92,9 +92,6 @@ limitations under the License.
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <findbugs-maven-plugin.version>3.0.1</findbugs-maven-plugin.version>
-        <findbugs.failOnError>false</findbugs.failOnError>
-
     </properties>
 
 
@@ -244,10 +241,10 @@ limitations under the License.
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>${findbugs-maven-plugin.version}</version>
+                <version>3.0.3</version>
                 <configuration>
                     <xmlOutput>true</xmlOutput>
-                    <failOnError>${findbugs.failOnError}</failOnError>
+                    <failOnError>true</failOnError>
                 </configuration>
                 <executions>
                     <execution>
