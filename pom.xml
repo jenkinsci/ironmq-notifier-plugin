@@ -93,7 +93,6 @@ limitations under the License.
 
         <findbugs-maven-plugin.version>3.0.1</findbugs-maven-plugin.version>
         <findbugs.failOnError>true</findbugs.failOnError>
-        <findbugs-annotations.version>3.0.0</findbugs-annotations.version>
 
     </properties>
 
@@ -171,7 +170,7 @@ limitations under the License.
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>annotations</artifactId>
-            <version>${findbugs-annotations.version}</version>
+            <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
 
