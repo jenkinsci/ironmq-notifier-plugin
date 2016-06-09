@@ -93,7 +93,7 @@ limitations under the License.
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <findbugs-maven-plugin.version>3.0.1</findbugs-maven-plugin.version>
-        <findbugs.failOnError>true</findbugs.failOnError>
+        <findbugs.failOnError>false</findbugs.failOnError>
 
     </properties>
 
