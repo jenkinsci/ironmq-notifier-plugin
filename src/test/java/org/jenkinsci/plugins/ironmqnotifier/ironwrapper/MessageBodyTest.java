@@ -40,5 +40,21 @@ public class MessageBodyTest {
 
     }
 
+    @Test
+    public void EmptyMessageVersionReturnsCorrectVersion() {
+        MessageBody messageBody = new MessageBody();
+
+        Date testDate = new Date();
+
+        String expectedVersion = "3.0";
+
+        messageBody.setJobName("test");
+        messageBody.setBuildResult("failed");
+        messageBody.setSubmissionDate(testDate);
+
+        Assert.assertEquals(expectedVersion, messageBody.getMessageVersion());
+
+
+    }
 
 }

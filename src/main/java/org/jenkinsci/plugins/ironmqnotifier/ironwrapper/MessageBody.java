@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MessageBody {
 
-    private String messageVersion;
+    private String messageVersion = "3.0";
     private String jobName;
     private String buildResult;
     private Date submissionDate;
@@ -36,22 +36,20 @@ public class MessageBody {
 
 
     public String getJobName() {
-        return jobName;
+        return this.jobName;
     }
 
     public String getBuildResult() {
-        return buildResult;
+        return this.buildResult;
     }
 
     public String getMessageVersion() {
-        return messageVersion;
+        return this.messageVersion;
     }
 
     public Date getSubmissionDate() {
 
-
         return this.submissionDate;
-
 
     }
 
