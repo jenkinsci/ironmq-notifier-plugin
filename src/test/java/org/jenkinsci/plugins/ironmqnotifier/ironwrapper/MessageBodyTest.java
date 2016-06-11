@@ -29,7 +29,16 @@ public class MessageBodyTest {
 
     }
 
+    @Test
+    public void An_Empty_SubmissionDate_Defaults_to_today () {
+        MessageBody messageBody = new MessageBody();
 
+        Date expectedDate = new Date();
+
+        messageBody.setSubmissionDate(null);
+        Assert.assertEquals(expectedDate, messageBody.getSubmissionDate());
+
+    }
 
 
 }
