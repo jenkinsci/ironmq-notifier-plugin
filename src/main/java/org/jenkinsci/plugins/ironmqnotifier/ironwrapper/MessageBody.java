@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MessageBody {
 
-    private String messageVersion = "3.0";
+    private String messageVersion;
     private String jobName;
     private String buildResult;
     private Date submissionDate;
@@ -24,32 +24,27 @@ public class MessageBody {
 
     public void setSubmissionDate(final Date submissionDate) {
 
-        if (submissionDate == null) {
-            this.submissionDate = new Date();
-
-        } else {
-            this.submissionDate = submissionDate;
-        }
+        this.submissionDate =  ( submissionDate == null ) ? null : (Date) submissionDate.clone();
 
 
     }
 
 
     public String getJobName() {
-        return this.jobName;
+        return jobName;
     }
 
     public String getBuildResult() {
-        return this.buildResult;
+        return buildResult;
     }
 
     public String getMessageVersion() {
-        return this.messageVersion;
+        return messageVersion;
     }
 
     public Date getSubmissionDate() {
 
-        return this.submissionDate;
+        return ( submissionDate ==  null )  ? null : (Date) submissionDate.clone();
 
     }
 
