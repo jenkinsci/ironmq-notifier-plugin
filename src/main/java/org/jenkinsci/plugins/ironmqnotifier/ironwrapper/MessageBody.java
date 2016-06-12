@@ -54,8 +54,14 @@ public class MessageBody {
 
     public Date getSubmissionDate() {
 
-        return ( submissionDate ==  null )  ? null : (Date) submissionDate.clone();
 
+        if ( this.submissionDate == null) {
+            return new Date();
+        }
+        else
+        {
+            return (Date) this.submissionDate.clone();
+        }
     }
 
 }

@@ -30,12 +30,23 @@ public class MessageBodyTest {
     }
 
     @Test
-    public void An_Empty_SubmissionDate_Defaults_to_today () {
+    public void An_Empty_SubmissionDate_Defaults_to_today_if_set () {
         MessageBody messageBody = new MessageBody();
 
         Date expectedDate = new Date();
 
         messageBody.setSubmissionDate(null);
+
+        Assert.assertEquals(expectedDate, messageBody.getSubmissionDate());
+
+    }
+
+    @Test
+    public void An_Empty_SubmissionDate_Defaults_to_today_if_null () {
+        MessageBody messageBody = new MessageBody();
+
+        Date expectedDate = new Date();
+
         Assert.assertEquals(expectedDate, messageBody.getSubmissionDate());
 
     }
