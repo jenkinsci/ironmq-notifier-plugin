@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MessageBody {
 
-    private String messageVersion;
+    private String messageVersion = "3.0";
     private String jobName;
     private String buildResult;
     private Date submissionDate;
