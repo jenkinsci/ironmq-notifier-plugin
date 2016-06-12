@@ -24,7 +24,17 @@ public class MessageBody {
 
     public void setSubmissionDate(final Date submissionDate) {
 
-        this.submissionDate =  ( submissionDate == null ) ? null : (Date) submissionDate.clone();
+        if (submissionDate == null) {
+
+            this.submissionDate = new Date();
+
+        }
+
+        else
+        {
+            this.submissionDate =  (Date) submissionDate.clone();
+        }
+
 
 
     }
