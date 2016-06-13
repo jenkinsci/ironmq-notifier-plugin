@@ -10,6 +10,7 @@ import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
 import hudson.tasks.Publisher;
+import hudson.util.ExceptionCatchingThreadFactory;
 import hudson.util.FormValidation;
 import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
@@ -416,7 +417,11 @@ public class IronMQNotifier extends Notifier {
             defaultProjectId = json.getString("defaultProjectId");
             defaultToken = json.getString("defaultToken");
             defaultQueueName = json.getString("defaultQueueName");
-            defaultExpirySeconds = json.getLong("defaultExpirySeconds");
+            try {
+                defaultExpirySeconds = json.getLong("defaultExpirySeconds");
+            } catch (Exception exception) {
+                defaultExpirySeconds = IronConstants.DEF_EXPIRY_SEC;
+            }
 
             save();
             return true;

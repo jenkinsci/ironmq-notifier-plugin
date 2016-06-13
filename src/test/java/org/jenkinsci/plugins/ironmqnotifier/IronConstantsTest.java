@@ -69,7 +69,7 @@ public class IronConstantsTest {
 
     @Test
     public void Expiry_Seconds_Valid() {
-        Assert.assertNotEquals(0L, IronConstants.DEF_EXPIRY_SEC);
+        Assert.assertNotEquals(new Long(0), IronConstants.DEF_EXPIRY_SEC);
         Assert.assertTrue(IronConstants.DEF_EXPIRY_SEC > 60L);
     }
 
