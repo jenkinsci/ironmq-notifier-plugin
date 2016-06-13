@@ -42,6 +42,7 @@ public class IronMQFormValidationsTest {
     public void ExpirySeconds_Zero_Or_Less_Should_Fail() {
 
         FormValidation testResult;
+
         FormValidation unexpectedResult = FormValidation.ok();
 
         IronMQFormValidations testValidations = new IronMQFormValidations();
@@ -55,6 +56,7 @@ public class IronMQFormValidationsTest {
     public void FormValidations_Returns_A_Warning_in_the_event_of_A_Not_Alpha_Name()
     {
         FormValidation testResult;
+
         FormValidation notexpectedResult = FormValidation.ok();
 
         IronMQFormValidations testValidations = new IronMQFormValidations();
