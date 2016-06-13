@@ -17,8 +17,9 @@ settings.xml
 *.iml
 
 #work files
-work
-workv2
+work/
+workv2/
+workv1/
 
 
 
