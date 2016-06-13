@@ -185,6 +185,7 @@ public class IronMQNotifier extends Notifier {
         ironMessageSettings.setExpirySeconds(this.expirySeconds);
         ironMessageSettings.setJobName(this.jobName);
         ironMessageSettings.setBuildResultString(this.resultString);
+        ironMessageSettings.setQueueName(this.queueName);
         return ironMessageSettings;
     }
 

@@ -2,11 +2,13 @@ package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 
 
+import io.iron.ironmq.Queue;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
 
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -61,6 +63,30 @@ public class IronMQSenderTest{
         IronMQSender sender =  new IronMQSender();
 
         sender.send(mockClient, mockIronMessageSettings);
+
+    }
+
+    @Test
+    public void Sender_Normal_Operation() throws IOException {
+
+        IronMessageSettings mockIronMessageSettings = mock(IronMessageSettings.class);
+        when(mockIronMessageSettings.getExpirySeconds ()).thenReturn(1000L); //avoid exception
+        when(mockIronMessageSettings.getQueueName ()).thenReturn ("test");
+
+        Queue mockQueue = mock(Queue.class);
+        when(mockQueue.push(anyString())).thenReturn("OK");
+        when(mockQueue.getName()).thenReturn("test");
+
+        ClientWrapper mockClient = mock(ClientWrapper.class);
+        when(mockClient.queue(anyString())).thenReturn(mockQueue);
+
+
+
+        IronMQSender sender =  new IronMQSender();
+
+        String resultOfPush = sender.send(mockClient, mockIronMessageSettings);
+
+        Assert.assertEquals("expected a string response", "OK", resultOfPush);
 
     }
 }

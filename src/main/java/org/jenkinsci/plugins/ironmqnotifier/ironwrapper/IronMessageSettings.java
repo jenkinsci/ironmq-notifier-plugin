@@ -42,7 +42,11 @@ public class IronMessageSettings {
             throw new IllegalArgumentException("queueName Cannot be null");
         }
 
-        this.queueName = queueName;
+        else {
+
+            this.queueName = queueName;
+
+        }
 
     }
 }

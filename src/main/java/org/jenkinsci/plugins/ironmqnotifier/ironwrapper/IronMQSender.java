@@ -13,9 +13,9 @@ public class IronMQSender {
         // placeholder for testing
     }
 
-    public void send(final Client client,
-                     final IronMessageSettings ironMessageSettings)
-            throws IOException {
+    public String send(final Client client,
+                       final IronMessageSettings ironMessageSettings)
+            throws IOException, IllegalArgumentException {
 
         checkMessageParameters(ironMessageSettings);
 
@@ -26,6 +26,7 @@ public class IronMQSender {
         IronMQMessage ironMQMessage = new IronMQMessage();
 
         ironMQMessage.setBuildResult(ironMessageSettings.getBuildResultString());
+
         ironMQMessage.setJobName(ironMessageSettings.getJobName());
 
         ironMQMessage.setExpirySeconds(ironMessageSettings.getExpirySeconds());
@@ -43,6 +44,10 @@ public class IronMQSender {
         if (resultOfQueuePush == null
                 || resultOfQueuePush.length() == 0) {
             throw new IOException("Not successful in sending message");
+        }
+        else
+        {
+            return resultOfQueuePush;
         }
     }
 
