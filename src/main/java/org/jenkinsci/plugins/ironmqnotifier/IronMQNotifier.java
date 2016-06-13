@@ -272,10 +272,9 @@ public class IronMQNotifier extends Notifier {
     /**
      * <p>Getter for the field <code>expirySeconds</code>.</p>
      *
-     * @return a {@link long} object.
-     * @since 1.0.6
+     * @return a {@link java.lang.Long} object.
      */
-    public long getExpirySeconds() {
+    public Long getExpirySeconds() {
 
 
         return this.expirySeconds;
@@ -285,7 +284,6 @@ public class IronMQNotifier extends Notifier {
      * <p>Setter for the field <code>expirySeconds</code>.</p>
      *
      * @param expirySeconds a {@link java.lang.Long} object.
-     * @since 1.0.6
      */
     public void setExpirySeconds(Long expirySeconds) {
         this.expirySeconds = expirySeconds;

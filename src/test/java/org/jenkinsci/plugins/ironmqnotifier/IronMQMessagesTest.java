@@ -3,7 +3,6 @@ package org.jenkinsci.plugins.ironmqnotifier;
 import org.junit.Assert;
 import org.junit.Test;
 import org.jvnet.localizer.Localizable;
-import org.jvnet.localizer.Localizable;
 import org.jvnet.localizer.ResourceBundleHolder;
 
 public class IronMQMessagesTest {

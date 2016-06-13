@@ -156,9 +156,10 @@ public class IronMQNotifierTest {
     public void Make_Sure_We_Get_Back_What_We_Set_As_The_Expiry() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertEquals(TestSettings.EXPIRYSETTINGS,
-                notifier.getExpirySeconds());
-        Assert.assertNotEquals(0, notifier.getExpirySeconds());
+
+        Assert.assertEquals(TestSettings.EXPIRYSETTINGS, notifier.getExpirySeconds());
+
+        Assert.assertNotEquals(new Long(0), notifier.getExpirySeconds());
 
     }
 

@@ -9,7 +9,7 @@ public class TestSettings {
     static String TESTTOKEN = "55255555";
     static String TESTQUEUENAME = IronConstants.DEF_QUEUE_NAME;
     static String TESTPREFERREDSERVER = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
-    static long EXPIRYSETTINGS = IronConstants.DEF_EXPIRY_SEC;
+    static Long EXPIRYSETTINGS = IronConstants.DEF_EXPIRY_SEC;
     static String STANDARDDEFAULTSERVER = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
 
 
