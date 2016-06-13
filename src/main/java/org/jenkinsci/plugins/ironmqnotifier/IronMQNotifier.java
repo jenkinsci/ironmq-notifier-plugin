@@ -445,7 +445,7 @@ public class IronMQNotifier extends Notifier {
 
         }
 
-        public FormValidation doCheckExpirySeconds(@QueryParameter final long value) {
+        public FormValidation doCheckExpirySeconds(@QueryParameter final Long value) {
 
             IronMQFormValidations validations = new IronMQFormValidations();
 

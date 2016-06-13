@@ -43,7 +43,7 @@ class IronMQFormValidations{
      * @param expirySeconds a long.
      * @return a {@link hudson.util.FormValidation} object.
      */
-    protected final FormValidation isValidExpirySeconds( final long expirySeconds ) {
+    protected final FormValidation isValidExpirySeconds( final Long expirySeconds ) {
 
         if(expirySeconds > 0) {
             return FormValidation.ok();
