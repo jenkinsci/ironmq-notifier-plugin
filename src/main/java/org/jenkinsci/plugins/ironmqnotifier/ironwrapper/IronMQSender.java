@@ -21,6 +21,22 @@ public class IronMQSender {
 
         Queue queue = client.queue(ironMessageSettings.getQueueName());
 
+
+        Message message = createMessageObject(ironMessageSettings);
+
+        String resultOfQueuePush = queue.push(message.getBody());
+
+
+        if (resultOfQueuePush == null
+                || resultOfQueuePush.length() == 0) {
+            throw new IOException("Not successful in sending message");
+        } else {
+            return resultOfQueuePush;
+        }
+    }
+
+    private Message createMessageObject(IronMessageSettings ironMessageSettings) {
+
         Message message = new Message();
 
         IronMQMessage ironMQMessage = new IronMQMessage();
@@ -37,18 +53,7 @@ public class IronMQSender {
         message.setExpiresIn(ironMessageSettings.getExpirySeconds());
         message.setBody(message.getBody());
 
-        String resultOfQueuePush
-                = queue.push(message.getBody());
-
-
-        if (resultOfQueuePush == null
-                || resultOfQueuePush.length() == 0) {
-            throw new IOException("Not successful in sending message");
-        }
-        else
-        {
-            return resultOfQueuePush;
-        }
+        return message;
     }
 
     private void checkMessageParameters(final IronMessageSettings ironMessageSettings) {
