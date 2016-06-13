@@ -33,30 +33,55 @@ public class MessageBodyTest {
     }
 
     @Test
-    public void An_Empty_SubmissionDate_Defaults_to_today_if_set () {
-        MessageBody messageBody = new MessageBody();
-
-        Date expectedDate = new Date();
-
-        messageBody.setSubmissionDate(null);
-
-        Assert.assertEquals(expectedDate, messageBody.getSubmissionDate());
-
-    }
-
-    @Test
-    public void An_Empty_SubmissionDate_Defaults_to_today_if_null () {
+    public void An_Empty_SubmissionDate_Defaults_to_today_if_set_to_null () {
 
         MessageBody messageBody = new MessageBody();
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-
 
         Calendar cal = Calendar.getInstance();
 
         String expectedDate = dateFormat.format(cal.getTime());
 
         String functionDate = dateFormat.format(messageBody.getSubmissionDate());
+
+        messageBody.setSubmissionDate(null);
+
+        Assert.assertEquals(expectedDate, functionDate);
+
+    }
+
+    @Test
+    public void An_Empty_SubmissionDate_Defaults_to_today_if_date_not_set () {
+
+        MessageBody messageBody = new MessageBody();
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+        Calendar cal = Calendar.getInstance();
+
+        String expectedDate = dateFormat.format(cal.getTime());
+
+        String functionDate = dateFormat.format(messageBody.getSubmissionDate());
+
+        Assert.assertEquals(expectedDate, functionDate);
+
+    }
+
+    @Test
+    public void Correct_SubmissionDate_returned_if_set () {
+
+        MessageBody messageBody = new MessageBody();
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+        Calendar cal = Calendar.getInstance();
+
+        String expectedDate = dateFormat.format(cal.getTime());
+
+        String functionDate = dateFormat.format(messageBody.getSubmissionDate());
+
+        messageBody.setSubmissionDate(cal.getTime());
 
         Assert.assertEquals(expectedDate, functionDate);
 

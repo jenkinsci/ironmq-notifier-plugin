@@ -144,13 +144,7 @@ public class IronMQNotifier extends Notifier {
 
         try {
 
-            client = generateClientToUse();
-
-            IronMessageSettings ironMessageSettings = generateMessageSettings();
-
-            IronMQSender sender = new IronMQSender();
-
-            sender.send(client, ironMessageSettings);
+            SendMessageToIronMQ();
 
         } catch (Exception ex) {
 
@@ -162,6 +156,17 @@ public class IronMQNotifier extends Notifier {
         }
 
         return true;
+    }
+
+    private void SendMessageToIronMQ() throws IOException {
+
+        client = generateClientToUse();
+
+        IronMessageSettings ironMessageSettings = generateMessageSettings();
+
+        IronMQSender sender = new IronMQSender();
+
+        sender.send(client, ironMessageSettings);
     }
 
     private Client generateClientToUse() {
