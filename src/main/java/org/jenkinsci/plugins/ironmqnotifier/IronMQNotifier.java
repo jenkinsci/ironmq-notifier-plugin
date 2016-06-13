@@ -284,10 +284,10 @@ public class IronMQNotifier extends Notifier {
     /**
      * <p>Setter for the field <code>expirySeconds</code>.</p>
      *
-     * @param expirySeconds a {@link long} object.
+     * @param expirySeconds a {@link java.lang.Long} object.
      * @since 1.0.6
      */
-    public void setExpirySeconds(long expirySeconds) {
+    public void setExpirySeconds(Long expirySeconds) {
         this.expirySeconds = expirySeconds;
     }
 
