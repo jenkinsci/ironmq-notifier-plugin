@@ -1,21 +1,21 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
+import hudson.AbortException;
 import hudson.Extension;
+import hudson.FilePath;
 import hudson.Launcher;
-import hudson.model.AbstractBuild;
-import hudson.model.AbstractProject;
-import hudson.model.BuildListener;
-import hudson.model.Result;
-import hudson.tasks.BuildStepDescriptor;
-import hudson.tasks.BuildStepMonitor;
-import hudson.tasks.Notifier;
-import hudson.tasks.Publisher;
+import hudson.model.*;
+import hudson.tasks.*;
 import hudson.util.FormValidation;
 import io.iron.ironmq.Client;
-import io.iron.ironmq.Cloud;
+import jenkins.tasks.SimpleBuildStep;
 import net.sf.json.JSONObject;
+import org.apache.commons.io.DirectoryWalker;
 import org.apache.log4j.Logger;
-import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.*;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.ClientBuilder;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronMQSender;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronMessageSettings;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
@@ -28,7 +28,8 @@ import java.io.IOException;
  * @author Mike Caspar
  * @version $Id: $
  */
-public class IronMQNotifier extends Notifier {
+
+public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
     private static final Logger LOGGER
             = Logger.getLogger("IronMQNotifier");
@@ -75,10 +76,67 @@ public class IronMQNotifier extends Notifier {
     }
 
 
+    @Override
+    public void perform(Run<?,?> build, FilePath workspace, Launcher launcher, TaskListener listener) throws AbortException {
+        // This is where you 'build' the project.
+        // Since this is a dummy, we just say 'hello world' and call that a build.
+
+        // This also shows how you can consult the global configuration of the builder
+        String logMe = getDescriptor().getDisplayName();
+
+            listener.getLogger().println(logMe + " executed");
+
+                this.jobName = build.getFullDisplayName();
+
+        if (build.getResult() == Result.SUCCESS) {
+            if (!send_success) {
+                //  return true;
+            }
+            this.resultString = "succeeded";
+        } else if (build.getResult() == Result.UNSTABLE) {
+            if (!send_unstable) {
+                // return true;
+            }
+            this.resultString = "was unstable";
+        } else if (build.getResult() == Result.FAILURE) {
+            if (!send_failure) {
+                // return true;
+            }
+            this.resultString = "failed";
+        } else {
+            // return true;
+        }
+
+
+        try {
+
+            SendMessageToIronMQ();
+
+        } catch (Exception ex) {
+
+            String errorMessage = "Check Configuration Settings - " + ex.getMessage();
+
+            listener.getLogger().println(errorMessage);
+
+            throw new AbortException(errorMessage);
+
+        }
+
+
+    }
+
     private void adjustDataToAvoidCrashes() {
+
+        if (this.queueName == null) {
+              this.queueName = "";
+        }
 
         if (this.queueName.trim().length() == 0) {
             this.queueName = IronConstants.DEF_QUEUE_NAME;
+        }
+
+        if (this.preferredServerName == null)    {
+            this.preferredServerName = "" ;
         }
 
         if (this.preferredServerName.trim().length() == 0) {
@@ -100,6 +158,17 @@ public class IronMQNotifier extends Notifier {
         return BuildStepMonitor.BUILD;
     }
 
+
+
+    /**
+     * Descriptor for {@link HelloWorldBuilder}. Used as a singleton.
+     * The class is marked as public so that it can be accessed from views.
+     *
+     * <p>
+     * See <tt>src/main/resources/hudson/plugins/hello_world/HelloWorldBuilder/*.jelly</tt>
+     * for the actual HTML fragment for the configuration screen.
+     */
+
     /**
      * {@inheritDoc}
      */
@@ -108,52 +177,6 @@ public class IronMQNotifier extends Notifier {
         return (DescriptorImpl) super.getDescriptor();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean perform(AbstractBuild<?, ?> build,
-                           Launcher launcher,
-                           BuildListener listener)
-            throws InterruptedException, IOException {
-
-        this.jobName = build.getFullDisplayName();
-
-        if (build.getResult() == Result.SUCCESS) {
-            if (!send_success) {
-                return true;
-            }
-            this.resultString = "succeeded";
-        } else if (build.getResult() == Result.UNSTABLE) {
-            if (!send_unstable) {
-                return true;
-            }
-            this.resultString = "was unstable";
-        } else if (build.getResult() == Result.FAILURE) {
-            if (!send_failure) {
-                return true;
-            }
-            this.resultString = "failed";
-        } else {
-            return true;
-        }
-
-
-        try {
-
-            SendMessageToIronMQ();
-
-        } catch (Exception ex) {
-
-            logConfigurationWarning(ex);
-
-
-            return false;
-
-        }
-
-        return true;
-    }
 
     private void SendMessageToIronMQ() throws IOException {
 
@@ -194,7 +217,7 @@ public class IronMQNotifier extends Notifier {
      * @return a {@link java.lang.String} object.
      * @since 1.0.6
      */
-    protected String getJobName() {
+    public String getJobName() {
         return this.jobName;
     }
 
@@ -331,15 +354,10 @@ public class IronMQNotifier extends Notifier {
     }
 
 
-    private void logConfigurationWarning(Exception ex) {
-
-
-        LOGGER.error("Check Configuration Settings - " + ex.getMessage());
-
-    }
 
 
     // ...............................................  Descriptor .............................................
+
 
     @Extension
     public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
@@ -352,7 +370,6 @@ public class IronMQNotifier extends Notifier {
 
 
         public DescriptorImpl() {
-            super(IronMQNotifier.class);
             load();
         }
 
@@ -363,11 +380,11 @@ public class IronMQNotifier extends Notifier {
 
         }
 
-        @Override
-        public Publisher newInstance(StaplerRequest req, JSONObject formData)
-                throws FormException {
-            return super.newInstance(req, formData);
-        }
+//        @Override
+//        public Publisher newInstance(StaplerRequest req, JSONObject formData)
+//                throws FormException {
+//            return super.newInstance(req, formData);
+//        }
 
 
         @Override
@@ -396,9 +413,9 @@ public class IronMQNotifier extends Notifier {
         }
 
         @Override
-        public boolean configure(StaplerRequest req, JSONObject formdata) throws FormException {
+        public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
 
-            JSONObject json = formdata.getJSONObject("ironmqNotifier");
+            JSONObject json = formData.getJSONObject("ironmqNotifier");
 
             defaultPreferredServerName = json.getString("defaultPreferredServerName");
             defaultProjectId = json.getString("defaultProjectId");
@@ -411,7 +428,7 @@ public class IronMQNotifier extends Notifier {
             }
 
             save();
-            return true;
+            return super.configure(req,formData);
         }
 
 
@@ -444,6 +461,4 @@ public class IronMQNotifier extends Notifier {
 
 
 }
-
-
 
