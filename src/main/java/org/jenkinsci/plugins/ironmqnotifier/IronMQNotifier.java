@@ -15,10 +15,7 @@ import io.iron.ironmq.Client;
 import io.iron.ironmq.Cloud;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
-import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.ClientWrapper;
-import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
-import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronMQSender;
-import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronMessageSettings;
+import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.*;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
@@ -160,23 +157,16 @@ public class IronMQNotifier extends Notifier {
 
     private void SendMessageToIronMQ() throws IOException {
 
-        client = generateClientToUse();
+        ClientBuilder builder = new ClientBuilder(this.projectId,
+                this.token, this.preferredServerName);
+
+        client = builder.createClient();
 
         IronMessageSettings ironMessageSettings = generateMessageSettings();
 
         IronMQSender sender = new IronMQSender();
 
         sender.send(client, ironMessageSettings);
-    }
-
-    private Client generateClientToUse() {
-        return new ClientWrapper(
-                this.projectId,
-                this.token,
-                new Cloud(IronConstants.DEF_PREFERRED_SERVER_SCHEME,
-                        this.preferredServerName,
-                        IronConstants.DEF_PREFERRED_SERVER_PORT)
-        );
     }
 
 
