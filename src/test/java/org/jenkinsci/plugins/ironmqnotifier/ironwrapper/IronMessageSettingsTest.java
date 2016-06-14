@@ -11,7 +11,7 @@ public class IronMessageSettingsTest {
     @Test
     public void Message_SettingsStoresExpiryField() {
         IronMessageSettings ironMessageSettings = new IronMessageSettings();
-        long testLong = 1000L;
+        Long testLong = 1000L;
         ironMessageSettings.setExpirySeconds(testLong);
         Assert.assertEquals(testLong, ironMessageSettings.getExpirySeconds());
 

@@ -3,17 +3,17 @@ package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 public class IronMessageSettings {
 
-    private long expirySeconds;
+    private Long expirySeconds;
     private String setBuildResultString;
     private String jobName = "UNKNOWN";
     private String queueName = IronConstants.DEF_QUEUE_NAME;
 
-    public void setExpirySeconds(final long expirySeconds)  {
+    public void setExpirySeconds(final Long expirySeconds)  {
 
         this.expirySeconds = expirySeconds;
     }
 
-    public long getExpirySeconds() {
+    public Long getExpirySeconds() {
         return this.expirySeconds;
     }
 
@@ -34,7 +34,9 @@ public class IronMessageSettings {
     }
 
     public String getQueueName() {
+
         return this.queueName;
+
     }
 
     public void setQueueName(final String queueName) {
