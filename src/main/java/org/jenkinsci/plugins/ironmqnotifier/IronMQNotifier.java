@@ -1,5 +1,6 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
+import com.sun.org.apache.regexp.internal.RESyntaxException;
 import hudson.AbortException;
 import hudson.Extension;
 import hudson.FilePath;
@@ -77,66 +78,52 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
 
     @Override
-    public void perform(Run<?,?> build, FilePath workspace, Launcher launcher, TaskListener listener) throws AbortException {
+    public void perform(Run<?, ?> build, FilePath workspace, Launcher launcher, TaskListener listener) throws AbortException {
         // This is where you 'build' the project.
         // Since this is a dummy, we just say 'hello world' and call that a build.
 
         // This also shows how you can consult the global configuration of the builder
         String logMe = getDescriptor().getDisplayName();
 
-            listener.getLogger().println(logMe + " executed");
+        listener.getLogger().println(logMe + " executed");
 
-                this.jobName = build.getFullDisplayName();
+        this.jobName = build.getFullDisplayName();
 
-        if (build.getResult() == Result.SUCCESS) {
-            if (!send_success) {
-                //  return true;
+
+        boolean shouldISendToIronMQ = shouldISend(build.getResult());
+
+        if (shouldISendToIronMQ) {
+
+            try {
+
+                SendMessageToIronMQ();
+
+            } catch (Exception ex) {
+
+                String errorMessage = "Check Configuration Settings - " + ex.getMessage();
+
+                listener.getLogger().println(errorMessage);
+
+                throw new AbortException(errorMessage);
+
             }
-            this.resultString = "succeeded";
-        } else if (build.getResult() == Result.UNSTABLE) {
-            if (!send_unstable) {
-                // return true;
-            }
-            this.resultString = "was unstable";
-        } else if (build.getResult() == Result.FAILURE) {
-            if (!send_failure) {
-                // return true;
-            }
-            this.resultString = "failed";
-        } else {
-            // return true;
-        }
-
-
-        try {
-
-            SendMessageToIronMQ();
-
-        } catch (Exception ex) {
-
-            String errorMessage = "Check Configuration Settings - " + ex.getMessage();
-
-            listener.getLogger().println(errorMessage);
-
-            throw new AbortException(errorMessage);
 
         }
-
 
     }
 
     private void adjustDataToAvoidCrashes() {
 
         if (this.queueName == null) {
-              this.queueName = "";
+            this.queueName = "";
         }
 
         if (this.queueName.trim().length() == 0) {
             this.queueName = IronConstants.DEF_QUEUE_NAME;
         }
 
-        if (this.preferredServerName == null)    {
-            this.preferredServerName = "" ;
+        if (this.preferredServerName == null) {
+            this.preferredServerName = "";
         }
 
         if (this.preferredServerName.trim().length() == 0) {
@@ -157,7 +144,6 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
     public BuildStepMonitor getRequiredMonitorService() {
         return BuildStepMonitor.BUILD;
     }
-
 
 
     /**
@@ -344,7 +330,29 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
     }
 
+    /**
+     * <p>function to see if send should happen</p>
+     *
+     * @param buildResult result of Build
+     * @return a {@link java.lang.Boolean} object.
+     */
 
+    public boolean shouldISend(Result buildResult) {
+
+        if (buildResult == Result.SUCCESS & send_success) {
+            return true;
+        }
+
+        if (buildResult == Result.FAILURE & send_failure) {
+            return true;
+        }
+
+        if (buildResult == Result.UNSTABLE & send_unstable) {
+            return true;
+        }
+
+        return false;
+    }
 
 
     // ...............................................  Descriptor .............................................
@@ -413,7 +421,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
             }
 
             save();
-            return super.configure(req,formData);
+            return super.configure(req, formData);
         }
 
 
