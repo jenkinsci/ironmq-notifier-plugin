@@ -1,17 +1,21 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
-import com.sun.org.apache.regexp.internal.RESyntaxException;
 import hudson.AbortException;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
-import hudson.model.*;
-import hudson.tasks.*;
+import hudson.model.AbstractProject;
+import hudson.model.Result;
+import hudson.model.Run;
+import hudson.model.TaskListener;
+import hudson.tasks.BuildStepDescriptor;
+import hudson.tasks.BuildStepMonitor;
+import hudson.tasks.Notifier;
+import hudson.tasks.Publisher;
 import hudson.util.FormValidation;
 import io.iron.ironmq.Client;
 import jenkins.tasks.SimpleBuildStep;
 import net.sf.json.JSONObject;
-import org.apache.commons.io.DirectoryWalker;
 import org.apache.log4j.Logger;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.ClientBuilder;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
