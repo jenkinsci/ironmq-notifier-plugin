@@ -31,47 +31,40 @@ package org.jenkinsci.plugins.ironmqnotifier;
  */
 
 
-import hudson.model.FreeStyleProject;
-import hudson.util.DescribableList;
-import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
-import org.jvnet.hudson.test.JenkinsRule;
+import org.junit.runners.model.Statement;
+import org.jvnet.hudson.test.RestartableJenkinsRule;
 
 import java.io.IOException;
 
 
-public class FreestyleJobTest {
+public class WorkFlowJobTest {
 
 
     /**
      * JUnit rule which instantiates a local Jenkins instance with our plugin installed.
      */
     @Rule
-    public JenkinsRule j = new JenkinsRule();
+    public RestartableJenkinsRule story = new RestartableJenkinsRule();
+
 
 
     @Test
     public void ShouldBeAbleToAddFreestyleJob() throws IOException, InterruptedException {
 
-        FreeStyleProject p = j.createFreeStyleProject();
-
-        p.getPublishersList().add(new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS) );
-
-        DescribableList describableList = p.getPublishersList();
-
-        IronMQNotifier result = (IronMQNotifier) describableList.get(0);
-
-        String className = result.getClass().getSimpleName();
-        String preferredServerActual = result.getPreferredServerName();
+        Statement statement = new Statement() {
+            @Override
+            public void evaluate() throws Throwable {
 
 
-        Assert.assertEquals("Expecting a notifier", "IronMQNotifier", className);
+            }
+        };
 
-        Assert.assertEquals("Expecting a default server name to be sure", IronConstants.DEFAULT_PREFERRED_SERVER_NAME, preferredServerActual );
 
+        Assert.assertNotNull(statement);
+        Assert.assertNotNull(story);
 
     }
 
