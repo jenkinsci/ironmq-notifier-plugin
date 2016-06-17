@@ -44,7 +44,7 @@ import org.jvnet.hudson.test.JenkinsRule;
 import java.io.IOException;
 
 
-public class JobSettingTest {
+public class FreestyleJobTest {
 
 
     /**
