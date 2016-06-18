@@ -55,6 +55,19 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
     private Client client;
 
+    /**
+     * <p>DataBoundConstructor for IronMQNotifier.</p>
+     *
+     * @param projectId a {@link java.lang.String} object.
+     * @param token a {@link java.lang.String} object.
+     * @param queueName a {@link java.lang.String} object.
+     * @param preferredServerName a {@link java.lang.String} object.
+     * @param send_success a {@link java.lang.Boolean} object.
+     * @param send_failure a {@link java.lang.Boolean} object.
+     * @param send_unstable a {@link java.lang.Boolean} object.
+     * @param expirySeconds a {@link java.lang.Long} object.
+     *
+     */
     @DataBoundConstructor
     public IronMQNotifier(final String projectId,
                           final String token,
