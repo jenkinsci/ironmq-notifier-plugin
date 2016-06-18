@@ -38,9 +38,6 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
     private IronConstants ironConstants = new IronConstants();
 
-    private static final Logger LOGGER
-            = Logger.getLogger("IronMQNotifier");
-
     private String preferredServerName;
     private String defaultPreferredServerName;
 
