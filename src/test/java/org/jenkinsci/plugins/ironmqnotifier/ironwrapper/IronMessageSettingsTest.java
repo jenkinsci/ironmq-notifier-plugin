@@ -42,7 +42,9 @@ public class IronMessageSettingsTest {
     @Test
     public void MessageSettings_Return_Default_QueueName_If_Not_Set() {
         IronMessageSettings ironMessageSettings = new IronMessageSettings();
-        Assert.assertEquals(IronConstants.DEF_QUEUE_NAME, ironMessageSettings.getQueueName());
+        IronConstants ironConstants = new IronConstants();
+
+        Assert.assertEquals(ironConstants.DEF_QUEUE_NAME, ironMessageSettings.getQueueName());
     }
 
     @Test

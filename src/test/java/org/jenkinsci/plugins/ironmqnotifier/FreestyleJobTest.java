@@ -64,13 +64,16 @@ public class FreestyleJobTest {
 
         IronMQNotifier result = (IronMQNotifier) describableList.get(0);
 
+        IronConstants ironConstants = new IronConstants();
+
         String className = result.getClass().getSimpleName();
         String preferredServerActual = result.getPreferredServerName();
 
 
         Assert.assertEquals("Expecting a notifier", "IronMQNotifier", className);
 
-        Assert.assertEquals("Expecting a default server name to be sure", IronConstants.DEFAULT_PREFERRED_SERVER_NAME, preferredServerActual );
+
+        Assert.assertEquals("Expecting a default server name to be sure", ironConstants.DEFAULT_PREFERRED_SERVER_NAME, preferredServerActual );
 
 
     }

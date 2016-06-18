@@ -98,7 +98,9 @@ public class ConfigTest {
         HtmlPage page = j.createWebClient().goTo("configure");
         HtmlTextInput inputElement = page.getElementByName("_.defaultPreferredServerName");
 
-        String expectedDefaultServer = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+        IronConstants ironConstants = new IronConstants();
+
+        String expectedDefaultServer = ironConstants.DEFAULT_PREFERRED_SERVER_NAME;
 
 
         assertNotNull(inputElement);
@@ -113,7 +115,9 @@ public class ConfigTest {
         HtmlPage page = j.createWebClient().goTo("configure");
         HtmlTextInput inputElement = page.getElementByName("_.defaultQueueName");
 
-        String expectedDefaultServer = IronConstants.DEF_QUEUE_NAME;
+        IronConstants ironConstants = new IronConstants();
+
+        String expectedDefaultServer = ironConstants.DEF_QUEUE_NAME;
 
         assertNotNull(inputElement);
         assertNotEquals("", inputElement);
@@ -128,7 +132,9 @@ public class ConfigTest {
 
         HtmlNumberInput inputElement = page.getElementByName("_.defaultExpirySeconds");
 
-        long expectedDefaultServer = IronConstants.DEF_EXPIRY_SEC;
+        IronConstants ironConstants = new IronConstants();
+
+        long expectedDefaultServer = ironConstants.DEF_EXPIRY_SEC;
 
 
         assertNotNull(inputElement);

@@ -3,10 +3,12 @@ package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 public class IronMessageSettings {
 
+    private IronConstants ironConstants = new IronConstants();
+
     private Long expirySeconds;
     private String setBuildResultString;
     private String jobName = "UNKNOWN";
-    private String queueName = IronConstants.DEF_QUEUE_NAME;
+    private String queueName = ironConstants.DEF_QUEUE_NAME;
 
     public void setExpirySeconds(final Long expirySeconds)  {
 

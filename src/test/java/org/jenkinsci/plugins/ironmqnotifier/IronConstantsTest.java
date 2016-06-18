@@ -31,53 +31,63 @@ package org.jenkinsci.plugins.ironmqnotifier;
 
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import hudson.util.FormValidation;
 
 public class IronConstantsTest {
 
+    IronConstants ironConstants = new IronConstants();
+
+    @Before
+    public void LoadStandardClass()
+    {
+        ironConstants = new IronConstants();
+
+    }
+
     @Test
     public void Expiry_Seconds_Not_Null() {
-        Assert.assertNotNull(IronConstants.DEF_EXPIRY_SEC);
+        Assert.assertNotNull(ironConstants.DEF_EXPIRY_SEC);
      }
 
     @Test
     public void DefaultQueueName_Not_Null() {
-        Assert.assertNotNull(IronConstants.DEF_QUEUE_NAME);
+        Assert.assertNotNull(ironConstants.DEF_QUEUE_NAME);
     }
 
     @Test
     public void DefaultPreferredServerName_Not_Null() {
-        Assert.assertNotNull(IronConstants.DEFAULT_PREFERRED_SERVER_NAME);
+        Assert.assertNotNull(ironConstants.DEFAULT_PREFERRED_SERVER_NAME);
     }
 
     @Test
     public void DefaultServerForVersion3IsCorrect() {
-        Assert.assertEquals("mq-aws-us-east-1-1.iron.io", IronConstants.DEFAULT_PREFERRED_SERVER_NAME);
+        Assert.assertEquals("mq-aws-us-east-1-1.iron.io", ironConstants.DEFAULT_PREFERRED_SERVER_NAME);
     }
     @Test
     public void DefaultPreferredServerPort_Valid_And_NotNull() {
-        Assert.assertNotNull(IronConstants.DEF_PREFERRED_SERVER_PORT);
-        Assert.assertNotEquals(0,IronConstants.DEF_PREFERRED_SERVER_PORT);
+        Assert.assertNotNull(ironConstants.DEF_PREFERRED_SERVER_PORT);
+        Assert.assertNotEquals(0,ironConstants.DEF_PREFERRED_SERVER_PORT);
     }
 
     @Test
     public void DefaultPreferredServerScheme_Valid_And_NotNull() {
-        Assert.assertNotNull(IronConstants.DEF_PREFERRED_SERVER_SCHEME);
-        Assert.assertNotEquals(0,IronConstants.DEF_PREFERRED_SERVER_SCHEME);
+        Assert.assertNotNull(ironConstants.DEF_PREFERRED_SERVER_SCHEME);
+        Assert.assertNotEquals(0,ironConstants.DEF_PREFERRED_SERVER_SCHEME);
     }
 
     @Test
     public void Expiry_Seconds_Valid() {
-        Assert.assertNotEquals(new Long(0), IronConstants.DEF_EXPIRY_SEC);
-        Assert.assertTrue(IronConstants.DEF_EXPIRY_SEC > 60L);
+        Assert.assertNotEquals(new Long(0), ironConstants.DEF_EXPIRY_SEC);
+        Assert.assertTrue(ironConstants.DEF_EXPIRY_SEC > 60L);
     }
 
     @Test
     public void QueueNameDefaultIsValid() {
         IronMQFormValidations validationForms =  new IronMQFormValidations();
         FormValidation validationResult =
-                validationForms.isValidQueueName(IronConstants.DEF_QUEUE_NAME);
+                validationForms.isValidQueueName(ironConstants.DEF_QUEUE_NAME);
 
         Assert.assertEquals(FormValidation.ok(), validationResult);
     }
@@ -86,13 +96,13 @@ public class IronConstantsTest {
     public void DefaultExpiryValidationPasses() {
         IronMQFormValidations validationForms =  new IronMQFormValidations();
         FormValidation validationResult =
-                validationForms.isValidExpirySeconds(IronConstants.DEF_EXPIRY_SEC);
+                validationForms.isValidExpirySeconds(ironConstants.DEF_EXPIRY_SEC);
         Assert.assertEquals(FormValidation.ok(), validationResult);
     }
 
     @Test
     public void IronConstantsConstructorTest()
     {
-        Assert.assertNotNull(IronConstants.class);
+        Assert.assertNotNull(ironConstants);
     }
 }

@@ -36,6 +36,8 @@ import java.io.IOException;
 
 public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
+    private IronConstants ironConstants = new IronConstants();
+
     private static final Logger LOGGER
             = Logger.getLogger("IronMQNotifier");
 
@@ -123,7 +125,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
         }
 
         if (this.queueName.trim().length() == 0) {
-            this.queueName = IronConstants.DEF_QUEUE_NAME;
+            this.queueName = ironConstants.DEF_QUEUE_NAME;
         }
 
         if (this.preferredServerName == null) {
@@ -132,11 +134,11 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
         if (this.preferredServerName.trim().length() == 0) {
             this.preferredServerName
-                    = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+                    = ironConstants.DEFAULT_PREFERRED_SERVER_NAME;
         }
 
         if (this.expirySeconds <= 0) {
-            setExpirySeconds(IronConstants.DEF_EXPIRY_SEC);
+            setExpirySeconds(ironConstants.DEF_EXPIRY_SEC);
         }
     }
 
@@ -316,7 +318,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
     public String getDefaultPreferredServerName() {
 
         if (this.defaultPreferredServerName == null) {
-            this.defaultPreferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+            this.defaultPreferredServerName = ironConstants.DEFAULT_PREFERRED_SERVER_NAME;
 
         }
         return this.defaultPreferredServerName;
@@ -365,11 +367,13 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
     @Extension
     public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
 
-        private String defaultPreferredServerName = IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+        IronConstants ironConstants = new IronConstants();
+
+        private String defaultPreferredServerName = ironConstants.DEFAULT_PREFERRED_SERVER_NAME;
         private String defaultProjectId = "";
         private String defaultToken = "";
-        private String defaultQueueName = IronConstants.DEF_QUEUE_NAME;
-        private Long defaultExpirySeconds = IronConstants.DEF_EXPIRY_SEC;
+        private String defaultQueueName = ironConstants.DEF_QUEUE_NAME;
+        private Long defaultExpirySeconds = ironConstants.DEF_EXPIRY_SEC;
 
 
         public DescriptorImpl() {
@@ -421,7 +425,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
             try {
                 defaultExpirySeconds = json.getLong("defaultExpirySeconds");
             } catch (Exception exception) {
-                defaultExpirySeconds = IronConstants.DEF_EXPIRY_SEC;
+                defaultExpirySeconds = ironConstants.DEF_EXPIRY_SEC;
             }
 
             save();

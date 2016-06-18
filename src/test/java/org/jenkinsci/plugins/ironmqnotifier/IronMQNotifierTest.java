@@ -266,7 +266,9 @@ public class IronMQNotifierTest {
     @Test
     public void The_DEFAULT_Preferred_ServerNameWillBeProperAndNotEmpty() {
 
-        final String  testString =  IronConstants.DEFAULT_PREFERRED_SERVER_NAME;
+        IronConstants ironConstants = new IronConstants();
+
+        final String  testString =  ironConstants.DEFAULT_PREFERRED_SERVER_NAME;
 
         IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS);

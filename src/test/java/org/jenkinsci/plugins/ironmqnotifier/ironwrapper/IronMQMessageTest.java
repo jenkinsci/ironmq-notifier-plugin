@@ -75,8 +75,9 @@ public class IronMQMessageTest {
     public void IronMQ_Version_Default_Is_Obtained_From_Constants_For_Easy_Upgrade() {
         IronMQMessage msg = new IronMQMessage();
 
+        IronConstants ironConstants = new IronConstants();
 
-        Assert.assertEquals("Expected a version that matches Constants but was not set", IronConstants.DEF_MESSAGE_VERSION, msg.getMessageVersion());
+        Assert.assertEquals("Expected a version that matches Constants but was not set", ironConstants.DEF_MESSAGE_VERSION, msg.getMessageVersion());
 
     }
 

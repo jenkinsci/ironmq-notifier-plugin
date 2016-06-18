@@ -15,11 +15,13 @@ class IronMQMessage{
 
     IronMQMessage() {
 
-        this.messageVersion = IronConstants.DEF_MESSAGE_VERSION;
+        IronConstants ironConstants = new IronConstants();
+
+        this.messageVersion = ironConstants.DEF_MESSAGE_VERSION;
 
         this.jobName = "";
         this.buildResult = "";
-        this.expirySeconds = IronConstants.DEF_EXPIRY_SEC;
+        this.expirySeconds = ironConstants.DEF_EXPIRY_SEC;
         this.submissionDate = new Date();
 
 
