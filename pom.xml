@@ -88,6 +88,7 @@ limitations under the License.
     <properties>
 
         <jenkins.version>2.9</jenkins.version>
+        <workflow.version>2.0</workflow.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -180,7 +181,19 @@ limitations under the License.
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.jenkins-ci.plugins.workflow</groupId>
+            <artifactId>workflow-job</artifactId>
+            <version>${workflow.version}</version>
+            <scope>test</scope>
+        </dependency>
 
+        <dependency>
+            <groupId>org.jenkins-ci.plugins.workflow</groupId>
+            <artifactId> workflow-cps</artifactId>
+            <version>2.5</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <scm>
