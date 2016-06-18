@@ -343,17 +343,17 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
      * @return a {@link java.lang.Boolean} object.
      */
 
-    public boolean shouldISend(Result buildResult) {
+    boolean shouldISend(Result buildResult) {
 
-        if (buildResult == Result.SUCCESS & send_success) {
+        if (buildResult == Result.SUCCESS && send_success) {
             return true;
         }
 
-        if (buildResult == Result.FAILURE & send_failure) {
+        if (buildResult == Result.FAILURE && send_failure) {
             return true;
         }
 
-        if (buildResult == Result.UNSTABLE & send_unstable) {
+        if (buildResult ==  Result.UNSTABLE && send_unstable) {
             return true;
         }
 
