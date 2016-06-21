@@ -93,13 +93,16 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
     @Override
     public void perform(Run<?, ?> build, FilePath workspace, Launcher launcher, TaskListener listener) throws AbortException {
+
         // This is where you 'build' the project.
         // Since this is a dummy, we just say 'hello world' and call that a build.
 
         // This also shows how you can consult the global configuration of the builder
-        String logMe = getDescriptor().getDisplayName();
 
+        String logMe = getDescriptor().getDisplayName();
         listener.getLogger().println(logMe + " executed");
+
+
 
         if (build.getDisplayName() != null )
         {
@@ -115,10 +118,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
             {
                 this.resultString = result.toString();
             }
-
-
         }
-
 
         boolean shouldISendToIronMQ = shouldISend(build.getResult());
 
@@ -186,7 +186,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
     }
 
 
-    private void SendMessageToIronMQ() throws IOException {
+    int SendMessageToIronMQ() throws IOException {
 
         ClientBuilder builder = new ClientBuilder(this.projectId, this.token, this.preferredServerName);
 
@@ -197,9 +197,10 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
         IronMQSender sender = new IronMQSender();
 
         sender.send(client, ironMessageSettings);
+
+        return 0;
+
     }
-
-
 
     /**
      * {@inheritDoc}

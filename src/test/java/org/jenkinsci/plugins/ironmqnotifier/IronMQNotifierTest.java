@@ -5,6 +5,11 @@ import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class IronMQNotifierTest {
 
 
@@ -276,5 +281,17 @@ public class IronMQNotifierTest {
         Assert.assertEquals(testString, notifier.getDefaultPreferredServerName());
     }
 
+
+    @Test
+    public void IronMQNotifierSendFunctionReturnsAZeroIntegerOnNormal() throws IOException {
+
+        IronMQNotifier notifier = mock(IronMQNotifier.class);
+        when(notifier.SendMessageToIronMQ()).thenReturn(0);
+
+        int result = notifier.SendMessageToIronMQ();
+
+        Assert.assertEquals(0, result);
+
+    }
 
 }
