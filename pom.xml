@@ -73,7 +73,7 @@ limitations under the License.
     </parent>
 
     <artifactId>ironmq-notifier</artifactId>
-    <version>1.0.17-SNAPSHOT</version>
+    <version>1.0.17</version>
     <packaging>hpi</packaging>
 
 
@@ -202,7 +202,7 @@ limitations under the License.
             scm:git:ssh://git@github.com/jenkinsci/ironmq-notifier-plugin.git
         </developerConnection>
         <url>https://github.com/jenkinsci/ironmq-notifier-plugin</url>
-        <tag>HEAD</tag>
+        <tag>ironmq-notifier-1.0.17</tag>
     </scm>
 
     <ciManagement>
