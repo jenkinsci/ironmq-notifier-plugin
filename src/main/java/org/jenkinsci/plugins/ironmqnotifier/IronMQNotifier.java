@@ -52,9 +52,6 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
     private String jobName = "";
 
     private String resultString = "UNKNOWN";
-    private Result result;
-
-    private Client client;
 
     /**
      * <p>DataBoundConstructor for IronMQNotifier.</p>
@@ -112,11 +109,11 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
         if (build.getResult() != null )
         {
-            this.result = build.getResult();
+            Result result = build.getResult();
 
-            if (this.result != null)
+            if (result != null)
             {
-                this.resultString = this.result.toString();
+                this.resultString = result.toString();
             }
 
 
@@ -193,7 +190,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
         ClientBuilder builder = new ClientBuilder(this.projectId, this.token, this.preferredServerName);
 
-        client = builder.createClient();
+        Client client = builder.createClient();
 
         IronMessageSettings ironMessageSettings = new IronMessageSettings(this.jobName, this.resultString, this.queueName, this.expirySeconds);
 
