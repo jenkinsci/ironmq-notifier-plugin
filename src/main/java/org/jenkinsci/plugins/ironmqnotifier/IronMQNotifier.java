@@ -37,6 +37,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
     private IronConstants ironConstants = new IronConstants();
 
+
     private String preferredServerName;
     private String defaultPreferredServerName;
 
@@ -51,6 +52,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
     private String jobName = "";
 
     private String resultString = "UNKNOWN";
+    private Result result;
 
     private Client client;
 
@@ -102,19 +104,21 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
         listener.getLogger().println(logMe + " executed");
 
-        this.jobName = build.getFullDisplayName();
-
-
-        Result result = build.getResult();
-
-        if (result != null)     {
-
-            this.resultString = result.toString();
-            
+        if (build.getDisplayName() != null )
+        {
+            this.jobName = build.getFullDisplayName();
         }
 
 
-        boolean shouldISendToIronMQ = shouldISend(result);
+        if (build.getResult() != null )
+        {
+            this.result = build.getResult();
+            this.resultString = this.result.toString();
+
+        }
+
+
+        boolean shouldISendToIronMQ = shouldISend(build.getResult());
 
 
         if (shouldISendToIronMQ) {
