@@ -10,6 +10,18 @@ public class IronMessageSettings {
     private String jobName = "UNKNOWN";
     private String queueName = ironConstants.DEF_QUEUE_NAME;
 
+    public IronMessageSettings(final String jobName, final String resultString, final String queueName, final Long expirySeconds ) {
+        this.jobName = jobName;
+        this.setBuildResultString = resultString;
+        this.queueName = queueName;
+        this.expirySeconds = expirySeconds;
+    }
+
+
+    public IronMessageSettings() {
+
+    }
+
     public void setExpirySeconds(final Long expirySeconds)  {
 
         this.expirySeconds = expirySeconds;

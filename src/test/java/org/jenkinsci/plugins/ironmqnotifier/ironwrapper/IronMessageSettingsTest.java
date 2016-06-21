@@ -62,6 +62,23 @@ public class IronMessageSettingsTest {
 
     }
 
+    @Test
+    public void IronMessageSettingsCreatedWithProperData() {
+
+        String queueName = "testQueue";
+        String jobName = "jobName";
+        String resultString = "SUCCESS";
+        Long expirySeconds = 80601L;
+
+        IronMessageSettings ironMessageSettings = new IronMessageSettings(jobName, resultString, queueName, expirySeconds );
+
+        Assert.assertEquals(queueName, ironMessageSettings.getQueueName());
+        Assert.assertEquals(jobName, ironMessageSettings.getJobName());
+        Assert.assertEquals(resultString, ironMessageSettings.getBuildResultString());
+        Assert.assertEquals(expirySeconds, ironMessageSettings.getExpirySeconds());
+
+    }
+
 
 }
 
