@@ -16,7 +16,6 @@ import hudson.util.FormValidation;
 import io.iron.ironmq.Client;
 import jenkins.tasks.SimpleBuildStep;
 import net.sf.json.JSONObject;
-import org.apache.log4j.Logger;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.ClientBuilder;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronMQSender;
@@ -106,7 +105,12 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
         this.jobName = build.getFullDisplayName();
 
 
-        boolean shouldISendToIronMQ = shouldISend(build.getResult());
+        Result result = build.getResult();
+
+        this.resultString = result.toString();
+
+        boolean shouldISendToIronMQ = shouldISend(result);
+
 
         if (shouldISendToIronMQ) {
 
@@ -187,11 +191,10 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
 
     private IronMessageSettings generateMessageSettings() {
-        IronMessageSettings ironMessageSettings = new IronMessageSettings();
-        ironMessageSettings.setExpirySeconds(this.expirySeconds);
-        ironMessageSettings.setJobName(this.jobName);
-        ironMessageSettings.setBuildResultString(this.resultString);
-        ironMessageSettings.setQueueName(this.queueName);
+
+        IronMessageSettings ironMessageSettings = new IronMessageSettings(this.jobName, this.resultString, this.queueName, this.expirySeconds);
+
+
         return ironMessageSettings;
     }
 
