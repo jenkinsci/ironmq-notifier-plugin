@@ -191,26 +191,17 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
     private void SendMessageToIronMQ() throws IOException {
 
-        ClientBuilder builder = new ClientBuilder(this.projectId,
-                this.token, this.preferredServerName);
+        ClientBuilder builder = new ClientBuilder(this.projectId, this.token, this.preferredServerName);
 
         client = builder.createClient();
 
-        IronMessageSettings ironMessageSettings = generateMessageSettings();
+        IronMessageSettings ironMessageSettings = new IronMessageSettings(this.jobName, this.resultString, this.queueName, this.expirySeconds);
 
         IronMQSender sender = new IronMQSender();
 
         sender.send(client, ironMessageSettings);
     }
 
-
-    private IronMessageSettings generateMessageSettings() {
-
-        IronMessageSettings ironMessageSettings = new IronMessageSettings(this.jobName, this.resultString, this.queueName, this.expirySeconds);
-
-
-        return ironMessageSettings;
-    }
 
 
     /**
