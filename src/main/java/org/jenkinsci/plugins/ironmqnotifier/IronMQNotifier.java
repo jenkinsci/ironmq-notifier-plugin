@@ -113,7 +113,12 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
         if (build.getResult() != null )
         {
             this.result = build.getResult();
-            this.resultString = this.result.toString();
+
+            if (this.result != null)
+            {
+                this.resultString = this.result.toString();
+            }
+
 
         }
 
