@@ -181,8 +181,8 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
      * {@inheritDoc}
      */
     @Override
-    public DescriptorImpl getDescriptor() {
-        return (DescriptorImpl) super.getDescriptor();
+    public IronMQNotifierDescriptor getDescriptor() {
+        return (IronMQNotifierDescriptor) super.getDescriptor();
     }
 
 
@@ -381,7 +381,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
 
     @Extension
-    public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
+    public static final class IronMQNotifierDescriptor extends BuildStepDescriptor<Publisher> {
 
         IronConstants ironConstants = new IronConstants();
 
@@ -392,7 +392,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
         private Long defaultExpirySeconds = ironConstants.DEF_EXPIRY_SEC;
 
 
-        public DescriptorImpl() {
+        public IronMQNotifierDescriptor() {
             load();
         }
 
