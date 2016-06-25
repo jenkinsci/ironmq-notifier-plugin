@@ -5,6 +5,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class IronMQNotifierDescriptorTest {
 
 
@@ -30,4 +33,28 @@ public class IronMQNotifierDescriptorTest {
         Assert.assertNotNull(descriptor);
     }
 
+    @Test
+    public void CanExecuteGetDescriptorMocked() {
+
+        IronMQNotifier notifier = mock(IronMQNotifier.class);
+        when(notifier.getDescriptor()).thenReturn(new IronMQNotifier.IronMQNotifierDescriptor());
+
+        IronMQNotifier.IronMQNotifierDescriptor result = notifier.getDescriptor();
+
+        Assert.assertNotNull(result);
+
+    }
+
+    @Test
+    public void CanExecuteGetDescriptorDirect() {
+
+        IronMQNotifier notifier = this.StandardTestNotifier();
+
+        IronMQNotifier.IronMQNotifierDescriptor result = notifier.getDescriptor();
+
+        Assert.assertNotNull(result);
+
+    }
+
 }
+
