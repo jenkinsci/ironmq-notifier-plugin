@@ -35,7 +35,10 @@ import com.gargoylesoftware.htmlunit.html.HtmlNumberInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import hudson.PluginWrapper;
+import hudson.model.Descriptor;
+import hudson.util.FormValidation;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
@@ -140,6 +143,41 @@ public class ConfigTest {
         assertNotNull(inputElement);
         assertNotEquals("", inputElement);
         assertEquals(expectedDefaultServer, Long.parseLong(inputElement.getDefaultValue()));
+
+    }
+
+    @Test
+    public void ConfigureFormValidationExpiryWorksProperlySuccess() throws Descriptor.FormException{
+
+        IronMQNotifier.IronMQNotifierDescriptor descriptor = new IronMQNotifier.IronMQNotifierDescriptor();
+
+        FormValidation formValidation = descriptor.doCheckExpirySeconds(1000L);
+
+        Assert.assertTrue(formValidation.kind.toString().equals("OK"));
+
+    }
+
+    @Test
+    public void ConfigureFormValidationQueueNameWorksProperlySuccess() throws Descriptor.FormException{
+
+        IronMQNotifier.IronMQNotifierDescriptor descriptor = new IronMQNotifier.IronMQNotifierDescriptor();
+
+        FormValidation formValidation = descriptor.doCheckQueueName("testQueue");
+
+        Assert.assertTrue(formValidation.kind.toString().equals("OK"));
+
+    }
+
+    @Test
+    public void ConfigureFormValidationQueueNameWorksProperlyNull() throws Descriptor.FormException{
+
+        IronMQNotifier.IronMQNotifierDescriptor descriptor = new IronMQNotifier.IronMQNotifierDescriptor();
+
+        FormValidation formValidation = descriptor.doCheckQueueName(null);
+
+        String result = formValidation.getMessage();
+
+        Assert.assertTrue(result.equals("Check Queue Name"));
 
     }
 }
