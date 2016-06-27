@@ -1,6 +1,5 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
-
 /*
  * The MIT License
  *
@@ -34,8 +33,10 @@ import com.gargoylesoftware.htmlunit.WebAssert;
 import com.gargoylesoftware.htmlunit.html.HtmlNumberInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
+import com.google.common.base.Joiner;
 import hudson.PluginWrapper;
 import hudson.model.Descriptor;
+import hudson.model.FreeStyleProject;
 import hudson.util.FormValidation;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.junit.Assert;
@@ -53,7 +54,7 @@ public class ConfigTest {
      * JUnit rule which instantiates a local Jenkins instance with our plugin installed.
      */
     @Rule
-    public JenkinsRule j = new JenkinsRule();
+    public JenkinsRule jenkins = new JenkinsRule();
 
 
     @Test
@@ -62,7 +63,7 @@ public class ConfigTest {
     public void shouldFindThePluginByShortName() throws Exception {
 
 
-        PluginWrapper wrapper = j.getPluginManager().getPlugin("ironmq-notifier");
+        PluginWrapper wrapper = jenkins.getPluginManager().getPlugin("ironmq-notifier");
 
         assertNotNull("should have a valid plugin", wrapper);
 
@@ -72,7 +73,7 @@ public class ConfigTest {
     @Test
     public void JenkinsConfigShouldShowConfigForDefaults() throws Exception {
 
-        HtmlPage page = j.createWebClient().goTo("configure");
+        HtmlPage page = jenkins.createWebClient().goTo("configure");
 
         assertEquals("Expect to find one instance of this name", page.getElementsByName("ironmqNotifier").size(), 1);
 
@@ -85,7 +86,7 @@ public class ConfigTest {
     @Test
     public void ConfigureShowsAppropriateFields() throws Exception {
 
-        HtmlPage page = j.createWebClient().goTo("configure");
+        HtmlPage page = jenkins.createWebClient().goTo("configure");
 
         WebAssert.assertInputPresent(page, "_.defaultPreferredServerName");
         WebAssert.assertInputPresent(page, "_.defaultProjectId");
@@ -98,7 +99,7 @@ public class ConfigTest {
     @Test
     public void ConfigureShowsConstantDefaultPreferredServer() throws Exception {
 
-        HtmlPage page = j.createWebClient().goTo("configure");
+        HtmlPage page = jenkins.createWebClient().goTo("configure");
         HtmlTextInput inputElement = page.getElementByName("_.defaultPreferredServerName");
 
         IronConstants ironConstants = new IronConstants();
@@ -115,7 +116,7 @@ public class ConfigTest {
     @Test
     public void ConfigureShowsConstantDefaultQueueName() throws Exception {
 
-        HtmlPage page = j.createWebClient().goTo("configure");
+        HtmlPage page = jenkins.createWebClient().goTo("configure");
         HtmlTextInput inputElement = page.getElementByName("_.defaultQueueName");
 
         IronConstants ironConstants = new IronConstants();
@@ -131,7 +132,7 @@ public class ConfigTest {
     @Test
     public void ConfigureShowsConstantDefaultExpirySeconds() throws Exception {
 
-        HtmlPage page = j.createWebClient().goTo("configure");
+        HtmlPage page = jenkins.createWebClient().goTo("configure");
 
         HtmlNumberInput inputElement = page.getElementByName("_.defaultExpirySeconds");
 
@@ -178,6 +179,41 @@ public class ConfigTest {
         String result = formValidation.getMessage();
 
         Assert.assertTrue(result.equals("Check Queue Name"));
+
+
+    }
+
+
+    @Test
+    public void shouldStoreConfigurationForRecall() throws Exception {
+        String[] keysToTest = {
+                "projectId",
+                "token",
+                "queueName",
+                "preferredServerName",
+                "send_success",
+                "send_failure",
+                "send_unstable",
+                "expirySeconds"
+        };
+
+        FreeStyleProject p = jenkins.getInstance().createProject(FreeStyleProject.class, "testRecall");
+
+        IronMQNotifier before = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTPREFERREDSERVER,
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
+
+        p.getPublishersList().add(before);
+
+        jenkins.submit(jenkins.createWebClient().getPage(p,"configure").getFormByName("config"));
+
+        IronMQNotifier after = p.getPublishersList().get(IronMQNotifier.class);
+
+        jenkins.assertEqualBeans(before, after, Joiner.on(',').join(keysToTest));
 
     }
 }
