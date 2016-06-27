@@ -47,7 +47,8 @@ public class WorkFlowJobTest {
      * JUnit rule which instantiates a local Jenkins instance with our plugin installed.
      */
     @Rule
-    RestartableJenkinsRule story = new RestartableJenkinsRule();
+    public RestartableJenkinsRule story = new RestartableJenkinsRule();
+
 
 
     @Test
