@@ -1,6 +1,3 @@
-package org.jenkinsci.plugins.ironmqnotifier;
-
-
 /*
  * The MIT License
  *
@@ -25,6 +22,7 @@ package org.jenkinsci.plugins.ironmqnotifier;
  * THE SOFTWARE.
  */
 
+package org.jenkinsci.plugins.ironmqnotifier;
 
 /**
  * @author Mike Caspar (imod)
