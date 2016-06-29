@@ -223,9 +223,6 @@ public class ConfigTest {
     @Test
     public void configJenkinsDefaultsWorks() throws Exception {
 
-        String[] keysToTest = {
-                "defaultPreferredServerName",
-        };
 
         IronMQNotifier before = new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME,
@@ -239,16 +236,11 @@ public class ConfigTest {
 
         jenkins.configRoundtrip();
 
-        IronMQNotifier after = new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME,
-                TestSettings.TESTPREFERREDSERVER,
-                true,
-                true,
-                true,
-                TestSettings.EXPIRYSETTINGS);
+        IronMQNotifier.IronMQNotifierDescriptor descriptor = before.getDescriptor();
 
-        jenkins.assertEqualBeans(before, after, Joiner.on(',').join(keysToTest));
-
+        Assert.assertEquals("mq-aws-us-east-1-1.iron.io", descriptor.getDefaultPreferredServerName());
+        Assert.assertEquals("Jenkins", descriptor.getDefaultQueueName());
+     
     }
 
 }
