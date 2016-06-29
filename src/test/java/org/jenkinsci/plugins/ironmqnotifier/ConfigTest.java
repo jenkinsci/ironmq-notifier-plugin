@@ -43,6 +43,9 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
@@ -216,4 +219,36 @@ public class ConfigTest {
         jenkins.assertEqualBeans(before, after, Joiner.on(',').join(keysToTest));
 
     }
+
+    @Test
+    public void configJenkinsDefaultsWorks() throws Exception {
+
+        String[] keysToTest = {
+                "defaultPreferredServerName",
+        };
+
+        IronMQNotifier before = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTPREFERREDSERVER,
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
+
+        jenkins.submit(jenkins.createWebClient().goTo("configure").getFormByName("config"));
+
+        jenkins.configRoundtrip();
+
+        IronMQNotifier after = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTPREFERREDSERVER,
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
+
+        jenkins.assertEqualBeans(before, after, Joiner.on(',').join(keysToTest));
+
+    }
+
 }
