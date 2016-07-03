@@ -91,6 +91,11 @@ public class IronConstantsTest {
     }
 
     @Test
+    public void DefaultMessageVersion() {
+        Assert.assertNotNull(ironConstants.DEF_MESSAGE_VERSION);
+    }
+
+    @Test
     public void IronConstantsConstructorTest()
     {
         Assert.assertNotNull(ironConstants);
