@@ -212,7 +212,7 @@ limitations under the License.
         </url>
         <notifiers>
             <notifier>
-                <type>mail</type>
+                <type>email</type>
                 <address>mike@caspar.com</address>
                 <sendOnFailure>true</sendOnFailure>
                 <sendOnError>true</sendOnError>
