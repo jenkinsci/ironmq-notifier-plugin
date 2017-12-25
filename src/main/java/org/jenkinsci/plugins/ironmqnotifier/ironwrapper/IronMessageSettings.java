@@ -42,42 +42,42 @@ public class IronMessageSettings {
     }
 
 
-    public IronMessageSettings() {
+    IronMessageSettings() {
 
     }
 
-    public void setExpirySeconds(final Long expirySeconds)  {
+    void setExpirySeconds(final Long expirySeconds)  {
 
         this.expirySeconds = expirySeconds;
     }
 
-    public Long getExpirySeconds() {
+    Long getExpirySeconds() {
         return this.expirySeconds;
     }
 
-    public void setBuildResultString(final String buildResultString) {
+    void setBuildResultString(final String buildResultString) {
         this.setBuildResultString = buildResultString;
     }
 
-    public String getBuildResultString() {
+    String getBuildResultString() {
         return this.setBuildResultString;
     }
 
-    public void setJobName(final String jobName) {
+    void setJobName(final String jobName) {
      this.jobName = jobName;
     }
 
-    public String getJobName() {
+    String getJobName() {
         return this.jobName;
     }
 
-    public String getQueueName() {
+    String getQueueName() {
 
         return this.queueName;
 
     }
 
-    public void setQueueName(final String queueName) {
+    void setQueueName(final String queueName) {
         if (queueName==null) {
             throw new IllegalArgumentException("queueName Cannot be null");
         }

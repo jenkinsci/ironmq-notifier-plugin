@@ -44,7 +44,7 @@ public class ClientBuilder {
 
     }
 
-    public String getProjectId() {
+    String getProjectId() {
         return this.projectId;
     }
 
@@ -52,7 +52,7 @@ public class ClientBuilder {
         return this.token;
     }
 
-    public String getPrimaryServer() {
+    String getPrimaryServer() {
 
         return this.primaryServer;
 
@@ -63,9 +63,7 @@ public class ClientBuilder {
 
         Cloud cloud = new Cloud("https", this.getPrimaryServer(), 443);
 
-        Client client = new Client(this.projectId, this.token, cloud);
-
-        return client;
+        return new Client(this.projectId, this.token, cloud);
 
 
     }

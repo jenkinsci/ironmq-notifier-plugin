@@ -24,9 +24,6 @@
 
 package org.jenkinsci.plugins.ironmqnotifier;
 
-/**
- * @author Mike Caspar (imod)
- */
 
 
 import hudson.model.FreeStyleProject;
@@ -38,6 +35,10 @@ import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
 
 import java.io.IOException;
+
+/**
+ * @author Mike Caspar (imod)
+ */
 
 
 public class FreestyleJobTest {

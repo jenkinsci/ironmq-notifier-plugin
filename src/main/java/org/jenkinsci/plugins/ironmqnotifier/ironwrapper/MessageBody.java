@@ -26,7 +26,7 @@ package org.jenkinsci.plugins.ironmqnotifier.ironwrapper;
 
 import java.util.Date;
 
-public class MessageBody {
+class MessageBody {
 
     private String messageVersion = "3.0";
     private String jobName;
@@ -34,19 +34,25 @@ public class MessageBody {
     private Date submissionDate;
 
 
-    public void setMessageVersion(final String messageVersion) {
+    void setMessageVersion(final String messageVersion) {
         this.messageVersion = messageVersion;
     }
 
-    public void setJobName(final String jobName) {
+    /**
+     * <p>Setter for the field <code>jobName</code>.</p>
+     *
+     * @param jobName a {@link java.lang.String} object.
+     */
+    void setJobName(final String jobName) {
         this.jobName = jobName;
     }
 
-    public void setBuildResult(final String buildResult) {
+    void setBuildResult(final String buildResult) {
         this.buildResult = buildResult;
     }
 
-    public void setSubmissionDate(final Date submissionDate) {
+
+    void setSubmissionDate(final Date submissionDate) {
 
         if (submissionDate == null) {
 
@@ -64,19 +70,19 @@ public class MessageBody {
     }
 
 
-    public String getJobName() {
+    String getJobName() {
         return jobName;
     }
 
-    public String getBuildResult() {
+    String getBuildResult() {
         return buildResult;
     }
 
-    public String getMessageVersion() {
+    String getMessageVersion() {
         return messageVersion;
     }
 
-    public Date getSubmissionDate() {
+    Date getSubmissionDate() {
 
 
         if ( this.submissionDate == null) {
