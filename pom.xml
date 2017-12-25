@@ -76,7 +76,6 @@ limitations under the License.
     <version>1.0.19-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
-
     <name>IronMQ-notifier</name>
     <description>Jenkins build notification plugin which sends results to
         iron.io ironmq service
@@ -86,7 +85,7 @@ limitations under the License.
 
     <properties>
 
-        <jenkins.version>2.89.2</jenkins.version>
+        <jenkins.version>1.625.3</jenkins.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -120,30 +119,28 @@ limitations under the License.
         </developer>
     </developers>
 
-
-    <pluginRepositories>
-
-        <pluginRepository>
-            <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
-        </pluginRepository>
-
-
-    </pluginRepositories>
-
-    <!-- get every artifact through repo.jenkins-ci.org,
-     which proxies all the artifacts that we need -->
-
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
+            <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
-
-
     </repositories>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repo.jenkins-ci.org</id>
+            <url>https://repo.jenkins-ci.org/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+
     <dependencies>
+
+        <dependency>
+            <groupId>org.jenkins-ci.main</groupId>
+            <artifactId>jenkins-core</artifactId>
+            <version>${jenkins.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>io.iron.ironmq</groupId>
