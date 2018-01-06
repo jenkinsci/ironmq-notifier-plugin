@@ -30,7 +30,7 @@ Maintainers
 Mike Caspar
 
 
-[![Build Status](https://ci.jenkins.io/job/Plugins/job/badge/icon)](https://ci.jenkins.io/job/Plugins/job/ironmq-notifier-plugin/)
+[![Build Status](https://ci.jenkins.io/buildStatus/icon?job=Plugins/ironmq-notifier-plugin/master)](https://ci.jenkins.io/buildStatus/icon?job=Plugins/ironmq-notifier-plugin/master)
 
 ***
 
