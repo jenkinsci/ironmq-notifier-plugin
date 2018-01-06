@@ -25,10 +25,6 @@ package org.jenkinsci.plugins.ironmqnotifier;
  */
 
 
-/**
- * @author Mike Caspar (imod)
- */
-
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.junit.Assert;
 import org.junit.Before;
@@ -37,7 +33,7 @@ import hudson.util.FormValidation;
 
 public class IronConstantsTest {
 
-    IronConstants ironConstants = new IronConstants();
+    private IronConstants ironConstants = new IronConstants();
 
     @Before
     public void LoadStandardClass()
