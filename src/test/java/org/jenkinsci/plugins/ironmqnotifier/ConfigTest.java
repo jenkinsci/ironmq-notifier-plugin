@@ -25,10 +25,6 @@
 
 package org.jenkinsci.plugins.ironmqnotifier;
 
-/**
- * @author Mike Caspar (imod)
- */
-
 import com.gargoylesoftware.htmlunit.WebAssert;
 import com.gargoylesoftware.htmlunit.html.HtmlNumberInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -43,9 +39,6 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 
 import static org.junit.Assert.*;
 
