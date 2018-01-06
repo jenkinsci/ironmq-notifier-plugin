@@ -35,7 +35,7 @@ public class IronMqGsonDependencyTest {
     public void GsonExistsForMessageClassTest() {
 
         Message msg = new Message();
-        long expiresIn = msg.getExpiresIn();
+        Long expiresIn = msg.getExpiresIn();
         Assert.assertNotNull(expiresIn);
 
     }
