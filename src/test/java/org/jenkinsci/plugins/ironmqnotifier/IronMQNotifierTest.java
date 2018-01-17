@@ -318,4 +318,20 @@ public class IronMQNotifierTest {
 
     }
 
+    @Test
+    public void IronMQNotifierFixesNullDefaultPreferredServerIfNecessary() {
+
+        IronConstants ironConstants = new IronConstants();
+
+        String testString = ironConstants.DEFAULT_PREFERRED_SERVER_NAME;
+
+        IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKEN, "", null, true, true, true, TestSettings.EXPIRYSETTINGS);
+
+        String result = notifier.getDefaultPreferredServerName();
+
+        Assert.assertEquals(testString, result);
+
+    }
+
 }

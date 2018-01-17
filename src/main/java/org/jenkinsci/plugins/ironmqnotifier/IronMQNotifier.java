@@ -361,6 +361,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
             this.defaultPreferredServerName = ironConstants.DEFAULT_PREFERRED_SERVER_NAME;
 
         }
+
         return this.defaultPreferredServerName;
     }
 
