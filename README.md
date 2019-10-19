@@ -1,6 +1,9 @@
 **This plugin is up for adoption. The maintainer is looking for a co-maintainer. Click here to learn more!**
 
 ***
+[![Build Status](https://ci.jenkins.io/buildStatus/icon?job=Plugins/ironmq-notifier-plugin/master)](https://ci.jenkins.io/buildStatus/icon?job=Plugins/ironmq-notifier-plugin/master)
+***
+
 **This plugin uses the IronMQ messaging service to send status updates of build information into an enterprise level cloud based message queue.**
 
 
