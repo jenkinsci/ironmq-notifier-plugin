@@ -14,26 +14,37 @@ The current build status is :
 **1.0.18** - will use a minimum version of 2.7.2 version of jenkins, tested to 2.29
 removed dependency on older dependency for testing
 change jenkins plugin to newer version to ensure best compatibility
+
 **1.0.17** - test and set to allow install on 1.651.3 version of jenkins
+
 **1.0.16** - Initial pre-release v2 pipeline
 Regression on alternate queue name for push queue
 Code adjustments to prepare for v2 (pipeline) (not yet completed).
+
 **1.0.15**-Not released - Deployment issues
+
 **1.0.14** - tested with 1.651.2 LTS
+
 **1.0.13** - nothing special
+
 **WARNING**: You will need to change the hosts you send messages to, and the message format has changed in this release. (1.0.12 and above)
 _Note_: 1.0.12 has major changes to support for the new Version 3 ironmq api. The version 2 api has been deprecated by Iron.io.
 One of the biggest change in the new ironmq API is the removal of the ability to put expiry seconds on individual messages to a queue.
 
 The following change will occur from version 1.0.12 forward.
 
-The message version of the mesage will change from "1" to "3.0".  
+The message version of the message will change from "1" to "3.0".  
 You will need to prepare to use only Version 3 iron.io servers .  The default server will be changed to mq-aws-us-east-1-1.iron.io
+
 To prepare for the upgrade, the following will change.. Default Config Server name... and then within in job definition.
+
 The expirySeconds field will remain for several versions to allow easier reversion to pre-1.0.12 versions without errors but will be removed by version 1.0.15 unless a very compelling reason to put this field back exists before then. For now, the data will be accepted but the default for the Queue on Iron.IO will be used.  As an alternative, consider using the iron.io API to set the default for the entire Queue if setting queue expiry time is important to you.  Otherwise, messages will expire based on default queue setttings.
+
 The Expires Date field will also be removed as it may provide misleading information. Expiry will inherit from the queue settings and are therefore inappropriate as part of the message properties.
 Note: 1.0.11 - enhancement - defaults settings simplify adding post-build actions.
+
 Setup Instructions for Iron.io
+
 At the time of the creation of this document, no setup or accounts are needed at Rackspace or Amazon. It is all handled nicely through the one interface at Iron.io
 
 Go to http://www.iron.io/mq for more info.
