@@ -23,7 +23,7 @@ With this situation, there is no need for the Jenkins build server to communicat
 
 To test locally in development, execute mvn hpi:run
 
-The development version of mvn in use : 3.3.9
+The development version of mvn in use : 3.6.1
 
 ***
 
