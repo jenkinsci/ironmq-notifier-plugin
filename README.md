@@ -85,7 +85,7 @@ After downloading the plugin into your Jenkins server, when creating a job, go t
 
 You will then see the following options. (please note, these are not valid #s and are for presentation only).
 
-
+![](https://github.com/jenkinsci/ironmq-notifier-plugin/blob/master/wiki/ironmq-sample-setup-104.PNG)
 
 The next time your build executes, it will send the results to your ironMQ mesasge queue.
 
