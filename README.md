@@ -51,13 +51,14 @@ Setup Instructions for Iron.io
 
 At the time of the creation of this document, no setup or accounts are needed at Rackspace or Amazon. It is all handled nicely through the one interface at Iron.io
 
-Go to http://www.iron.io/mq for more info.
-Create an account
-Create a Project (you can have one project for your Jenkins instance or several projects depending on your needs).
-After the project is setup, go to the "HUD" at https://hud.iron.io
+- Go to http://www.iron.io/mq for more info.
+- Create an account
+- Create a Project (you can have one project for your Jenkins instance or several projects depending on your needs).
+- After the project is setup, go to the "HUD" at https://hud.iron.io
+
 Sample Jenkins Project (not the Settings Icon) which will provide authentication token for your Project (Jenkins in this example).
 
-
+![](https://github.com/jenkinsci/ironmq-notifier-plugin/blob/master/wiki/ProjectPage.jpg)
 
 
 You will need the following information:
