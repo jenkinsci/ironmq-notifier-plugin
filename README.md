@@ -87,13 +87,14 @@ You will then see the following options. (please note, these are not valid #s an
 
 ![](https://github.com/jenkinsci/ironmq-notifier-plugin/blob/master/wiki/ironmq-sample-setup-104.PNG)
 
-The next time your build executes, it will send the results to your ironMQ mesasge queue.
+The next time your build executes, it will send the results to your ironMQ message queue.
 
 As of Version 1.0.5, when a message is transmitted to the queue, it is in JSON format to allow for applications to be created with intelligence based on the data in the Queue.
 
+![](https://github.com/jenkinsci/ironmq-notifier-plugin/blob/master/wiki/BuildResult.png)
 
+__Current To-Do list__
 
-Current To-Do list
 - Modify the documentation to show new version 3 API screens and information.
 - Get unstable build to work in the event of an error of some sort during transmission
 - Consider starting work on languages.
