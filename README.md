@@ -65,15 +65,16 @@ Sample Jenkins Project (not the Settings Icon) which will provide authentication
 
 You will need the following information:
 
-ProjectId (provided by the HUD)
-Token for this Project (provided by the HUD under authentication)
-QueueName (A-Z upper and lower) (I have not tested other alternatives)
-Preferred Server Name (there are several servers available for this service. This plugin is designed so that if there are new ones, no coding changes are needed.. Just replace the name of the server as they add/remove servers from their available list.
+* ProjectId (provided by the HUD)
+* Token for this Project (provided by the HUD under authentication)
+* QueueName (A-Z upper and lower) (I have not tested other alternatives)
+* Preferred Server Name (there are several servers available for this service. This plugin is designed so that if there are new ones, no coding changes are needed.. Just replace the name of the server as they add/remove servers from their available list.
+
 Current options for Server Names are..
 
-mq-aws-us-east-1-1.iron.io
-mq-aws-us-east-1-2.iron.io
-mq-aws-eu-west-1-1.iron.io
+* mq-aws-us-east-1-1.iron.io
+* mq-aws-us-east-1-2.iron.io
+* mq-aws-eu-west-1-1.iron.io
 
 Starting from version 1.0.11, configure default settings in the Configure Jenkins Server Defaults as follows;
 
@@ -99,7 +100,7 @@ __Current To-Do list__
 - Get unstable build to work in the event of an error of some sort during transmission
 - Consider starting work on languages.
 - Consider adding a "backup-server" as part of the input.
-- Consider having the next version extend the Credentials Plugin for keys
+- Consider having the next version extend the Credentials Plugin or use Secret tag
 
 tags
 - plugin-notifier
