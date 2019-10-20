@@ -481,7 +481,6 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
             return super.configure(req, formData);
         }
 
-
         public FormValidation doCheckQueueName(@QueryParameter final String value) {
 
             IronMQFormValidations validations = new IronMQFormValidations();
@@ -493,7 +492,6 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
             } else {
                 validationReturn = validations.isValidQueueName(value);
             }
-
 
             return validationReturn;
 
