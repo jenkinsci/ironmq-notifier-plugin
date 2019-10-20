@@ -74,10 +74,10 @@ Current options for Server Names are..
 mq-aws-us-east-1-1.iron.io
 mq-aws-us-east-1-2.iron.io
 mq-aws-eu-west-1-1.iron.io
+
 Starting from version 1.0.11, configure default settings in the Configure Jenkins Server Defaults as follows;
 
-
-
+![](https://github.com/jenkinsci/ironmq-notifier-plugin/blob/master/wiki/ironMQNotifierDefaults.png)
 
 These settings will be used by default when adding a Post-Build action to new jobs.
 
