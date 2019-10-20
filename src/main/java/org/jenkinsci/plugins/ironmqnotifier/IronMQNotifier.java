@@ -37,6 +37,7 @@ import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
 import hudson.tasks.Publisher;
 import hudson.util.FormValidation;
+import hudson.util.Secret;
 import io.iron.ironmq.Client;
 import jenkins.tasks.SimpleBuildStep;
 import net.sf.json.JSONObject;
@@ -412,7 +413,9 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
         private String defaultPreferredServerName = ironConstants.DEFAULT_PREFERRED_SERVER_NAME;
         private String defaultProjectId = "";
-        private String defaultToken = "";
+
+        private Secret defaultToken = hudson.util.Secret.fromString("");
+
         private String defaultQueueName = ironConstants.DEF_QUEUE_NAME;
         private Long defaultExpirySeconds = ironConstants.DEF_EXPIRY_SEC;
 
@@ -442,7 +445,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
             return defaultProjectId;
         }
 
-        public String getDefaultToken() {
+        public Secret getDefaultToken() {
             return defaultToken;
         }
 
@@ -457,11 +460,16 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
         @Override
         public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
 
+            req.bindJSON(this, formData.getJSONObject("ironmqNotifier"));
+
             JSONObject json = formData.getJSONObject("ironmqNotifier");
 
             defaultPreferredServerName = json.getString("defaultPreferredServerName");
             defaultProjectId = json.getString("defaultProjectId");
-            defaultToken = json.getString("defaultToken");
+
+            final String defaultTokenString = json.getString("defaultToken");
+            defaultToken = hudson.util.Secret.fromString(defaultTokenString);
+
             defaultQueueName = json.getString("defaultQueueName");
             try {
                 defaultExpirySeconds = json.getLong("defaultExpirySeconds");
@@ -472,7 +480,6 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
             save();
             return super.configure(req, formData);
         }
-
 
         public FormValidation doCheckQueueName(@QueryParameter final String value) {
 
@@ -485,7 +492,6 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
             } else {
                 validationReturn = validations.isValidQueueName(value);
             }
-
 
             return validationReturn;
 

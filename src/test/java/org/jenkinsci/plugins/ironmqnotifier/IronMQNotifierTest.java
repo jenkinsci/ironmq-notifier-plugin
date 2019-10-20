@@ -188,7 +188,7 @@ public class IronMQNotifierTest {
 
         Assert.assertEquals(TestSettings.EXPIRYSETTINGS, notifier.getExpirySeconds());
 
-        Assert.assertNotEquals(new Long(0), notifier.getExpirySeconds());
+        Assert.assertNotEquals(Long.valueOf(0), notifier.getExpirySeconds());
 
     }
 
