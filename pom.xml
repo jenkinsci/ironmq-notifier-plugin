@@ -162,7 +162,7 @@ limitations under the License.
         <dependency>
             <groupId>io.iron.ironmq</groupId>
             <artifactId>ironmq</artifactId>
-            <version>3.0.4</version>
+            <version>3.0.5</version>
 
         </dependency>
 
