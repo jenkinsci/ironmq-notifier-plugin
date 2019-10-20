@@ -162,13 +162,14 @@ limitations under the License.
         <dependency>
             <groupId>io.iron.ironmq</groupId>
             <artifactId>ironmq</artifactId>
-            <version>3.0.4</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.commons</groupId>
-                    <artifactId>commons-lang3</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>3.0.5</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.9</version>
         </dependency>
 
        <dependency>

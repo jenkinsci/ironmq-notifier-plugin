@@ -70,7 +70,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
     public boolean send_failure;
     public boolean send_unstable;
 
-    private String token;
+    private Secret token;
     private long expirySeconds;
     private String projectId;
     private String queueName;
@@ -82,7 +82,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
      * <p>DataBoundConstructor for IronMQNotifier.</p>
      *
      * @param projectId a {@link java.lang.String} object.
-     * @param token a {@link java.lang.String} object.
+     * @param token a {@link hudson.util.Secret} object.
      * @param queueName a {@link java.lang.String} object.
      * @param preferredServerName a {@link java.lang.String} object.
      * @param send_success a {@link java.lang.Boolean} object.
@@ -93,7 +93,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
      */
     @DataBoundConstructor
     public IronMQNotifier(final String projectId,
-                          final String token,
+                          final Secret token,
                           final String queueName,
                           final String preferredServerName,
                           final boolean send_success,
@@ -213,7 +213,9 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
     int SendMessageToIronMQ() throws IOException {
 
-        ClientBuilder builder = new ClientBuilder(this.projectId, this.token, this.preferredServerName);
+        final String tokenString = this.token.getPlainText();
+
+        ClientBuilder builder = new ClientBuilder(this.projectId, tokenString, this.preferredServerName);
 
         Client client = builder.createClient();
 
@@ -288,20 +290,20 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
     /**
      * <p>Getter for the field <code>token</code>.</p>
      *
-     * @return a {@link java.lang.String} object.
-     * @since 1.0.6
+     * @return a {@link hudson.util.Secret} object.
+     * @since 1.0.19
      */
-    public String getToken() {
+    public Secret getToken() {
         return token;
     }
 
     /**
      * <p>Setter for the field <code>token</code>.</p>
      *
-     * @param token a {@link java.lang.String} object.
-     * @since 1.0.6
+     * @param token a {@link hudson.util.Secret} object.
+     * @since 1.0.19
      */
-    public void setToken(String token) {
+    public void setToken(Secret token) {
         this.token = token;
     }
 
@@ -422,6 +424,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
         public IronMQNotifierDescriptor() {
             load();
+
         }
 
         @Override
