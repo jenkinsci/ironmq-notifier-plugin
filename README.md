@@ -60,7 +60,7 @@ Sample Jenkins Project (not the Settings Icon) which will provide authentication
 
 ![](https://github.com/jenkinsci/ironmq-notifier-plugin/blob/master/wiki/ProjectPage.jpg)
 
-![](https://github.com/jenkinsci/ironmq-notifier-plugin/blob/master/wiki/Credentials.jpg)
+![](https://github.com/jenkinsci/ironmq-notifier-plugin/blob/master/wiki/Credentials.png)
 
 
 You will need the following information:
