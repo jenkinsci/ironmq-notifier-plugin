@@ -16,8 +16,6 @@ The messages have FIFO (first-in first-out) ordering so ensure continuity and ca
 The current build status is :   
 
 **1.0.18** - tested to 2.29 version of Jenkins
-removed dependency on older dependency for testing
-change jenkins plugin to newer version to ensure best compatibility
 
 **1.0.17** - test and set to allow install on 1.651.3 version of jenkins
 
