@@ -25,6 +25,7 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
 import hudson.tasks.BuildStepMonitor;
+import hudson.util.Secret;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.junit.Assert;
 import org.junit.Test;
@@ -97,16 +98,16 @@ public class IronMQNotifierTest {
     public void Notifier_Has_A_Token_Not_Empty() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertTrue(!notifier.getToken().isEmpty());
+        Assert.assertTrue(!notifier.getToken().getPlainText().isEmpty());
 
     }
 
     @Test
     public void Notifier_Can_SetAndRetrieve_Token() {
         IronMQNotifier notifier = StandardTestNotifier();
-        final String testString = "7714717174";
-        notifier.setToken(testString);
-        Assert.assertEquals(testString, notifier.getToken());
+        final Secret testSecret = hudson.util.Secret.fromString("55555");
+        notifier.setToken(testSecret);
+        Assert.assertEquals(testSecret, notifier.getToken());
     }
 
 
