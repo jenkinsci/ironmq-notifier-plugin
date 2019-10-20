@@ -60,6 +60,8 @@ Sample Jenkins Project (not the Settings Icon) which will provide authentication
 
 ![](https://github.com/jenkinsci/ironmq-notifier-plugin/blob/master/wiki/ProjectPage.jpg)
 
+![](https://github.com/jenkinsci/ironmq-notifier-plugin/blob/master/wiki/Credentials.jpg)
+
 
 You will need the following information:
 
@@ -73,6 +75,7 @@ mq-aws-us-east-1-1.iron.io
 mq-aws-us-east-1-2.iron.io
 mq-aws-eu-west-1-1.iron.io
 Starting from version 1.0.11, configure default settings in the Configure Jenkins Server Defaults as follows;
+
 
 
 
