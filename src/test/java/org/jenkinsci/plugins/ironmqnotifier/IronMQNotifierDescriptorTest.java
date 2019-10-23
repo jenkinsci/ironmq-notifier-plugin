@@ -37,7 +37,7 @@ public class IronMQNotifierDescriptorTest {
 
     private IronMQNotifier StandardTestNotifier() {
         return new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTTOKENID, TestSettings.TESTQUEUENAME,
                 TestSettings.TESTPREFERREDSERVER,
                 true,
                 true,

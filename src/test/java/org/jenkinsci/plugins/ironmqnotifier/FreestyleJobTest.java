@@ -57,7 +57,7 @@ public class FreestyleJobTest {
         FreeStyleProject p = j.createFreeStyleProject();
 
         p.getPublishersList().add(new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, "", "", true, true, true, TestSettings.EXPIRYSETTINGS) );
+                TestSettings.TESTTOKENID, "", "", true, true, true, TestSettings.EXPIRYSETTINGS) );
 
         DescribableList describableList = p.getPublishersList();
 

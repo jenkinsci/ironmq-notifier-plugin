@@ -70,7 +70,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
     public boolean send_failure;
     public boolean send_unstable;
 
-    private Secret token;
+    private Secret tokenId;
     private long expirySeconds;
     private String projectId;
     private String queueName;
@@ -82,7 +82,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
      * <p>DataBoundConstructor for IronMQNotifier.</p>
      *
      * @param projectId a {@link java.lang.String} object.
-     * @param token a {@link hudson.util.Secret} object.
+     * @param tokenId a {@link hudson.util.Secret} object.
      * @param queueName a {@link java.lang.String} object.
      * @param preferredServerName a {@link java.lang.String} object.
      * @param send_success a {@link java.lang.Boolean} object.
@@ -93,7 +93,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
      */
     @DataBoundConstructor
     public IronMQNotifier(final String projectId,
-                          final Secret token,
+                          final Secret tokenId,
                           final String queueName,
                           final String preferredServerName,
                           final boolean send_success,
@@ -102,7 +102,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
                           final long expirySeconds) {
 
         this.projectId = projectId;
-        this.token = token;
+        this.tokenId = tokenId;
         this.queueName = queueName;
         this.send_success = send_success;
         this.send_failure = send_failure;
@@ -213,7 +213,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
     int SendMessageToIronMQ() throws IOException {
 
-        final String tokenString = this.token.getPlainText();
+        final String tokenString = this.tokenId.getPlainText();
 
         ClientBuilder builder = new ClientBuilder(this.projectId, tokenString, this.preferredServerName);
 
@@ -288,23 +288,23 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
     }
 
     /**
-     * <p>Getter for the field <code>token</code>.</p>
+     * <p>Getter for the field <code>tokenId</code>.</p>
      *
      * @return a {@link hudson.util.Secret} object.
      * @since 1.0.19
      */
-    public Secret getToken() {
-        return token;
+    public Secret getTokenId() {
+        return tokenId;
     }
 
     /**
-     * <p>Setter for the field <code>token</code>.</p>
+     * <p>Setter for the field <code>tokenId</code>.</p>
      *
-     * @param token a {@link hudson.util.Secret} object.
+     * @param tokenId a {@link hudson.util.Secret} object.
      * @since 1.0.19
      */
-    public void setToken(Secret token) {
-        this.token = token;
+    public void setTokenId(Secret tokenId) {
+        this.tokenId = tokenId;
     }
 
     /**

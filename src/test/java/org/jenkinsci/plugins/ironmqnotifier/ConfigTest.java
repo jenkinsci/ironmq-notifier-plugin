@@ -183,7 +183,7 @@ public class ConfigTest {
     public void shouldStoreConfigurationForRecall() throws Exception {
         String[] keysToTest = {
                 "projectId",
-                "token",
+                "tokenId",
                 "queueName",
                 "preferredServerName",
                 "send_success",
@@ -195,7 +195,7 @@ public class ConfigTest {
         FreeStyleProject p = jenkins.getInstance().createProject(FreeStyleProject.class, "testRecall");
 
         IronMQNotifier before = new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTTOKENID, TestSettings.TESTQUEUENAME,
                 TestSettings.TESTPREFERREDSERVER,
                 true,
                 true,
@@ -217,7 +217,7 @@ public class ConfigTest {
 
 
         IronMQNotifier before = new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTTOKENID, TestSettings.TESTQUEUENAME,
                 TestSettings.TESTPREFERREDSERVER,
                 true,
                 true,

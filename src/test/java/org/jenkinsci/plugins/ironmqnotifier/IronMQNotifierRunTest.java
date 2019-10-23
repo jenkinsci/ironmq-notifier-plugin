@@ -40,7 +40,7 @@ public class IronMQNotifierRunTest {
 
 
     IronMQNotifier notifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
-                TestSettings.TESTTOKEN, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTTOKENID, TestSettings.TESTQUEUENAME,
                 TestSettings.TESTPREFERREDSERVER,
                 true,
                 true,
