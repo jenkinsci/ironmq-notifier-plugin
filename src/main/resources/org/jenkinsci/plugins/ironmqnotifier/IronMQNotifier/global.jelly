@@ -5,9 +5,6 @@
         <f:entry title="${%Default Preferred Server Name}" field="defaultPreferredServerName">
             <f:textbox/>
         </f:entry>
-        <f:entry title="${%Default Project Id}" field="defaultProjectId">
-            <f:textbox/>
-        </f:entry>
 
         <f:entry title="${%Default Queue Name}" field="defaultQueueName">
             <f:textbox default="Jenkins" />
