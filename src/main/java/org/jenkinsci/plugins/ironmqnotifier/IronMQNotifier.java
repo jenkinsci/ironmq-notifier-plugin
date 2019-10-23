@@ -416,8 +416,6 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
         private String defaultPreferredServerName = ironConstants.DEFAULT_PREFERRED_SERVER_NAME;
         private String defaultProjectId = "";
 
-        private Secret defaultToken = hudson.util.Secret.fromString("");
-
         private String defaultQueueName = ironConstants.DEF_QUEUE_NAME;
         private Long defaultExpirySeconds = ironConstants.DEF_EXPIRY_SEC;
 
@@ -448,10 +446,6 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
             return defaultProjectId;
         }
 
-        public Secret getDefaultToken() {
-            return defaultToken;
-        }
-
         public String getDefaultQueueName() {
             return defaultQueueName;
         }
@@ -469,9 +463,6 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
             defaultPreferredServerName = json.getString("defaultPreferredServerName");
             defaultProjectId = json.getString("defaultProjectId");
-
-            final String defaultTokenString = json.getString("defaultToken");
-            defaultToken = hudson.util.Secret.fromString(defaultTokenString);
 
             defaultQueueName = json.getString("defaultQueueName");
             try {
