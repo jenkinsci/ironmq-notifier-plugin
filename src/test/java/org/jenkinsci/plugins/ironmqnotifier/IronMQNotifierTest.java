@@ -90,7 +90,7 @@ public class IronMQNotifierTest {
     public void Notifier_Has_A_Token_Not_Null() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertNotNull(notifier.getToken());
+        Assert.assertNotNull(notifier.getTokenId());
 
     }
 
@@ -98,7 +98,7 @@ public class IronMQNotifierTest {
     public void Notifier_Has_A_Token_Not_Empty() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertTrue(!notifier.getToken().getPlainText().isEmpty());
+        Assert.assertTrue(!notifier.getTokenId().getPlainText().isEmpty());
 
     }
 
@@ -106,8 +106,8 @@ public class IronMQNotifierTest {
     public void Notifier_Can_SetAndRetrieve_Token() {
         IronMQNotifier notifier = StandardTestNotifier();
         final Secret testSecret = hudson.util.Secret.fromString("55555");
-        notifier.setToken(testSecret);
-        Assert.assertEquals(testSecret, notifier.getToken());
+        notifier.setTokenId(testSecret);
+        Assert.assertEquals(testSecret, notifier.getTokenId());
     }
 
 
@@ -154,7 +154,7 @@ public class IronMQNotifierTest {
         IronMQNotifier notifier = StandardTestNotifier();
 
         Assert.assertNotNull(notifier.getProjectId());
-        Assert.assertNotNull(notifier.getToken());
+        Assert.assertNotNull(notifier.getTokenId());
         Assert.assertNotNull(notifier.getQueueName());
         Assert.assertNotNull(notifier.getPreferredServerName());
         Assert.assertNotNull(notifier.send_success);
