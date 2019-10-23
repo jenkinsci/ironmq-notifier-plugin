@@ -86,7 +86,6 @@ public class ConfigTest {
 
         WebAssert.assertInputPresent(page, "_.defaultPreferredServerName");
         WebAssert.assertInputPresent(page, "_.defaultProjectId");
-        WebAssert.assertInputPresent(page, "_.defaultToken");
         WebAssert.assertInputPresent(page, "_.defaultQueueName");
         WebAssert.assertInputPresent(page, "_.defaultExpirySeconds");
 

@@ -13,9 +13,14 @@ Messages are not intended to be in this queue for long-term storage.
 Default expiry if not provided is 604,800 (7 days).
 The messages have FIFO (first-in first-out) ordering so ensure continuity and can be dealt with by different clients as needed.
 
-**1.0.19-SNAPSHOT** - minimum version of Jenkins set to 2.164.1, Default Configuration in Jenkins/Configure modified to use Secrets vs. cleartext
+**1.0.19** - minimum version of Jenkins set to 2.164.1, Default Configuration in Jenkins/Configure modified to use Secrets vs. cleartext
 ***
-__Warning__ After installing 1.0.19, the administrator will need to go to Jenkins Server/Config and re-enter the Default Token.
+__Warning__ !! 
+
+When upgrading to Version 1.0.19, tokenId will no longer be set as part of Default Config. Jobs will store encrypted data to comply with a Jenkins Security advisory effecting most plugins.
+
+After installing 1.0.19, the administrator will need to go to each job and re-enter the TokenId which will be re-saved in encrypted format.
+
 For more information about this change, see warnings about cleartext configuration information being stored on the filesystem with recommendations on how to adjust [see this security advisory impacting many plugins](https://jenkins.io/security/advisory/2019-10-16/)
 This plugin only transmits build results and sends no private data of any kind other than a success/fail. Changes were made to address new Jenkins developer conventions about storing this data in plain text.
  
