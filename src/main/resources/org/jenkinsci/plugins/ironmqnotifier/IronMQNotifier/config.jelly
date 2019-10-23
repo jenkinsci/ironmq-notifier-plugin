@@ -7,7 +7,7 @@
     </f:entry>
 
     <f:entry title="${%description.token}" field="token" help="/plugin/ironmq-notifier/help/help-token.html">
-        <f:textbox default="${descriptor.getDefaultToken()}"/>
+        <f:password />
     </f:entry>
 
     <f:entry title="${%description.queueName}" field="queueName"
