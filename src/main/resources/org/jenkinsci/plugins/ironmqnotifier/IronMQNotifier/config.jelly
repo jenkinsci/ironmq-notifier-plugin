@@ -3,7 +3,7 @@
 
     <f:entry title="${%description.projectId}" field="projectId"
              help="/plugin/ironmq-notifier/help/help-projectId.html">
-        <f:textbox default="${descriptor.getDefaultProjectId()}"/>
+        <f:password />
     </f:entry>
 
     <f:entry title="${%description.tokenId}" field="tokenId" help="/plugin/ironmq-notifier/help/help-tokenId.html">

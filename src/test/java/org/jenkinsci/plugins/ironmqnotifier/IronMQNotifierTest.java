@@ -74,16 +74,17 @@ public class IronMQNotifierTest {
     public void Notifier_Has_A_ProjectId_Not_Empty() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertTrue(!notifier.getProjectId().isEmpty());
+        Assert.assertTrue(!notifier.getProjectId().getPlainText().isEmpty());
     }
 
     @Test
     public void Notifier_Can_Set_A_ProjectId_And_Get_It_Back() {
 
-        String testString = "t";
         IronMQNotifier notifier = StandardTestNotifier();
-        notifier.setProjectId(testString);
-        Assert.assertEquals(testString, notifier.getProjectId());
+
+        final Secret testSecret = hudson.util.Secret.fromString("14114");
+        notifier.setProjectId(testSecret);
+        Assert.assertEquals(testSecret, notifier.getProjectId());
     }
 
     @Test

@@ -72,7 +72,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
     private Secret tokenId;
     private long expirySeconds;
-    private String projectId;
+    private Secret projectId;
     private String queueName;
     private String jobName = "";
 
@@ -81,7 +81,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
     /**
      * <p>DataBoundConstructor for IronMQNotifier.</p>
      *
-     * @param projectId a {@link java.lang.String} object.
+     * @param projectId a {@link hudson.util.Secret} object.
      * @param tokenId a {@link hudson.util.Secret} object.
      * @param queueName a {@link java.lang.String} object.
      * @param preferredServerName a {@link java.lang.String} object.
@@ -92,7 +92,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
      *
      */
     @DataBoundConstructor
-    public IronMQNotifier(final String projectId,
+    public IronMQNotifier(final Secret projectId,
                           final Secret tokenId,
                           final String queueName,
                           final String preferredServerName,
@@ -214,8 +214,9 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
     int SendMessageToIronMQ() throws IOException {
 
         final String tokenString = this.tokenId.getPlainText();
+        final String projectString = this.projectId.getPlainText();
 
-        ClientBuilder builder = new ClientBuilder(this.projectId, tokenString, this.preferredServerName);
+        ClientBuilder builder = new ClientBuilder(projectString, tokenString, this.preferredServerName);
 
         Client client = builder.createClient();
 
@@ -270,20 +271,20 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
     /**
      * <p>Getter for the field <code>projectId</code>.</p>
      *
-     * @return a {@link java.lang.String} object.
-     * @since 1.0.6
+     * @return a {@link hudson.util.Secret} object.
+     * @since 1.0.19
      */
-    public String getProjectId() {
+    public Secret getProjectId() {
         return this.projectId;
     }
 
     /**
      * <p>Setter for the field <code>projectId</code>.</p>
      *
-     * @param projectId a {@link java.lang.String} object.
-     * @since 1.0.6
+     * @param projectId a {@link hudson.util.Secret} object.
+     * @since 1.0.19
      */
-    public void setProjectId(final String projectId) {
+    public void setProjectId(final Secret projectId) {
         this.projectId = projectId;
     }
 
@@ -414,7 +415,6 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
         IronConstants ironConstants = new IronConstants();
 
         private String defaultPreferredServerName = ironConstants.DEFAULT_PREFERRED_SERVER_NAME;
-        private String defaultProjectId = "";
 
         private String defaultQueueName = ironConstants.DEF_QUEUE_NAME;
         private Long defaultExpirySeconds = ironConstants.DEF_EXPIRY_SEC;
@@ -442,10 +442,6 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
             return defaultPreferredServerName;
         }
 
-        public String getDefaultProjectId() {
-            return defaultProjectId;
-        }
-
         public String getDefaultQueueName() {
             return defaultQueueName;
         }
@@ -462,9 +458,9 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
             JSONObject json = formData.getJSONObject("ironmqNotifier");
 
             defaultPreferredServerName = json.getString("defaultPreferredServerName");
-            defaultProjectId = json.getString("defaultProjectId");
 
             defaultQueueName = json.getString("defaultQueueName");
+
             try {
                 defaultExpirySeconds = json.getLong("defaultExpirySeconds");
             } catch (Exception exception) {
