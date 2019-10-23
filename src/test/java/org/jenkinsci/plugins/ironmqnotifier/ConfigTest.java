@@ -85,9 +85,7 @@ public class ConfigTest {
         HtmlPage page = jenkins.createWebClient().goTo("configure");
 
         WebAssert.assertInputPresent(page, "_.defaultPreferredServerName");
-        WebAssert.assertInputPresent(page, "_.defaultProjectId");
         WebAssert.assertInputPresent(page, "_.defaultQueueName");
-        WebAssert.assertInputPresent(page, "_.defaultExpirySeconds");
 
     }
 
@@ -121,24 +119,6 @@ public class ConfigTest {
         assertNotNull(inputElement);
         assertNotEquals("", inputElement);
         assertEquals(expectedDefaultServer, inputElement.getDefaultValue());
-
-    }
-
-    @Test
-    public void ConfigureShowsConstantDefaultExpirySeconds() throws Exception {
-
-        HtmlPage page = jenkins.createWebClient().goTo("configure");
-
-        HtmlNumberInput inputElement = page.getElementByName("_.defaultExpirySeconds");
-
-        IronConstants ironConstants = new IronConstants();
-
-        long expectedDefaultServer = ironConstants.DEF_EXPIRY_SEC;
-
-
-        assertNotNull(inputElement);
-        assertNotEquals("", inputElement);
-        assertEquals(expectedDefaultServer, Long.parseLong(inputElement.getDefaultValue()));
 
     }
 
