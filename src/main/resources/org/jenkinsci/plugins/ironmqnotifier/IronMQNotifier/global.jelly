@@ -9,10 +9,6 @@
             <f:textbox/>
         </f:entry>
 
-        <f:entry title="${%Default Token}" field="defaultToken">
-            <f:password/>
-        </f:entry>
-
         <f:entry title="${%Default Queue Name}" field="defaultQueueName">
             <f:textbox default="Jenkins" />
         </f:entry>
