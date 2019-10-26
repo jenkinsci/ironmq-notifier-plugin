@@ -15,7 +15,7 @@ With this situation, there is no need for the Jenkins build server to communicat
 
 ***
 
-* For a current list of TO-DOs check the WIKI at  [https://github.com/jenkinsci/ironmq-notifier-plugin](https://github.com/jenkinsci/ironmq-notifier-plugin)
+* For a current list of TO-DOs check the WIKI at https://github.com/jenkinsci/ironmq-notifier-plugin/blob/master/README-developer.md
 
 * To monitor the current build in progress... https://ci.jenkins.io/job/Plugins/job/ironmq-notifier-plugin/
 
