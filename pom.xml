@@ -77,7 +77,6 @@ limitations under the License.
     <version>1.0.19-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
-
     <name>IronMQ-notifier</name>
     <description>Jenkins build notification plugin which sends results to
         iron.io ironmq service
