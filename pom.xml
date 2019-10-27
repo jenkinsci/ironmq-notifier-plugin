@@ -81,6 +81,7 @@ limitations under the License.
     <description>Jenkins build notification plugin which sends results to
         iron.io ironmq service
     </description>
+
     <url>https://github.com/jenkinsci/ironmq-notifier-plugin</url>
 
     <properties>
