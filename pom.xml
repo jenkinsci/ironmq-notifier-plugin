@@ -91,7 +91,6 @@ limitations under the License.
         <slf4jVersion>1.7.26</slf4jVersion>
     </properties>
 
-
     <licenses>
 
         <license>
