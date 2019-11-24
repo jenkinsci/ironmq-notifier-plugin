@@ -82,7 +82,7 @@ limitations under the License.
         iron.io ironmq service
     </description>
 
-    <url>http://github.com/jenkinsci/ironmq-notifier-plugin</url>
+    <url>https://github.com/jenkinsci/ironmq-notifier-plugin</url>
 
     <properties>
         <jenkins.version>2.176.4</jenkins.version>
