@@ -17,9 +17,9 @@ The messages have FIFO (first-in first-out) ordering so ensure continuity and ca
 ***
 __Warning__ !! 
 
-When upgrading to Version 1.0.19, projectId and tokenId will no longer be set as part of Default Config. Jobs will store encrypted data to comply with a Jenkins Security advisory effecting most plugins.
+**When upgrading to Version 1.0.19, projectId and tokenId will no longer be set as part of Default Config. Jobs will store encrypted data to comply with a Jenkins Security advisory effecting most plugins.**
 
-After installing 1.0.19, the administrator will need to go to each job and re-enter the TokenId which will be re-saved in encrypted format.
+**After installing 1.0.19, the administrator will need to go to each job and re-enter the TokenId which will be re-saved in encrypted format.**
 
 For more information about this change, see warnings about cleartext configuration information being stored on the filesystem with recommendations on how to adjust [see this security advisory impacting many plugins](https://jenkins.io/security/advisory/2019-10-16/)
 This plugin only transmits build results and sends no private data of any kind other than a success/fail. Changes were made to address new Jenkins developer conventions about storing this data in plain text.
