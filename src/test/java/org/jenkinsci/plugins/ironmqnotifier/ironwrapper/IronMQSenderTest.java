@@ -91,9 +91,9 @@ public class IronMQSenderTest {
     @Test
     public void Sender_Normal_Operation() throws IOException {
 
-        IronMessageSettings mockIronMessageSettings = mock(IronMessageSettings.class);
-        when(mockIronMessageSettings.getExpirySeconds()).thenReturn(1000L); //avoid exception
-        when(mockIronMessageSettings.getQueueName()).thenReturn("test");
+        IronMessageSettings ironMessageSettings = new IronMessageSettings();
+        ironMessageSettings.setExpirySeconds(1000L);
+        ironMessageSettings.setQueueName("test");
 
         Queue mockQueue = mock(Queue.class);
 
@@ -101,12 +101,12 @@ public class IronMQSenderTest {
         when(mockQueue.getName()).thenReturn("test");
 
         Client mockClient = mock(Client.class);
-        when(mockClient.queue(anyString())).thenReturn(mockQueue);
+        when(mockClient.queue("test")).thenReturn(mockQueue);
 
 
         IronMQSender sender = new IronMQSender();
 
-        String resultOfPush = sender.send(mockClient, mockIronMessageSettings);
+        String resultOfPush = sender.send(mockClient, ironMessageSettings);
 
         Assert.assertEquals("expected a string response", "OK", resultOfPush);
 
