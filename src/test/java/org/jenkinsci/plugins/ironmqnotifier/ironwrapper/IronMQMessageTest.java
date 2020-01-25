@@ -66,8 +66,10 @@ public class IronMQMessageTest {
     @Test
     public void IronMQ_Message_Expiry_Is_Not_Null() {
         IronMQMessage msg = new IronMQMessage();
-        Assert.assertNotNull(msg.getExpirySeconds());
-    }
+        Object testExpiry = msg.getExpirySeconds();
+        String type = testExpiry.getClass().getSimpleName();
+        Assert.assertEquals("Long", type);
+                    }
 
     @Test
     public void IronMQ_Message_Expiry_Can_Be_Set_And_Returned() {
