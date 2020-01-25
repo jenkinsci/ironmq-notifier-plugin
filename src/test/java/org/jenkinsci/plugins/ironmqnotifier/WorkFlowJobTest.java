@@ -45,7 +45,7 @@ public class WorkFlowJobTest {
 
 
     @Test
-    public void ShouldBeAbleToAddFreestyleJob() throws IOException, InterruptedException {
+    public void ShouldBeAbleToAddFreestyleJob() {
 
         Statement statement = new Statement() {
             @Override
