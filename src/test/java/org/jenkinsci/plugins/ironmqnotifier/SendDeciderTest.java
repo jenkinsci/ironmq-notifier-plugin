@@ -29,7 +29,6 @@ import hudson.model.Result;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -39,14 +38,15 @@ public class SendDeciderTest {
      @Test
     public void IfSuccessShouldSendIfRequested() {
 
+         Result buildResult = Result.SUCCESS;
+
         IronMQNotifier ironMQNotifier = mock(IronMQNotifier.class);
-        when(ironMQNotifier.shouldISend(any(Result.class))).thenCallRealMethod();
+        when(ironMQNotifier.shouldISend(buildResult)).thenCallRealMethod();
 
          ironMQNotifier.send_success = true;
          ironMQNotifier.send_failure = true;
          ironMQNotifier.send_unstable = true;
 
-         Result buildResult = Result.SUCCESS;
 
         boolean shouldISend =  ironMQNotifier.shouldISend(buildResult);
 
@@ -57,15 +57,15 @@ public class SendDeciderTest {
     @Test
     public void IfSuccessShouldNotSendIfDeclined() {
 
+        Result buildResult = Result.SUCCESS;
+
         IronMQNotifier ironMQNotifier = mock(IronMQNotifier.class);
-        when(ironMQNotifier.shouldISend(any(Result.class))).thenCallRealMethod();
+        when(ironMQNotifier.shouldISend(buildResult)).thenCallRealMethod();
 
         ironMQNotifier.send_success = false;
         ironMQNotifier.send_failure = true;
         ironMQNotifier.send_unstable = true;
 
-
-        Result buildResult = Result.SUCCESS;
 
         boolean shouldISend =  ironMQNotifier.shouldISend(buildResult);
 
@@ -76,15 +76,16 @@ public class SendDeciderTest {
     @Test
     public void IfFailedShouldSendIfRequested() {
 
+        Result buildResult = Result.FAILURE;
 
         IronMQNotifier ironMQNotifier = mock(IronMQNotifier.class);
-        when(ironMQNotifier.shouldISend(any(Result.class))).thenCallRealMethod();
+        when(ironMQNotifier.shouldISend(buildResult)).thenCallRealMethod();
 
         ironMQNotifier.send_success = true;
         ironMQNotifier.send_failure = true;
         ironMQNotifier.send_unstable = true;
 
-        Result buildResult = Result.FAILURE;
+
 
         boolean shouldISend =  ironMQNotifier.shouldISend(buildResult);
 
@@ -95,15 +96,15 @@ public class SendDeciderTest {
     @Test
     public void IfFailedShouldNotSendIfDeclined() {
 
+        Result buildResult = Result.FAILURE;
+
         IronMQNotifier ironMQNotifier = mock(IronMQNotifier.class);
-        when(ironMQNotifier.shouldISend(any(Result.class))).thenCallRealMethod();
+        when(ironMQNotifier.shouldISend(buildResult)).thenCallRealMethod();
 
         ironMQNotifier.send_success = true;
         ironMQNotifier.send_failure = false;
         ironMQNotifier.send_unstable = true;
 
-
-        Result buildResult = Result.FAILURE;
 
         boolean shouldISend =  ironMQNotifier.shouldISend(buildResult);
 
@@ -114,15 +115,17 @@ public class SendDeciderTest {
     @Test
     public void IfUnstableShouldSendIfRequested() {
 
+
+        Result buildResult = Result.UNSTABLE;
+
         IronMQNotifier ironMQNotifier = mock(IronMQNotifier.class);
-        when(ironMQNotifier.shouldISend(any(Result.class))).thenCallRealMethod();
+        when(ironMQNotifier.shouldISend(buildResult)).thenCallRealMethod();
 
 
         ironMQNotifier.send_success = true;
         ironMQNotifier.send_failure = true;
         ironMQNotifier.send_unstable = true;
 
-        Result buildResult = Result.UNSTABLE;
 
         boolean shouldISend =  ironMQNotifier.shouldISend(buildResult);
 
@@ -133,15 +136,15 @@ public class SendDeciderTest {
     @Test
     public void IfUnstableShouldNotSendIfDeclined() {
 
+        Result buildResult = Result.UNSTABLE;
+
         IronMQNotifier ironMQNotifier = mock(IronMQNotifier.class);
-        when(ironMQNotifier.shouldISend(any(Result.class))).thenCallRealMethod();
+        when(ironMQNotifier.shouldISend(buildResult)).thenCallRealMethod();
 
         ironMQNotifier.send_success = true;
         ironMQNotifier.send_failure = true;
         ironMQNotifier.send_unstable = false;
 
-
-        Result buildResult = Result.UNSTABLE;
 
         boolean shouldISend =  ironMQNotifier.shouldISend(buildResult);
 
