@@ -26,7 +26,9 @@ package org.jenkinsci.plugins.ironmqnotifier;
 
 
 
+import hudson.model.Descriptor;
 import hudson.model.FreeStyleProject;
+import hudson.tasks.Publisher;
 import hudson.util.DescribableList;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.junit.Assert;
@@ -52,14 +54,14 @@ public class FreestyleJobTest {
 
 
     @Test
-    public void ShouldBeAbleToAddFreestyleJob() throws IOException, InterruptedException {
+    public void ShouldBeAbleToAddFreestyleJob() throws IOException {
 
         FreeStyleProject p = j.createFreeStyleProject();
 
         p.getPublishersList().add(new IronMQNotifier(TestSettings.TESTPROJECTID,
                 TestSettings.TESTTOKENID, "", "", true, true, true, TestSettings.EXPIRYSETTINGS) );
 
-        DescribableList describableList = p.getPublishersList();
+        DescribableList<Publisher, Descriptor<Publisher>> describableList = p.getPublishersList();
 
         IronMQNotifier result = (IronMQNotifier) describableList.get(0);
 
