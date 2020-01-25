@@ -74,7 +74,7 @@ public class IronMQNotifierTest {
     public void Notifier_Has_A_ProjectId_Not_Empty() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertTrue(!notifier.getProjectId().getPlainText().isEmpty());
+        Assert.assertFalse(notifier.getProjectId().getPlainText().isEmpty());
     }
 
     @Test
@@ -99,7 +99,7 @@ public class IronMQNotifierTest {
     public void Notifier_Has_A_Token_Not_Empty() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertTrue(!notifier.getTokenId().getPlainText().isEmpty());
+        Assert.assertFalse(notifier.getTokenId().getPlainText().isEmpty());
 
     }
 
@@ -116,7 +116,7 @@ public class IronMQNotifierTest {
     public void Notifier_Has_Success_Flag_Success() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertNotNull(notifier.send_success);
+        Assert.assertTrue(notifier.send_success);
 
     }
 
@@ -158,9 +158,19 @@ public class IronMQNotifierTest {
         Assert.assertNotNull(notifier.getTokenId());
         Assert.assertNotNull(notifier.getQueueName());
         Assert.assertNotNull(notifier.getPreferredServerName());
-        Assert.assertNotNull(notifier.send_success);
-        Assert.assertNotNull(notifier.send_failure);
-        Assert.assertNotNull(notifier.send_unstable);
+
+        Object send_success = notifier.send_success;
+        String type_success = send_success.getClass().getSimpleName();
+        Assert.assertEquals("Boolean", type_success);
+
+        Object send_failure = notifier.send_failure;
+        String type_failure = send_failure.getClass().getSimpleName();
+        Assert.assertEquals("Boolean", type_failure);
+
+        Object send_unstable = notifier.send_unstable;
+        String type_unstable = send_unstable.getClass().getSimpleName();
+        Assert.assertEquals("Boolean", type_unstable);
+
         Assert.assertNotNull(notifier.getExpirySeconds());
 
     }
@@ -214,7 +224,7 @@ public class IronMQNotifierTest {
     public void Needs_To_Run_After_Finalized_Should_Be_Set() {
 
         IronMQNotifier notifier = StandardTestNotifier();
-        Assert.assertNotNull(notifier.needsToRunAfterFinalized());
+        Assert.assertTrue(notifier.needsToRunAfterFinalized());
 
     }
 
