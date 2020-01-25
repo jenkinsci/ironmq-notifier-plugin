@@ -31,7 +31,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -96,8 +96,7 @@ public class IronMQSenderTest {
         ironMessageSettings.setQueueName("test");
 
         Queue mockQueue = mock(Queue.class);
-
-        when(mockQueue.push(anyString())).thenReturn("OK");
+        when(mockQueue.push(any())).thenReturn("OK");
         when(mockQueue.getName()).thenReturn("test");
 
         Client mockClient = mock(Client.class);
@@ -126,7 +125,7 @@ public class IronMQSenderTest {
         when(mockQueue.getName()).thenReturn("test");
 
         Client mockClient = mock(Client.class);
-        when(mockClient.queue(anyString())).thenReturn(mockQueue);
+        when(mockClient.queue(any())).thenReturn(mockQueue);
 
 
         IronMQSender sender = new IronMQSender();
@@ -151,7 +150,7 @@ public class IronMQSenderTest {
         when(mockQueue.getName()).thenReturn("");
 
         Client mockClient = mock(Client.class);
-        when(mockClient.queue(anyString())).thenReturn(mockQueue);
+        when(mockClient.queue(any())).thenReturn(mockQueue);
 
 
         IronMQSender sender = new IronMQSender();
