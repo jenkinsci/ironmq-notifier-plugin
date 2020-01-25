@@ -31,7 +31,6 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -139,18 +138,17 @@ public class IronMQSenderTest {
 
     }
 
-    @Test(expected = IOException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void Sender_Queue_Push_Error_Empty_String() throws IOException {
 
         IronMessageSettings mockIronMessageSettings = mock(IronMessageSettings.class);
         when(mockIronMessageSettings.getExpirySeconds()).thenReturn(1000L);
-        when(mockIronMessageSettings.getQueueName()).thenReturn("test");
+        when(mockIronMessageSettings.getQueueName()).thenReturn("");
 
         Queue mockQueue = mock(Queue.class);
 
-        when(mockQueue.getName()).thenReturn("test");
-        when(mockQueue.push(anyString())).thenReturn("");
-        when(mockQueue.push(anyString(),anyLong())).thenReturn("");
+
+        when(mockQueue.getName()).thenReturn("");
 
         Client mockClient = mock(Client.class);
         when(mockClient.queue(anyString())).thenReturn(mockQueue);
