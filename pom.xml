@@ -85,7 +85,7 @@ limitations under the License.
     <url>https://github.com/jenkinsci/ironmq-notifier-plugin</url>
 
     <properties>
-        <jenkins.version>2.190.3</jenkins.version>
+        <jenkins.version>2.204.1</jenkins.version>
         <java.level>8</java.level>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
