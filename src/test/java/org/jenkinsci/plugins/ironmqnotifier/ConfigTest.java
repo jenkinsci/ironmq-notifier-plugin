@@ -26,12 +26,10 @@
 package org.jenkinsci.plugins.ironmqnotifier;
 
 import com.gargoylesoftware.htmlunit.WebAssert;
-import com.gargoylesoftware.htmlunit.html.HtmlNumberInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import com.google.common.base.Joiner;
 import hudson.PluginWrapper;
-import hudson.model.Descriptor;
 import hudson.model.FreeStyleProject;
 import hudson.util.FormValidation;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
@@ -54,9 +52,7 @@ public class ConfigTest {
 
 
     @Test
-
-
-    public void shouldFindThePluginByShortName() throws Exception {
+    public void shouldFindThePluginByShortName() {
 
 
         PluginWrapper wrapper = jenkins.getPluginManager().getPlugin("ironmq-notifier");
@@ -123,29 +119,29 @@ public class ConfigTest {
     }
 
     @Test
-    public void ConfigureFormValidationExpiryWorksProperlySuccess() throws Descriptor.FormException{
+    public void ConfigureFormValidationExpiryWorksProperlySuccess() {
 
         IronMQNotifier.IronMQNotifierDescriptor descriptor = new IronMQNotifier.IronMQNotifierDescriptor();
 
         FormValidation formValidation = descriptor.doCheckExpirySeconds(1000L);
 
-        Assert.assertTrue(formValidation.kind.toString().equals("OK"));
+        assertEquals("OK", formValidation.kind.toString());
 
     }
 
     @Test
-    public void ConfigureFormValidationQueueNameWorksProperlySuccess() throws Descriptor.FormException{
+    public void ConfigureFormValidationQueueNameWorksProperlySuccess() {
 
         IronMQNotifier.IronMQNotifierDescriptor descriptor = new IronMQNotifier.IronMQNotifierDescriptor();
 
         FormValidation formValidation = descriptor.doCheckQueueName("testQueue");
 
-        Assert.assertTrue(formValidation.kind.toString().equals("OK"));
+        assertEquals("OK", formValidation.kind.toString());
 
     }
 
     @Test
-    public void ConfigureFormValidationQueueNameWorksProperlyNull() throws Descriptor.FormException{
+    public void ConfigureFormValidationQueueNameWorksProperlyNull() {
 
         IronMQNotifier.IronMQNotifierDescriptor descriptor = new IronMQNotifier.IronMQNotifierDescriptor();
 
@@ -153,7 +149,7 @@ public class ConfigTest {
 
         String result = formValidation.getMessage();
 
-        Assert.assertTrue(result.equals("Check Queue Name"));
+        assertEquals("Check Queue Name", result);
 
 
     }

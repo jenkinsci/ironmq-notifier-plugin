@@ -27,21 +27,33 @@ package org.jenkinsci.plugins.ironmqnotifier;
 
 import hudson.model.Result;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import org.jvnet.hudson.test.JenkinsRule;
 
 
 public class SendDeciderTest {
 
-     @Test
+    /**
+     * JUnit rule which instantiates a local Jenkins instance with our plugin installed.
+     */
+    @Rule
+    public JenkinsRule jenkins = new JenkinsRule();
+
+
+    @Test
     public void IfSuccessShouldSendIfRequested() {
 
          Result buildResult = Result.SUCCESS;
 
-        IronMQNotifier ironMQNotifier = mock(IronMQNotifier.class);
-        when(ironMQNotifier.shouldISend(buildResult)).thenCallRealMethod();
+         IronMQNotifier ironMQNotifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                 TestSettings.TESTTOKENID, TestSettings.TESTQUEUENAME,
+                 TestSettings.TESTPREFERREDSERVER,
+                 true,
+                 true,
+                 true,
+                 TestSettings.EXPIRYSETTINGS);
+
 
          ironMQNotifier.send_success = true;
          ironMQNotifier.send_failure = true;
@@ -59,8 +71,13 @@ public class SendDeciderTest {
 
         Result buildResult = Result.SUCCESS;
 
-        IronMQNotifier ironMQNotifier = mock(IronMQNotifier.class);
-        when(ironMQNotifier.shouldISend(buildResult)).thenCallRealMethod();
+        IronMQNotifier ironMQNotifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKENID, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTPREFERREDSERVER,
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
 
         ironMQNotifier.send_success = false;
         ironMQNotifier.send_failure = true;
@@ -78,8 +95,13 @@ public class SendDeciderTest {
 
         Result buildResult = Result.FAILURE;
 
-        IronMQNotifier ironMQNotifier = mock(IronMQNotifier.class);
-        when(ironMQNotifier.shouldISend(buildResult)).thenCallRealMethod();
+        IronMQNotifier ironMQNotifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKENID, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTPREFERREDSERVER,
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
 
         ironMQNotifier.send_success = true;
         ironMQNotifier.send_failure = true;
@@ -98,8 +120,13 @@ public class SendDeciderTest {
 
         Result buildResult = Result.FAILURE;
 
-        IronMQNotifier ironMQNotifier = mock(IronMQNotifier.class);
-        when(ironMQNotifier.shouldISend(buildResult)).thenCallRealMethod();
+        IronMQNotifier ironMQNotifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKENID, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTPREFERREDSERVER,
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
 
         ironMQNotifier.send_success = true;
         ironMQNotifier.send_failure = false;
@@ -118,8 +145,13 @@ public class SendDeciderTest {
 
         Result buildResult = Result.UNSTABLE;
 
-        IronMQNotifier ironMQNotifier = mock(IronMQNotifier.class);
-        when(ironMQNotifier.shouldISend(buildResult)).thenCallRealMethod();
+        IronMQNotifier ironMQNotifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKENID, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTPREFERREDSERVER,
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
 
 
         ironMQNotifier.send_success = true;
@@ -138,8 +170,13 @@ public class SendDeciderTest {
 
         Result buildResult = Result.UNSTABLE;
 
-        IronMQNotifier ironMQNotifier = mock(IronMQNotifier.class);
-        when(ironMQNotifier.shouldISend(buildResult)).thenCallRealMethod();
+        IronMQNotifier ironMQNotifier = new IronMQNotifier(TestSettings.TESTPROJECTID,
+                TestSettings.TESTTOKENID, TestSettings.TESTQUEUENAME,
+                TestSettings.TESTPREFERREDSERVER,
+                true,
+                true,
+                true,
+                TestSettings.EXPIRYSETTINGS);
 
         ironMQNotifier.send_success = true;
         ironMQNotifier.send_failure = true;
