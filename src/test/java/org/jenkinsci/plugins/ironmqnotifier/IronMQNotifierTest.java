@@ -28,6 +28,7 @@ import hudson.tasks.BuildStepMonitor;
 import hudson.util.Secret;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
