@@ -13,7 +13,7 @@ Messages are not intended to be in this queue for long-term storage.
 Default expiry if not provided is 604,800 (7 days).
 The messages have FIFO (first-in first-out) ordering so ensure continuity and can be dealt with by different clients as needed.
 
-**1.0.19** - minimum version of Jenkins set to 2.164.1, Default Configuration in Jenkins/Configure modified to use Secrets vs. cleartext
+**1.0.19** - minimum version of Jenkins set to 2.204.1, Default Configuration in Jenkins/Configure modified to use Secrets vs. cleartext
 ***
 __Warning__ !! 
 
