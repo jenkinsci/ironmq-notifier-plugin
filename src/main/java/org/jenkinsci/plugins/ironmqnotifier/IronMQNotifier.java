@@ -152,7 +152,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
 
             try {
 
-                SendMessageToIronMQ();
+                sendMessageToIronMQ();
 
             } catch (Exception ex) {
 
@@ -210,7 +210,7 @@ public class IronMQNotifier extends Notifier implements SimpleBuildStep {
         return (IronMQNotifierDescriptor) super.getDescriptor();
     }
 
-    protected int  SendMessageToIronMQ() throws IOException {
+    protected int  sendMessageToIronMQ() throws IOException {
 
         final String tokenString = this.tokenId.getPlainText();
         final String projectString = this.projectId.getPlainText();

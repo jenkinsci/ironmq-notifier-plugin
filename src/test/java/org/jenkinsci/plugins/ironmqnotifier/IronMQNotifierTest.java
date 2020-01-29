@@ -323,9 +323,9 @@ public class IronMQNotifierTest {
     public void IronMQNotifierSendFunctionReturnsAZeroIntegerOnNormal() throws IOException {
 
         IronMQNotifier notifier = mock(IronMQNotifier.class);
-        when(notifier.SendMessageToIronMQ()).thenReturn(0);
+        when(notifier.sendMessageToIronMQ()).thenReturn(0);
 
-        int result = notifier.SendMessageToIronMQ();
+        int result = notifier.sendMessageToIronMQ();
 
         Assert.assertEquals(0, result);
 
