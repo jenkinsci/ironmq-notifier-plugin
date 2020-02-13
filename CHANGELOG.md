@@ -1,6 +1,6 @@
 __Change Log__
 
-- Version 1.0.19-SNAPSHOT (Nov 2019)
+- Version 1.0.19-SNAPSHOT (Feb 2020)
 Set Base Version to 2.176.4 (security advisory recommendations adjustments) 
 
 - Version 1.0.13 (Dec 16, 2015)
