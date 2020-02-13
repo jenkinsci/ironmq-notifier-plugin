@@ -1,6 +1,6 @@
 # ironmq-notifier
 
-__Warning__ !!
+## *Warning*
 
 **When upgrading to Version 1.0.19, projectId and tokenId will no longer be set as part of Default Config. Jobs will store encrypted data to comply with a Jenkins Security advisory effecting most plugins.**
 
@@ -26,7 +26,6 @@ Default expiry if not provided is 604,800 (7 days).
 The messages have FIFO (first-in first-out) ordering so ensure continuity and can be dealt with by different clients as needed.
 
 **1.0.19** - minimum version of Jenkins set to 2.204.1, Default Configuration in Jenkins/Configure modified to use Secrets vs. cleartext
-
 
 **1.0.18** - tested to 2.29 version of Jenkins
 
@@ -62,10 +61,10 @@ Setup Instructions for Iron.io
 
 At the time of the creation of this document, no setup or accounts are needed at Rackspace or Amazon. It is all handled nicely through the one interface at Iron.io
 
-- Go to http://www.iron.io/mq for more info.
+- Go to <http://www.iron.io/mq> for more info.
 - Create an account
 - Create a Project (you can have one project for your Jenkins instance or several projects depending on your needs).
-- After the project is setup, go to the "HUD" at https://hud.iron.io
+- After the project is setup, go to the "HUD" at <https://hud.iron.io>
 
 Sample Jenkins Project (not the Settings Icon) which will provide authentication token for your Project (Jenkins in this example).
 
@@ -73,19 +72,18 @@ Sample Jenkins Project (not the Settings Icon) which will provide authentication
 
 ![](https://github.com/jenkinsci/ironmq-notifier-plugin/blob/master/wiki/Credentials.png)
 
-
 You will need the following information:
 
-* ProjectId (provided by the HUD)
-* Token for this Project (provided by the HUD under authentication)
-* QueueName (A-Z upper and lower) (I have not tested other alternatives)
-* Preferred Server Name (there are several servers available for this service. This plugin is designed so that if there are new ones, no coding changes are needed.. Just replace the name of the server as they add/remove servers from their available list.
+- ProjectId (provided by the HUD)
+- Token for this Project (provided by the HUD under authentication)
+- QueueName (A-Z upper and lower) (I have not tested other alternatives)
+- Preferred Server Name (there are several servers available for this service. This plugin is designed so that if there are new ones, no coding changes are needed.. Just replace the name of the server as they add/remove servers from their available list.
 
 Current options for Server Names are..
 
-* mq-aws-us-east-1-1.iron.io
-* mq-aws-us-east-1-2.iron.io
-* mq-aws-eu-west-1-1.iron.io
+- mq-aws-us-east-1-1.iron.io
+- mq-aws-us-east-1-2.iron.io
+- mq-aws-eu-west-1-1.iron.io
 
 Starting from version 1.0.11, configure default settings in the Configure Jenkins Server Defaults as follows;
 
@@ -105,7 +103,7 @@ As of Version 1.0.5, when a message is transmitted to the queue, it is in JSON f
 
 ![](https://github.com/jenkinsci/ironmq-notifier-plugin/blob/master/wiki/BuildResult.png)
 
-__Current To-Do list__
+## Current To-Do list
 
 - Modify the documentation to show new version 3 API screens and information.
 - Get unstable build to work in the event of an error of some sort during transmission
