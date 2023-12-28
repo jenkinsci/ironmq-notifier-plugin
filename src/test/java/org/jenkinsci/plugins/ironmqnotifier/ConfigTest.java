@@ -25,13 +25,14 @@
 
 package org.jenkinsci.plugins.ironmqnotifier;
 
-import com.gargoylesoftware.htmlunit.WebAssert;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
+
 import com.google.common.base.Joiner;
 import hudson.PluginWrapper;
 import hudson.model.FreeStyleProject;
 import hudson.util.FormValidation;
+import org.htmlunit.WebAssert;
+import org.htmlunit.html.HtmlPage;
+import org.htmlunit.html.HtmlTextInput;
 import org.jenkinsci.plugins.ironmqnotifier.ironwrapper.IronConstants;
 import org.junit.Assert;
 import org.junit.Rule;
