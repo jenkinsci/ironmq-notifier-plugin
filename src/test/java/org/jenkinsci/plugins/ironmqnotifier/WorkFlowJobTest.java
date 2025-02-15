@@ -30,8 +30,6 @@ import org.junit.Test;
 import org.junit.runners.model.Statement;
 import org.jvnet.hudson.test.RestartableJenkinsRule;
 
-import java.io.IOException;
-
 
 public class WorkFlowJobTest {
 
